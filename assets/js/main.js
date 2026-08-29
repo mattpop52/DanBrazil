@@ -92,7 +92,7 @@
     var value = 0;
     var pageLoaded = false;
     var start = performance.now();
-    var MAX_MS = 1400;
+    var MAX_MS = 900;
 
     window.addEventListener('load', function () { pageLoaded = true; });
 
@@ -377,31 +377,120 @@
   }
 
   /* =====================================================================
-     9. Sticky service cards — each one shrinks as the next covers it
+     9. Photo ticker — drifts on its own, accelerates while the page is
+        scrolling, and can be dragged. Ported from the reference's mechanics,
+        minus its wheel hijack (which trapped the page scroll).
      ===================================================================== */
-  function initStickyCards() {
-    var cards = $$('.db-scard');
-    if (cards.length < 2) return;
+  function initTickers() {
+    $$('[data-ticker]').forEach(function (ticker) {
+      var track = $('.db-ticker__track', ticker);
+      if (!track) return;
 
-    var mobile = window.matchMedia('(max-width: 809px)');
+      var originals = $$('.db-polaroid', track);
+      if (!originals.length) return;
 
-    onFrame(function () {
-      if (prefersReduced || mobile.matches) return;
-
-      for (var i = 0; i < cards.length - 1; i++) {
-        var inner = $('.db-scard__inner', cards[i]);
-        if (!inner) continue;
-
-        var here = cards[i].getBoundingClientRect();
-        var next = cards[i + 1].getBoundingClientRect();
-        var height = here.height || 1;
-
-        // 0 while the next card is still below; 1 once it has fully covered.
-        var p = clamp(1 - (next.top - here.top) / height, 0, 1);
-
-        inner.style.transform = 'scale(' + (1 - p * 0.06).toFixed(4) + ')';
-        inner.style.filter = 'brightness(' + (1 - p * 0.3).toFixed(3) + ')';
+      // Deterministic tilt, so the layout is identical on every load.
+      var maxTilt = parseFloat(ticker.getAttribute('data-tilt')) || 8;
+      function tiltFor(i) {
+        return ((Math.sin(i * 123.456) * maxTilt) - maxTilt / 2) * 0.5;
       }
+      originals.forEach(function (el, i) {
+        el.style.setProperty('--tilt', tiltFor(i).toFixed(2) + 'deg');
+      });
+
+      if (prefersReduced) return;
+
+      var baseSpeed = parseFloat(ticker.getAttribute('data-speed')) || 50;  // px/s
+      var cycle = 0;
+      var offset = 0;
+      var boost = 0;
+      var boostTimer = null;
+      var paused = false;
+      var clones = [];
+
+      function measure() {
+        clones.forEach(function (c) { c.remove(); });
+        clones = [];
+
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        cycle = originals.reduce(function (sum, el) {
+          return sum + el.getBoundingClientRect().width + gap;
+        }, 0);
+        if (!cycle) return;
+
+        // Enough copies to cover the strip twice over, so the seam never shows.
+        var copies = Math.ceil((window.innerWidth * 2) / cycle) + 1;
+        for (var c = 0; c < copies; c++) {
+          originals.forEach(function (el, i) {
+            var clone = el.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            clone.style.setProperty('--tilt', tiltFor(i + (c + 1) * originals.length).toFixed(2) + 'deg');
+            $$('a, button', clone).forEach(function (f) { f.setAttribute('tabindex', '-1'); });
+            track.appendChild(clone);
+            clones.push(clone);
+          });
+        }
+      }
+
+      measure();
+      window.addEventListener('resize', debounce(function () { offset = 0; measure(); }, 200), { passive: true });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () { offset = 0; measure(); });
+      }
+
+      // Scrolling the page speeds the strip up, decaying back after 150ms idle.
+      var lastY = scrollY;
+      window.addEventListener('scroll', function () {
+        boost = Math.min(Math.abs(window.pageYOffset - lastY) * 2, 900);
+        lastY = window.pageYOffset;
+        clearTimeout(boostTimer);
+        boostTimer = setTimeout(function () { boost = 0; }, 150);
+      }, { passive: true });
+
+      ticker.addEventListener('pointerenter', function (e) {
+        if (e.pointerType !== 'touch') paused = true;
+      });
+      ticker.addEventListener('pointerleave', function () { paused = false; });
+
+      // Drag to scrub.
+      var dragging = false, dragStart = 0, dragFrom = 0, pointerId = null;
+
+      ticker.addEventListener('pointerdown', function (e) {
+        if (e.button !== 0 && e.pointerType === 'mouse') return;
+        dragging = true;
+        pointerId = e.pointerId;
+        dragStart = e.clientX;
+        dragFrom = offset;
+        ticker.classList.add('is-dragging');
+        ticker.setPointerCapture(e.pointerId);
+      });
+
+      ticker.addEventListener('pointermove', function (e) {
+        if (!dragging || e.pointerId !== pointerId) return;
+        offset = dragFrom - (e.clientX - dragStart);
+        if (cycle) offset = ((offset % cycle) + cycle) % cycle;
+      });
+
+      function endDrag(e) {
+        if (!dragging || (e && e.pointerId !== pointerId)) return;
+        dragging = false;
+        pointerId = null;
+        ticker.classList.remove('is-dragging');
+      }
+      ticker.addEventListener('pointerup', endDrag);
+      ticker.addEventListener('pointercancel', endDrag);
+
+      onFrame(function (dt) {
+        if (!cycle) return;
+        var rect = ticker.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > viewH + 200) return;   // off screen, skip
+
+        if (!paused && !dragging) {
+          offset += (baseSpeed + boost) * dt;
+          if (offset >= cycle) offset -= cycle;
+        }
+        track.style.transform = 'translate3d(' + (-offset).toFixed(2) + 'px,0,0)';
+      });
     });
   }
 
@@ -720,7 +809,7 @@
     initReveal();
     initCharReveal();
     initMarquees();
-    initStickyCards();
+    initTickers();
     initPanels();
     initAccordion();
     initParallax();

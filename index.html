@@ -27,7 +27,11 @@
 <link rel="alternate icon" href="assets/img/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
-<link rel="preload" as="image" href="assets/img/studio-console.jpg" fetchpriority="high">
+<!-- Preload the WebP set, matching what <picture> will actually choose. Browsers
+     without WebP skip this because of the type, and load the JPEG normally. -->
+<link rel="preload" as="image" type="image/webp"
+      imagesrcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w"
+      imagesizes="100vw" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/anton-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-latin.woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
@@ -147,24 +151,27 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
   <!-- ============================== HERO ============================== -->
   <section class="db-hero" id="hero">
     <div class="db-hero__media" aria-hidden="true">
-      <img src="assets/img/studio-console.jpg" alt="" width="1320" height="1323" fetchpriority="high" decoding="async">
+      <picture>
+              <source type="image/webp" srcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w" sizes="100vw">
+              <img src="assets/img/studio-console.jpg" srcset="assets/img/studio-console-400.jpg 400w, assets/img/studio-console-800.jpg 800w, assets/img/studio-console.jpg 1320w" sizes="100vw" width="1320" height="1323" alt=""  fetchpriority="high" decoding="async">
+            </picture>
       <div class="db-hero__scrim"></div>
     </div>
 
     <div class="db-hero__inner db-container">
-      <p class="db-eyebrow" data-reveal>PRODUCTION &middot; SONGWRITING &middot; MIX</p>
+      <p class="db-eyebrow db-eyebrow--centred" data-reveal>PRODUCTION &middot; SONGWRITING &middot; MIX</p>
 
       <h1 class="db-hero__title">
-        <span class="db-hero__line" data-reveal data-reveal-delay="80">RECORDING STUDIO</span>
+        <span class="db-hero__line" data-reveal>RECORDING STUDIO</span>
         <span class="db-hero__script" data-reveal data-reveal-delay="200">&amp; songwriting room</span>
       </h1>
 
-      <p class="db-hero__lede" data-reveal data-reveal-delay="320">
+      <p class="db-hero__lede" data-reveal data-reveal-delay="400">
         Recording, production, mixing and mastering with a producer who writes too —
         in a room built for finishing songs, not just tracking them.
       </p>
 
-      <div class="db-hero__actions" data-reveal data-reveal-delay="420">
+      <div class="db-hero__actions" data-reveal data-reveal-delay="600">
         <a class="db-btn db-btn--primary" href="#contact" data-magnetic>Book the Studio</a>
         <a class="db-btn db-btn--ghost" href="#contact" data-magnetic>Get in Touch</a>
       </div>
@@ -198,101 +205,119 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       </header>
     </div>
 
-    <!-- Sticky stacking cards -->
-    <div class="db-stack" id="serviceStack">
+    <div class="db-cardrow">
+      <article class="db-card" data-reveal="x" data-reveal-delay="0">
+        <div class="db-card__photo" aria-hidden="true">
+          <picture>
+              <source type="image/webp" srcset="assets/img/studio-live-room-400.webp 400w, assets/img/studio-live-room-800.webp 800w, assets/img/studio-live-room-1320.webp 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
+              <img src="assets/img/studio-live-room.jpg" srcset="assets/img/studio-live-room-400.jpg 400w, assets/img/studio-live-room-800.jpg 800w, assets/img/studio-live-room.jpg 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
+            </picture>
+        </div>
+        <div class="db-card__scrim" aria-hidden="true"></div>
 
-      <article class="db-scard" style="--i:0">
-        <div class="db-scard__inner">
-          <div class="db-scard__media" aria-hidden="true">
-            <img src="assets/img/studio-live-room.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1323">
-          </div>
-          <div class="db-scard__body">
-            <p class="db-scard__index">01</p>
-            <h3 class="db-scard__title">STUDIO HIRE</h3>
-            <!-- EDIT: prices are placeholders — replace with your real rate card -->
-            <ul class="db-scard__prices">
+        <div class="db-card__body">
+          <span class="db-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M4 20V9m5 11V4m5 16v-7m5 7V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          </span>
+          <h3 class="db-card__title">STUDIO HIRE</h3>
+          <!-- EDIT: prices are placeholders. Confirm the "same night" files claim too. -->
+          <ul class="db-card__prices">
               <li><b>&pound;40</b> per hour</li>
-              <li><b>&pound;140</b> &mdash; 4 hours (half day)</li>
-              <li><b>&pound;240</b> &mdash; 8 hours (full day)</li>
-            </ul>
-            <!-- EDIT: confirm this is what you actually offer, including "same night" files. -->
-            <p class="db-scard__text">
-              A treated live room and control room with an engineer on hand for the whole session.
-              Tracking, overdubs, vocal days &mdash; walk out with your files the same night.
-            </p>
-            <a class="db-btn db-btn--outline" href="#contact" data-magnetic>Hire the studio</a>
-          </div>
+              <li><b>&pound;140</b> half day</li>
+              <li><b>&pound;240</b> full day</li>
+          </ul>
+          <p class="db-card__text">A treated live room and control room with an engineer on hand for the whole session. Tracking, overdubs, vocal days &mdash; walk out with your files the same night.</p>
+          <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Hire the studio</span>
         </div>
+
+        <a class="db-card__link" href="#contact">
+          <span class="db-visually-hidden">Hire the studio &mdash; go to the booking form</span>
+        </a>
       </article>
 
-      <article class="db-scard" style="--i:1">
-        <div class="db-scard__inner">
-          <div class="db-scard__media" aria-hidden="true">
-            <img src="assets/img/studio-control-room.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1216">
-          </div>
-          <div class="db-scard__body">
-            <p class="db-scard__index">02</p>
-            <h3 class="db-scard__title">PRODUCTION &amp; CO-WRITE</h3>
-            <!-- EDIT: prices are placeholders -->
-            <ul class="db-scard__prices">
+      <article class="db-card" data-reveal="x" data-reveal-delay="200">
+        <div class="db-card__photo" aria-hidden="true">
+          <picture>
+              <source type="image/webp" srcset="assets/img/studio-control-room-400.webp 400w, assets/img/studio-control-room-800.webp 800w, assets/img/studio-control-room-1320.webp 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
+              <img src="assets/img/studio-control-room.jpg" srcset="assets/img/studio-control-room-400.jpg 400w, assets/img/studio-control-room-800.jpg 800w, assets/img/studio-control-room.jpg 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1320" height="1216" alt="" loading="lazy" decoding="async">
+            </picture>
+        </div>
+        <div class="db-card__scrim" aria-hidden="true"></div>
+
+        <div class="db-card__body">
+          <span class="db-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M4 20h16M6 16l9.5-9.5a2.1 2.1 0 1 1 3 3L9 19l-4 1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/></svg>
+          </span>
+          <h3 class="db-card__title">PRODUCTION &amp; CO-WRITE</h3>
+          <!-- EDIT: prices are placeholders. -->
+          <ul class="db-card__prices">
               <li><b>&pound;350</b> per writing day</li>
-              <li><b>&pound;750</b> per song (full production)</li>
-            </ul>
-            <p class="db-scard__text">
-              From a voice note to a finished record. Topline, arrangement, programming and live playing &mdash;
-              built around the song rather than the template.
-            </p>
-            <a class="db-btn db-btn--outline" href="#contact" data-magnetic>Start a song</a>
-          </div>
+              <li><b>&pound;750</b> per song</li>
+          </ul>
+          <p class="db-card__text">From a voice note to a finished record. Topline, arrangement, programming and live playing &mdash; built around the song rather than the template.</p>
+          <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Start a song</span>
         </div>
+
+        <a class="db-card__link" href="#contact">
+          <span class="db-visually-hidden">Start a song &mdash; go to the booking form</span>
+        </a>
       </article>
 
-      <article class="db-scard" style="--i:2">
-        <div class="db-scard__inner">
-          <div class="db-scard__media" aria-hidden="true">
-            <img src="assets/img/studio-console.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1323">
-          </div>
-          <div class="db-scard__body">
-            <p class="db-scard__index">03</p>
-            <h3 class="db-scard__title">MIXING</h3>
-            <!-- EDIT: prices are placeholders -->
-            <ul class="db-scard__prices">
+      <article class="db-card" data-reveal="x" data-reveal-delay="400">
+        <div class="db-card__photo" aria-hidden="true">
+          <picture>
+              <source type="image/webp" srcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
+              <img src="assets/img/studio-console.jpg" srcset="assets/img/studio-console-400.jpg 400w, assets/img/studio-console-800.jpg 800w, assets/img/studio-console.jpg 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
+            </picture>
+        </div>
+        <div class="db-card__scrim" aria-hidden="true"></div>
+
+        <div class="db-card__body">
+          <span class="db-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M5 4v6m0 4v6m7-16v10m0 4v2m7-16v3m0 4v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="5" cy="12" r="2.2" fill="currentColor"/><circle cx="12" cy="16" r="2.2" fill="currentColor"/><circle cx="19" cy="9" r="2.2" fill="currentColor"/></svg>
+          </span>
+          <h3 class="db-card__title">MIXING</h3>
+          <!-- EDIT: prices, the revision count and the versions you supply are sensible defaults, not a quote. -->
+          <ul class="db-card__prices">
               <li><b>&pound;250</b> per track</li>
-              <li><b>&pound;200</b> per track &mdash; EP or album</li>
-            </ul>
-            <!-- EDIT: revision count and the versions you supply are a sensible default, not a quote. -->
-            <p class="db-scard__text">
-              Clean, balanced mixes tailored to your sound and creative direction.
-              Two rounds of revisions included, plus instrumental, TV and a cappella versions.
-            </p>
-            <a class="db-btn db-btn--outline" href="#contact" data-magnetic>Send me stems</a>
-          </div>
+              <li><b>&pound;200</b> EP or album</li>
+          </ul>
+          <p class="db-card__text">Clean, balanced mixes tailored to your sound and creative direction. Two rounds of revisions included, plus instrumental, TV and a cappella versions.</p>
+          <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Send me stems</span>
         </div>
+
+        <a class="db-card__link" href="#contact">
+          <span class="db-visually-hidden">Send me stems &mdash; go to the booking form</span>
+        </a>
       </article>
 
-      <article class="db-scard" style="--i:3">
-        <div class="db-scard__inner">
-          <div class="db-scard__media" aria-hidden="true">
-            <img src="assets/img/studio-desk-detail.jpg" alt="" loading="lazy" decoding="async" width="1080" height="423">
-          </div>
-          <div class="db-scard__body">
-            <p class="db-scard__index">04</p>
-            <h3 class="db-scard__title">MASTERING</h3>
-            <!-- EDIT: prices are placeholders -->
-            <ul class="db-scard__prices">
+      <article class="db-card" data-reveal="x" data-reveal-delay="600">
+        <div class="db-card__photo" aria-hidden="true">
+          <picture>
+              <source type="image/webp" srcset="assets/img/studio-desk-detail-400.webp 400w, assets/img/studio-desk-detail-800.webp 800w, assets/img/studio-desk-detail.webp 1080w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
+              <img src="assets/img/studio-desk-detail.jpg" srcset="assets/img/studio-desk-detail-400.jpg 400w, assets/img/studio-desk-detail-800.jpg 800w, assets/img/studio-desk-detail.jpg 1080w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1080" height="423" alt="" loading="lazy" decoding="async">
+            </picture>
+        </div>
+        <div class="db-card__scrim" aria-hidden="true"></div>
+
+        <div class="db-card__body">
+          <span class="db-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/><path d="M12 3.8v2.4M12 17.8v2.4M3.8 12h2.4M17.8 12h2.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <h3 class="db-card__title">MASTERING</h3>
+          <!-- EDIT: prices are placeholders. Confirm the deliverables, including whether you supply a DDP. -->
+          <ul class="db-card__prices">
               <li><b>&pound;70</b> per track</li>
-              <li><b>&pound;50</b> per track &mdash; EP or album</li>
-            </ul>
-            <!-- EDIT: confirm the deliverables, including whether you supply a DDP. -->
-            <p class="db-scard__text">
-              Final polish to prepare your tracks for release across every platform.
-              Streaming, distribution-ready WAVs and a DDP for anything going to disc.
-            </p>
-            <a class="db-btn db-btn--outline" href="#contact" data-magnetic>Master a record</a>
-          </div>
+              <li><b>&pound;50</b> EP or album</li>
+          </ul>
+          <p class="db-card__text">Final polish to prepare your tracks for release across every platform. Streaming, distribution-ready WAVs and a DDP for anything going to disc.</p>
+          <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Master a record</span>
         </div>
-      </article>
 
+        <a class="db-card__link" href="#contact">
+          <span class="db-visually-hidden">Master a record &mdash; go to the booking form</span>
+        </a>
+      </article>
     </div>
   </section>
 
@@ -308,27 +333,55 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             or bringing a band. A treated live room for drums and amps, a control room set up for long
             days, and enough space to keep everyone in the same conversation.
           </p>
-          <p data-reveal data-reveal-delay="220">
-            Nothing here is precious. Move the gobos, re-point the mics, run the take again.
-            The setup exists to get out of the way of the song.
-          </p>
-          <a class="db-btn db-btn--primary" href="#contact" data-reveal data-reveal-delay="300" data-magnetic>Book a free studio tour</a>
+          <a class="db-btn db-btn--primary" href="#contact" data-reveal data-reveal-delay="240" data-magnetic>Book a free studio tour</a>
         </div>
 
-        <div class="db-studio__gallery">
-          <figure class="db-shot db-shot--tall" data-reveal data-parallax="0.06">
-            <img src="assets/img/studio-live-room.jpg" alt="The live room set up for drums, with overhead and close mics on boom stands and movable acoustic gobos." loading="lazy" decoding="async" width="1320" height="1323">
-            <figcaption>Live room &mdash; drum tracking</figcaption>
-          </figure>
-          <figure class="db-shot" data-reveal data-reveal-delay="120" data-parallax="-0.05">
-            <img src="assets/img/studio-console.jpg" alt="A mix session in progress at the analogue console, with the multitrack session up on the display." loading="lazy" decoding="async" width="1320" height="1323">
-            <figcaption>Console &mdash; mix session</figcaption>
-          </figure>
-          <figure class="db-shot" data-reveal data-reveal-delay="200" data-parallax="0.04">
-            <img src="assets/img/studio-control-room.jpg" alt="The control room, with nearfield monitors either side of a large reference display." loading="lazy" decoding="async" width="1320" height="1216">
-            <figcaption>Control room &mdash; production</figcaption>
-          </figure>
-        </div>
+        <p class="db-section__lede" data-reveal data-reveal-delay="200">
+          Nothing here is precious. Move the gobos, re-point the mics, run the take again.
+          The setup exists to get out of the way of the song.
+        </p>
+      </div>
+    </div>
+
+    <!-- Photo ticker: drifts on its own, speeds up while the page scrolls, and can be
+         dragged. Decorative duplicates are added by JS and hidden from assistive tech. -->
+    <div class="db-ticker" data-ticker data-speed="50" data-tilt="8">
+      <div class="db-ticker__track">
+      <figure class="db-polaroid">
+        <picture>
+          <source type="image/webp" srcset="assets/img/studio-live-room-400.webp 400w, assets/img/studio-live-room-800.webp 800w, assets/img/studio-live-room-1320.webp 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
+          <img src="assets/img/studio-live-room.jpg" srcset="assets/img/studio-live-room-400.jpg 400w, assets/img/studio-live-room-800.jpg 800w, assets/img/studio-live-room.jpg 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="1320" height="1323" alt="The live room set up for drums, with overhead and close mics on boom stands and movable acoustic gobos." loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Live room &mdash; drums</figcaption>
+      </figure>
+      <figure class="db-polaroid">
+        <picture>
+          <source type="image/webp" srcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
+          <img src="assets/img/studio-console.jpg" srcset="assets/img/studio-console-400.jpg 400w, assets/img/studio-console-800.jpg 800w, assets/img/studio-console.jpg 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="1320" height="1323" alt="A mix session in progress at the analogue console, with the multitrack session up on the display." loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Console &mdash; mixing</figcaption>
+      </figure>
+      <figure class="db-polaroid">
+        <picture>
+          <source type="image/webp" srcset="assets/img/studio-control-room-400.webp 400w, assets/img/studio-control-room-800.webp 800w, assets/img/studio-control-room-1320.webp 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
+          <img src="assets/img/studio-control-room.jpg" srcset="assets/img/studio-control-room-400.jpg 400w, assets/img/studio-control-room-800.jpg 800w, assets/img/studio-control-room.jpg 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="1320" height="1216" alt="The control room, with nearfield monitors either side of a large reference display." loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Control room</figcaption>
+      </figure>
+      <figure class="db-polaroid">
+        <picture>
+          <source type="image/webp" srcset="assets/img/studio-desk-detail-400.webp 400w, assets/img/studio-desk-detail-800.webp 800w, assets/img/studio-desk-detail.webp 1080w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
+          <img src="assets/img/studio-desk-detail.jpg" srcset="assets/img/studio-desk-detail-400.jpg 400w, assets/img/studio-desk-detail-800.jpg 800w, assets/img/studio-desk-detail.jpg 1080w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="1080" height="423" alt="A close view along the console faders during a mix." loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Faders &mdash; the desk</figcaption>
+      </figure>
+      <figure class="db-polaroid">
+        <picture>
+          <source type="image/webp" srcset="assets/img/studio-drums-detail-400.webp 400w, assets/img/studio-drums-detail.webp 740w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
+          <img src="assets/img/studio-drums-detail.jpg" srcset="assets/img/studio-drums-detail-400.jpg 400w, assets/img/studio-drums-detail.jpg 740w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="740" height="710" alt="The drum kit close up, with cymbals and close mics in position." loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Kit &mdash; ready to roll</figcaption>
+      </figure>
       </div>
     </div>
   </section>
@@ -349,11 +402,17 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       <!-- EDIT: verify this gear list and add anything missing -->
       <div class="db-panels" id="equipPanels">
 
-        <article class="db-panel is-open" data-panel>
+        <article class="db-panel is-open" data-panel data-reveal="x" data-reveal-delay="0">
           <div class="db-panel__media" aria-hidden="true">
-            <img src="assets/img/studio-control-room.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1216">
+            <picture>
+              <source type="image/webp" srcset="assets/img/studio-control-room-400.webp 400w, assets/img/studio-control-room-800.webp 800w, assets/img/studio-control-room-1320.webp 1320w" sizes="(min-width: 1200px) 600px, 100vw">
+              <img src="assets/img/studio-control-room.jpg" srcset="assets/img/studio-control-room-400.jpg 400w, assets/img/studio-control-room-800.jpg 800w, assets/img/studio-control-room.jpg 1320w" sizes="(min-width: 1200px) 600px, 100vw" width="1320" height="1216" alt="" loading="lazy" decoding="async">
+            </picture>
           </div>
           <button class="db-panel__tab" type="button" aria-expanded="true" aria-controls="equip-1">
+            <span class="db-panel__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="5" width="18" height="12" rx="1.6" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8 21h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </span>
             <span class="db-panel__num">01</span>
             <span class="db-panel__label">COMPUTERS &amp; INTERFACE</span>
             <span class="db-panel__chev" aria-hidden="true"></span>
@@ -373,11 +432,17 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           </div>
         </article>
 
-        <article class="db-panel" data-panel>
+        <article class="db-panel" data-panel data-reveal="x" data-reveal-delay="200">
           <div class="db-panel__media" aria-hidden="true">
-            <img src="assets/img/studio-monitor-detail.jpg" alt="" loading="lazy" decoding="async" width="390" height="780">
+            <picture>
+              <source type="image/webp" srcset="assets/img/studio-monitor-detail.webp 380w" sizes="(min-width: 1200px) 600px, 100vw">
+              <img src="assets/img/studio-monitor-detail.jpg" srcset="assets/img/studio-monitor-detail.jpg 380w" sizes="(min-width: 1200px) 600px, 100vw" width="380" height="380" alt="" loading="lazy" decoding="async">
+            </picture>
           </div>
           <button class="db-panel__tab" type="button" aria-expanded="false" aria-controls="equip-2">
+            <span class="db-panel__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="14" r="3.6" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="7" r="1.4" fill="currentColor"/></svg>
+            </span>
             <span class="db-panel__num">02</span>
             <span class="db-panel__label">RECORDING &amp; MONITORING</span>
             <span class="db-panel__chev" aria-hidden="true"></span>
@@ -397,11 +462,17 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           </div>
         </article>
 
-        <article class="db-panel" data-panel>
+        <article class="db-panel" data-panel data-reveal="x" data-reveal-delay="400">
           <div class="db-panel__media" aria-hidden="true">
-            <img src="assets/img/studio-desk-detail.jpg" alt="" loading="lazy" decoding="async" width="1080" height="423">
+            <picture>
+              <source type="image/webp" srcset="assets/img/studio-desk-detail-400.webp 400w, assets/img/studio-desk-detail-800.webp 800w, assets/img/studio-desk-detail.webp 1080w" sizes="(min-width: 1200px) 600px, 100vw">
+              <img src="assets/img/studio-desk-detail.jpg" srcset="assets/img/studio-desk-detail-400.jpg 400w, assets/img/studio-desk-detail-800.jpg 800w, assets/img/studio-desk-detail.jpg 1080w" sizes="(min-width: 1200px) 600px, 100vw" width="1080" height="423" alt="" loading="lazy" decoding="async">
+            </picture>
           </div>
           <button class="db-panel__tab" type="button" aria-expanded="false" aria-controls="equip-3">
+            <span class="db-panel__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="6" width="18" height="12" rx="1.6" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="8" cy="12" r="2" fill="currentColor"/><circle cx="14" cy="12" r="2" fill="currentColor"/><path d="M18.5 10v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </span>
             <span class="db-panel__num">03</span>
             <span class="db-panel__label">OUTBOARD</span>
             <span class="db-panel__chev" aria-hidden="true"></span>
@@ -420,11 +491,17 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           </div>
         </article>
 
-        <article class="db-panel" data-panel>
+        <article class="db-panel" data-panel data-reveal="x" data-reveal-delay="600">
           <div class="db-panel__media" aria-hidden="true">
-            <img src="assets/img/studio-live-room.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1323">
+            <picture>
+              <source type="image/webp" srcset="assets/img/studio-live-room-400.webp 400w, assets/img/studio-live-room-800.webp 800w, assets/img/studio-live-room-1320.webp 1320w" sizes="(min-width: 1200px) 600px, 100vw">
+              <img src="assets/img/studio-live-room.jpg" srcset="assets/img/studio-live-room-400.jpg 400w, assets/img/studio-live-room-800.jpg 800w, assets/img/studio-live-room.jpg 1320w" sizes="(min-width: 1200px) 600px, 100vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
+            </picture>
           </div>
           <button class="db-panel__tab" type="button" aria-expanded="false" aria-controls="equip-4">
+            <span class="db-panel__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M9 18V5l11-2v13" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><circle cx="6.5" cy="18" r="2.6" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="17.5" cy="16" r="2.6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>
+            </span>
             <span class="db-panel__num">04</span>
             <span class="db-panel__label">INSTRUMENTS</span>
             <span class="db-panel__chev" aria-hidden="true"></span>
@@ -478,7 +555,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <!-- EDIT: swap href for the Spotify/Apple link for this release. -->
           <a class="db-release__link" href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">
             <div class="db-release__media">
-              <img src="assets/img/release-choke.jpg" alt="Artwork for the CHOKE! EP by Gerron." loading="lazy" decoding="async" width="1320" height="1320">
+              <picture>
+              <source type="image/webp" srcset="assets/img/release-choke-400.webp 400w, assets/img/release-choke-800.webp 800w, assets/img/release-choke-1320.webp 1320w" sizes="(min-width: 1200px) 580px, (min-width: 810px) 46vw, 92vw">
+              <img src="assets/img/release-choke.jpg" srcset="assets/img/release-choke-400.jpg 400w, assets/img/release-choke-800.jpg 800w, assets/img/release-choke.jpg 1320w" sizes="(min-width: 1200px) 580px, (min-width: 810px) 46vw, 92vw" width="1320" height="1320" alt="Artwork for the CHOKE! EP by Gerron." loading="lazy" decoding="async">
+            </picture>
               <span class="db-release__play" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
               </span>
@@ -499,7 +579,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <!-- EDIT: swap href for the Spotify/Apple link for this release. -->
           <a class="db-release__link" href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">
             <div class="db-release__media">
-              <img src="assets/img/release-to-change-a-man.jpg" alt="Artwork for the single To Change a Man by Gerron." loading="lazy" decoding="async" width="1320" height="1323">
+              <picture>
+              <source type="image/webp" srcset="assets/img/release-to-change-a-man-400.webp 400w, assets/img/release-to-change-a-man-800.webp 800w, assets/img/release-to-change-a-man-1320.webp 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw">
+              <img src="assets/img/release-to-change-a-man.jpg" srcset="assets/img/release-to-change-a-man-400.jpg 400w, assets/img/release-to-change-a-man-800.jpg 800w, assets/img/release-to-change-a-man.jpg 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw" width="1320" height="1323" alt="Artwork for the single To Change a Man by Gerron." loading="lazy" decoding="async">
+            </picture>
               <span class="db-release__play" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
               </span>
@@ -517,7 +600,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <!-- EDIT: swap href for the Spotify/Apple link for this release. -->
           <a class="db-release__link" href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">
             <div class="db-release__media">
-              <img src="assets/img/release-choke.jpg" alt="Artwork for the single CHOKE! by Gerron." loading="lazy" decoding="async" width="1320" height="1320">
+              <picture>
+              <source type="image/webp" srcset="assets/img/release-choke-400.webp 400w, assets/img/release-choke-800.webp 800w, assets/img/release-choke-1320.webp 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw">
+              <img src="assets/img/release-choke.jpg" srcset="assets/img/release-choke-400.jpg 400w, assets/img/release-choke-800.jpg 800w, assets/img/release-choke.jpg 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw" width="1320" height="1320" alt="Artwork for the single CHOKE! by Gerron." loading="lazy" decoding="async">
+            </picture>
               <span class="db-release__play" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
               </span>
@@ -549,7 +635,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
     <div class="db-container">
       <div class="db-about__grid">
         <figure class="db-about__portrait" data-reveal data-parallax="0.05">
-          <img src="assets/img/studio-control-room.jpg" alt="Daniel Brazil working in the control room." loading="lazy" decoding="async" width="1320" height="1216">
+          <picture>
+              <source type="image/webp" srcset="assets/img/studio-control-room-400.webp 400w, assets/img/studio-control-room-800.webp 800w, assets/img/studio-control-room-1320.webp 1320w" sizes="(min-width: 810px) 460px, 92vw">
+              <img src="assets/img/studio-control-room.jpg" srcset="assets/img/studio-control-room-400.jpg 400w, assets/img/studio-control-room-800.jpg 800w, assets/img/studio-control-room.jpg 1320w" sizes="(min-width: 810px) 460px, 92vw" width="1320" height="1216" alt="Daniel Brazil working in the control room." loading="lazy" decoding="async">
+            </picture>
         </figure>
 
         <div class="db-about__copy">
