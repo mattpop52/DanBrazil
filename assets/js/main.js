@@ -732,6 +732,10 @@
     var form = $('#bookingForm');
     if (!form) return;
 
+    // EDIT: this repeats the reply promise made in the contact section. If you
+    //       change one, change the other.
+    var SUCCESS_MESSAGE = 'Thanks — I’ll come back to you within two working days.';
+
     var status = $('#formStatus');
     var submit = $('button[type="submit"]', form);
 
@@ -782,7 +786,7 @@
       var honeypot = form.querySelector('[name="company"]');
       if (honeypot && honeypot.value) {
         form.reset();
-        say('Thanks \u2014 I\u2019ll come back to you within two working days.', 'ok');
+        say(SUCCESS_MESSAGE, 'ok');
         return;
       }
 
@@ -800,7 +804,7 @@
           .then(function (res) {
             if (!res.ok) throw new Error(res.status);
             form.reset();
-            say('Thanks — I’ll come back to you within two working days.', 'ok');
+            say(SUCCESS_MESSAGE, 'ok');
           })
           .catch(function () {
             say('That didn’t send. Please email me directly instead.', 'bad');

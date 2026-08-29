@@ -15,15 +15,18 @@ Everything below is a **placeholder**. Search `index.html` for `EDIT:` to find e
 | What | Where | Current placeholder |
 | --- | --- | --- |
 | Email address | header menu, contact list, footer, `#bookingForm` `data-mailto` | `hello@danielbrazil.co.uk` |
-| Phone number | contact list, footer | `+44 (0)00 0000 0000` |
+| Phone number | contact list, footer | plain text, **not** a `tel:` link — nobody should dial a placeholder |
 | Studio address / town | contact list, footer, and the hero if you want a location line | "United Kingdom — full address on booking" |
-| **All four price blocks** | `#services` — one `<ul class="db-scard__prices">` per card | £40/hr, £140 half day, £240 full day, £350 writing day, £750 per song, £250 mix, £70 master |
+| **All four rate cards** | `#services` — one `<ul class="db-card__prices">` per card | £40/hr, £140 half day, £240 full day, £350 writing day, £750 per song, £250 mix, £70 master |
 | Equipment lists | `#equipment` — four `<ul class="db-panel__list">` | see "Equipment" below |
 | Streaming links | `#work` — each `db-release__link href` | points at the Instagram profile for now |
 | Footer social links | `#footer` — Spotify / Apple Music / YouTube | commented out, so nothing is a dead link |
 | Domain | commented-out `canonical` + `og:url` block in `<head>`, and JSON-LD | **deliberately absent** — see below |
 | Service promises | "walk out with your files the same night", "two rounds of revisions", "instrumental, TV and a cappella versions", "a DDP", "within two working days" | sensible industry defaults, not quotes from you |
 | Cancellation window | `#faq` → `.db-policy` | 24 hours, no refund after |
+| Guest and splits policy | `#faq` — two answers | sensible defaults, not your stated policy |
+| Free studio tours | `#studio` CTA and the FAQ | offered as standing policy |
+| Reply-time promise | `#contact` **and** `SUCCESS_MESSAGE` in `main.js` | "within two working days" — in two places, keep them in step |
 | Form destination | `#bookingForm` `data-endpoint` | empty — falls back to a pre-filled email |
 
 ### Why there is no canonical URL
@@ -182,7 +185,11 @@ Breakpoints match the reference: mobile ≤ 809px, tablet 810–1199px, desktop 
 The studio and artwork images are cropped from Daniel's own Instagram posts
 (@danielbrazilmusic). The Instagram interface has been cropped and patched out. If you
 have the original full-resolution files, drop them into `assets/img/` under the same
-names — everything is `object-fit: cover`, so any aspect ratio will sit correctly.
+names and regenerate the 400/800 variants beside them — everything is `object-fit: cover`,
+so any aspect ratio will sit correctly.
+
+Nothing on the page claims that any particular person in a photograph is you. If you want
+it to, edit the `alt` text.
 
 | File | What it is |
 | --- | --- |

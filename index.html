@@ -223,8 +223,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <!-- EDIT: prices are placeholders. Confirm the "same night" files claim too. -->
           <ul class="db-card__prices">
               <li><b>&pound;40</b> per hour</li>
-              <li><b>&pound;140</b> half day</li>
-              <li><b>&pound;240</b> full day</li>
+              <li><b>&pound;140</b> half day (4h)</li>
+              <li><b>&pound;240</b> full day (8h)</li>
           </ul>
           <p class="db-card__text">A treated live room and control room with an engineer on hand for the whole session. Tracking, overdubs, vocal days &mdash; walk out with your files the same night.</p>
           <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Hire the studio</span>
@@ -280,7 +280,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <!-- EDIT: prices, the revision count and the versions you supply are sensible defaults, not a quote. -->
           <ul class="db-card__prices">
               <li><b>&pound;250</b> per track</li>
-              <li><b>&pound;200</b> EP or album</li>
+              <li><b>&pound;200</b> per track, EP or album</li>
           </ul>
           <p class="db-card__text">Clean, balanced mixes tailored to your sound and creative direction. Two rounds of revisions included, plus instrumental, TV and a cappella versions.</p>
           <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Send me stems</span>
@@ -308,7 +308,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <!-- EDIT: prices are placeholders. Confirm the deliverables, including whether you supply a DDP. -->
           <ul class="db-card__prices">
               <li><b>&pound;70</b> per track</li>
-              <li><b>&pound;50</b> EP or album</li>
+              <li><b>&pound;50</b> per track, EP or album</li>
           </ul>
           <p class="db-card__text">Final polish to prepare your tracks for release across every platform. Streaming, distribution-ready WAVs and a DDP for anything going to disc.</p>
           <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Master a record</span>
@@ -333,6 +333,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             or bringing a band. A treated live room for drums and amps, a control room set up for long
             days, and enough space to keep everyone in the same conversation.
           </p>
+          <!-- EDIT: offering free tours is a standing commitment — keep it only if you mean it. -->
           <a class="db-btn db-btn--primary" href="#contact" data-reveal data-reveal-delay="240" data-magnetic>Book a free studio tour</a>
         </div>
 
@@ -394,6 +395,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <p class="db-eyebrow" data-reveal>03 &mdash; The tools</p>
           <h2 class="db-h2" data-reveal data-reveal-delay="80">EQUIPMENT</h2>
         </div>
+        <!-- EDIT: this line, and the gear lists below, describe a setup nobody
+             has confirmed. Correct both before publishing. -->
         <p class="db-section__lede" data-reveal data-reveal-delay="160">
           A complete professional setup, built to help you get the best out of every session.
         </p>
@@ -481,7 +484,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             <div class="db-panel__inner">
               <p class="db-panel__summary">Analogue in the chain where it earns its place.</p>
               <ul class="db-panel__list">
-                <li>Inline analogue mixing console &mdash; 24 channels</li>
+                <li>Inline analogue mixing console</li>
                 <li>Valve and solid-state preamps</li>
                 <li>Bus compression across the mix</li>
                 <li>Channel-strip EQ and compression</li>
@@ -545,7 +548,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <h2 class="db-h2" data-reveal data-reveal-delay="80">SELECTED WORK</h2>
         </div>
         <p class="db-section__lede" data-reveal data-reveal-delay="160">
-          Records written, produced and mixed with the artists who made them.
+          Written and produced in the room with the artist.
         </p>
       </header>
 
@@ -559,8 +562,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
               <source type="image/webp" srcset="assets/img/release-choke-400.webp 400w, assets/img/release-choke-800.webp 800w, assets/img/release-choke-1320.webp 1320w" sizes="(min-width: 1200px) 580px, (min-width: 810px) 46vw, 92vw">
               <img src="assets/img/release-choke.jpg" srcset="assets/img/release-choke-400.jpg 400w, assets/img/release-choke-800.jpg 800w, assets/img/release-choke.jpg 1320w" sizes="(min-width: 1200px) 580px, (min-width: 810px) 46vw, 92vw" width="1320" height="1320" alt="" loading="lazy" decoding="async">
             </picture>
+              <!-- EDIT: once these link to Spotify/Apple, swap this arrow back for a
+                   play triangle: <path d="M8 5.5v13l11-6.5z"/> -->
               <span class="db-release__play" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
               </span>
             </div>
             <div class="db-release__meta">
@@ -583,12 +588,14 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
               <source type="image/webp" srcset="assets/img/release-to-change-a-man-400.webp 400w, assets/img/release-to-change-a-man-800.webp 800w, assets/img/release-to-change-a-man-1320.webp 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw">
               <img src="assets/img/release-to-change-a-man.jpg" srcset="assets/img/release-to-change-a-man-400.jpg 400w, assets/img/release-to-change-a-man-800.jpg 800w, assets/img/release-to-change-a-man.jpg 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
             </picture>
+              <!-- EDIT: once these link to Spotify/Apple, swap this arrow back for a
+                   play triangle: <path d="M8 5.5v13l11-6.5z"/> -->
               <span class="db-release__play" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
               </span>
             </div>
             <div class="db-release__meta">
-              <p class="db-release__type">Single</p>
+              <p class="db-release__type">From the EP</p>
               <h3 class="db-release__title">To Change a Man</h3>
               <p class="db-release__artist">Gerron</p>
               <p class="db-release__role">Co-write &middot; Production</p>
@@ -604,12 +611,14 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
               <source type="image/webp" srcset="assets/img/release-choke-400.webp 400w, assets/img/release-choke-800.webp 800w, assets/img/release-choke-1320.webp 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw">
               <img src="assets/img/release-choke.jpg" srcset="assets/img/release-choke-400.jpg 400w, assets/img/release-choke-800.jpg 800w, assets/img/release-choke.jpg 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw" width="1320" height="1320" alt="" loading="lazy" decoding="async">
             </picture>
+              <!-- EDIT: once these link to Spotify/Apple, swap this arrow back for a
+                   play triangle: <path d="M8 5.5v13l11-6.5z"/> -->
               <span class="db-release__play" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
               </span>
             </div>
             <div class="db-release__meta">
-              <p class="db-release__type">Single</p>
+              <p class="db-release__type">From the EP</p>
               <h3 class="db-release__title">CHOKE!</h3>
               <p class="db-release__artist">Gerron</p>
               <p class="db-release__role">Co-write &middot; Production</p>
@@ -650,9 +659,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             mixing it until it sounds like the thing we heard at the beginning.
           </p>
           <p data-reveal data-reveal-delay="220">
-            Recent work includes co-writing and producing Gerron&rsquo;s debut EP <em>CHOKE!</em> &mdash;
-            shimmering synth textures, bright pop production and vocal arrangements built to carry the song.
-            If you want a producer who will also help you write it, that&rsquo;s the job.
+            Recent work includes co-writing and producing Gerron&rsquo;s debut EP <em>CHOKE!</em>, which
+            the press described as &ldquo;shimmering synth textures, bright pop production and intricate
+            vocal arrangements&rdquo;. If you want a producer who will also help you write it,
+            that&rsquo;s the job.
           </p>
 
           <ul class="db-tiles" data-reveal data-reveal-delay="300">
@@ -691,6 +701,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             <span>What&rsquo;s the difference between production and a co-write?</span><i class="db-acc__icon" aria-hidden="true"><b></b><b></b></i>
           </button></h3>
           <div class="db-acc__a" id="faq-2"><div>
+            <!-- EDIT: the splits practice below is a sensible default, not your stated policy. -->
             <p>A co-write means we write the song together from scratch or from your idea &mdash; melody, lyric,
             chords, structure. Production is building the record around a song that already exists. Most sessions
             end up being both, and we agree the splits before anything gets released.</p>
@@ -762,6 +773,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             <span>Can I bring guests?</span><i class="db-acc__icon" aria-hidden="true"><b></b><b></b></i>
           </button></h3>
           <div class="db-acc__a" id="faq-8"><div>
+            <!-- EDIT: set your own guest policy. -->
             <p>You can bring a small number of guests. Let me know in advance so I can plan the space and
             keep the session moving.</p>
           </div></div>
@@ -803,7 +815,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             </li>
             <li>
               <span class="db-contact__label">Phone</span>
-              <a href="tel:+440000000000">+44 (0)00 0000 0000</a>
+              <!-- EDIT: put your number here, then wrap it back in
+                   <a href="tel:+44...">. Left as plain text so nobody dials a
+                   placeholder. -->
+              <span>Add your number</span>
             </li>
             <li>
               <span class="db-contact__label">Instagram</span>
@@ -897,7 +912,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         <h2 class="db-footer__heading">FIND ME</h2>
         <!-- EDIT: replace with your real contact details -->
         <p><span>Studio:</span> United Kingdom &mdash; full address on booking</p>
-        <p><span>Phone:</span> <a href="tel:+440000000000">+44 (0)00 0000 0000</a></p>
+        <p><span>Phone:</span> <span>Add your number</span></p>
         <p><span>Email:</span> <a href="mailto:hello@danielbrazil.co.uk">hello@danielbrazil.co.uk</a></p>
       </div>
 
