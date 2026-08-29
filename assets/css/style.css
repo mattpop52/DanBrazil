@@ -1019,6 +1019,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-release__link {
   display: grid;
   grid-template-columns: 1fr;
+  /* Auto rows stretch to fill a card made tall by a longer title next to it,
+     which letterboxed the artwork. Pin the rows to the top instead. */
+  align-content: start;
   gap: 1.25rem;
   height: 100%;
   border: 1px solid var(--hair);
@@ -1562,7 +1565,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
   .db-work__grid { grid-template-columns: repeat(2, 1fr); }
   .db-release--feature { grid-column: span 2; }
-  .db-release--feature .db-release__link { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: center; gap: clamp(1.5rem, 3vw, 2.5rem); }
+  .db-release--feature .db-release__link { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-content: center; align-items: center; gap: clamp(1.5rem, 3vw, 2.5rem); }
 
   .db-about__grid { grid-template-columns: .85fr 1.15fr; }
   .db-tiles { grid-template-columns: repeat(3, 1fr); }
@@ -1590,9 +1593,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .db-steps { grid-template-columns: repeat(4, 1fr); }
   .db-step { border-bottom: 0; padding-block: 2rem 0; }
 
-  /* The feature spans the row; the rest sit three-up. */
-  .db-work__grid { grid-template-columns: repeat(3, 1fr); }
-  .db-release--feature { grid-column: span 3; }
+  /* The feature spans the row; the four other records sit in one clean row. */
+  .db-work__grid { grid-template-columns: repeat(4, 1fr); }
+  .db-release--feature { grid-column: span 4; }
 
   /* Equipment becomes a hover-driven horizontal accordion.
      Collapsed panels sit at 15% of the row, as on the reference. */
