@@ -1266,9 +1266,32 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ------------------------------------------------ 15  FAQ & POLICY ------ */
 .db-faq { background: var(--ink); }
 
-.db-accordion { border-top: 1px solid var(--line); }
+/* Heading in a narrow left column, questions beside it — as on the reference. */
+.db-faq__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  align-items: start;
+}
+.db-faq .db-section__head { margin-bottom: 0; }
 
-.db-acc { border-bottom: 1px solid var(--line); }
+.db-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: .625rem;
+  max-width: 50rem;
+}
+
+/* Rows are boxed cards, not a divider list. */
+.db-acc {
+  background: var(--ink-raised);
+  border: 1px solid var(--taupe);
+  border-radius: var(--r-md);
+  padding-inline: clamp(1.15rem, 2.4vw, 1.5rem);
+  transition: border-color var(--t-med) var(--e-out), background-color var(--t-med) var(--e-out);
+}
+.db-acc:hover { border-color: var(--muted); }
+.db-acc.is-open { background: var(--ink-soft); border-color: var(--line-strong); }
 .db-acc h3 { font-weight: 400; }
 
 .db-acc__q {
@@ -1277,33 +1300,42 @@ button, input, select, textarea { font: inherit; color: inherit; }
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: clamp(1.15rem, 2.2vw, 1.6rem) 0;
+  padding: clamp(1.15rem, 2.2vw, 1.5rem) 0;
   background: none;
   border: 0;
   cursor: pointer;
   text-align: left;
-  font-size: clamp(1rem, 1.9vw, 1.15rem);
+  font-size: clamp(1rem, 1.9vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -.02em;
   color: var(--cream);
   transition: color var(--t-fast) var(--e-out);
 }
 .db-acc__q:hover { color: var(--gold); }
 
+/* A 28px disc holding two bars; one rotates away to make the minus. */
 .db-acc__icon {
   position: relative;
-  width: 16px; height: 16px;
+  width: 28px; height: 28px;
   flex: none;
+  border-radius: 50%;
+  background: var(--taupe);
+  transition: background-color var(--t-med) var(--e-out);
 }
-.db-acc__icon::before,
-.db-acc__icon::after {
-  content: "";
+.db-acc.is-open .db-acc__icon { background: var(--gold); }
+.db-acc__icon b {
   position: absolute;
-  inset: 50% 0 auto 0;
-  height: 1.5px;
-  background: var(--gold);
-  transition: transform var(--t-spring-04) var(--spring-04-2);
+  top: 50%; left: 50%;
+  width: 12px; height: 1.5px;
+  margin: -.75px 0 0 -6px;
+  background: var(--cream);
+  transition: transform var(--t-spring-04) var(--spring-04-2),
+              background-color var(--t-med) var(--e-out);
 }
-.db-acc__icon::after { transform: rotate(90deg); }
-.db-acc.is-open .db-acc__icon::after { transform: rotate(0deg); }
+.db-acc__icon b:last-child { transform: rotate(90deg); }
+.db-acc.is-open .db-acc__icon b { background: #101010; }
+.db-acc.is-open .db-acc__icon b:last-child { transform: rotate(0deg); }
 
 .db-acc__a {
   display: grid;
@@ -1315,8 +1347,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-acc__a p,
 .db-acc__a ul {
   color: var(--cream-dim);
+  font-size: var(--fs-sm);
   max-width: 48rem;
-  padding-bottom: 1.6rem;
+  padding-bottom: 1.5rem;
 }
 .db-acc__a ul { display: grid; gap: .45rem; }
 .db-acc__a li { display: flex; gap: .7rem; }
@@ -1571,6 +1604,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
   .db-about__grid { grid-template-columns: .85fr 1.15fr; }
   .db-tiles { grid-template-columns: repeat(3, 1fr); }
+
+  .db-faq__grid { grid-template-columns: 30% 1fr; gap: clamp(2rem, 4vw, 4rem); }
 
   .db-contact__grid { grid-template-columns: 1fr 1.05fr; }
   .db-form { grid-template-columns: 1fr 1fr; }

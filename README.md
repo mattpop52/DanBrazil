@@ -109,6 +109,7 @@ assets/
     main.js                every effect, one init function each
   fonts/                   Anton, Delicious Handrawn, Plus Jakarta Sans, Roboto Mono (woff2)
   img/                     studio photography, release artwork, icons, OG card
+                           (each photo at 400 / 800 / native, in .jpg and .webp)
 ```
 
 ### Page sections, in order
@@ -117,14 +118,14 @@ assets/
 2. Fixed header + full-screen mobile menu
 3. Hero — full-bleed photo, display headline, script sub-line, two CTAs
 4. Gold marquee strip
-5. **Services** — four sticky stacking cards, each with a price block
-6. **The studio** — copy plus a three-photo gallery
+5. **Services** — a full-bleed row of four cards with price chips
+6. **The studio** — copy plus a drifting polaroid photo ticker
 7. **Equipment** — four panels; expanding columns on desktop, an accordion on mobile
 8. **Statement** — a sentence that lights up character by character as you scroll
 9. **Selected work** — release cards (the Gerron *CHOKE!* EP and its singles)
 10. Track-title marquee
 11. **About** — portrait, two paragraphs, three tiles
-12. **FAQ** — eight-item accordion, plus the cancellation policy
+12. **FAQ** — eight boxed rows, plus the cancellation policy
 13. **Contact** — details and the booking form
 14. Footer
 
@@ -134,10 +135,16 @@ Everything scroll-driven shares one `requestAnimationFrame` loop and one
 `IntersectionObserver`, so the page stays cheap:
 
 sticky header that hides on scroll-down · scroll progress bar · staggered reveal on
-`[data-reveal]` · per-character statement reveal · two seamless marquees · sticky cards
-that shrink and dim as the next covers them · hover-expanding equipment columns ·
-accordions animated with `grid-template-rows: 0fr → 1fr` · hero parallax · custom cursor
-with a lagging ring · magnetic buttons · SVG film grain.
+`[data-reveal]`, sliding in from the left as on the reference · per-character statement
+reveal · two seamless marquees · a polaroid photo ticker that drifts, speeds up while you
+scroll and can be dragged · service cards whose oversized photo and scrim grow on hover ·
+hover-expanding equipment columns · accordions animated with `grid-template-rows: 0fr → 1fr`
+· hero parallax · nav and button wipe hovers · custom cursor with a lagging ring ·
+magnetic buttons · SVG film grain.
+
+The reference site animates everything with Framer springs. Those are solved out into CSS
+`linear()` easings (the `--spring-*` tokens), so the overshoot feels the same without
+shipping an animation library.
 
 ### Things that were deliberate
 
@@ -148,6 +155,8 @@ with a lagging ring · magnetic buttons · SVG film grain.
   and parallax stop, the statement renders as ordinary text, and everything is visible.
 - **The fonts are self-hosted.** No Google Fonts request, so no third-party call and no
   layout shift if the CDN is slow. All four families are SIL Open Font License 1.1.
+- **Every photo ships at three widths in WebP and JPEG**, behind a `<picture>` whose
+  `sizes` matches the slot it actually renders into. A cold mobile load is ~280KB.
 - **Only one `<h1>`**, headings run in order, the accordions are real buttons with
   `aria-expanded`, the mobile menu uses `inert` and restores focus on close, and the
   statement carries its sentence as an `aria-label` so screen readers never meet the
@@ -182,6 +191,7 @@ names — everything is `object-fit: cover`, so any aspect ratio will sit correc
 | `studio-control-room.jpg` | Control room with the Focal monitors |
 | `studio-desk-detail.jpg` | Console faders, close |
 | `studio-monitor-detail.jpg` | Nearfield monitor on its stand |
+| `studio-drums-detail.jpg` | The kit, close |
 | `release-choke.jpg` | *CHOKE!* artwork — Gerron |
 | `release-to-change-a-man.jpg` | *To Change a Man* artwork — Gerron |
 | `og-cover.jpg` | 1200×630 social share card |
