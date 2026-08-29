@@ -324,9 +324,8 @@
   }
 
   /* =====================================================================
-     9. Photo ticker — a constant, slow drift that can be paused by hovering
-        or dragged by hand. The reference also ties its speed to the scroll
-        wheel and calls preventDefault on it; neither is copied.
+     9. Photo ticker — drifts on its own, accelerates while the page is
+        scrolling, pauses on hover and can be dragged.
      ===================================================================== */
   function initTickers() {
     $$('[data-ticker]').forEach(function (ticker) {
@@ -350,6 +349,8 @@
       var baseSpeed = parseFloat(ticker.getAttribute('data-speed')) || 50;  // px/s
       var cycle = 0;
       var offset = 0;
+      var boost = 0;
+      var boostTimer = null;
       var paused = false;
       var clones = [];
 
@@ -382,6 +383,18 @@
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(function () { offset = 0; measure(); });
       }
+
+      // The reference's signature move: scrolling the page accelerates the
+      // strip, decaying back to its own pace 150ms after you stop. Its version
+      // also calls preventDefault on wheel, which traps the page scroll — that
+      // part is deliberately not copied.
+      var lastY = window.pageYOffset;
+      window.addEventListener('scroll', function () {
+        boost = Math.min(Math.abs(window.pageYOffset - lastY) * 2, 900);
+        lastY = window.pageYOffset;
+        clearTimeout(boostTimer);
+        boostTimer = setTimeout(function () { boost = 0; }, 150);
+      }, { passive: true });
 
       ticker.addEventListener('pointerenter', function (e) {
         if (e.pointerType !== 'touch') paused = true;
@@ -422,8 +435,8 @@
         if (rect.bottom < -200 || rect.top > viewH + 200) return;   // off screen, skip
 
         if (!paused && !dragging) {
-          offset += baseSpeed * dt;
-          if (offset >= cycle) offset -= cycle;
+          offset += (baseSpeed + boost) * dt;
+          while (offset >= cycle) offset -= cycle;
         }
         track.style.transform = 'translate3d(' + (-offset).toFixed(2) + 'px,0,0)';
       });

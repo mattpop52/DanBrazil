@@ -137,24 +137,33 @@ assets/
 
 ### Effects
 
-Everything scroll-driven shares one `requestAnimationFrame` loop and one
-`IntersectionObserver`, and the loop only runs the scroll-dependent work when the scroll
-position actually changed:
+These are the reference's own motion values, solved out of its Framer springs rather than
+approximated: 150px of travel, springs that overshoot and settle, and 200ms between each
+item in a group. The `--spring-*` tokens are those curves baked into CSS `linear()`
+easings, so the timing feel matches without shipping an animation library.
 
-a sticky header that hides on scroll-down · staggered reveals that slide in from the left
-· a character-by-character statement reveal · two seamless marquees · a polaroid photo
-ticker that drifts, speeds up while you scroll and can be dragged · service cards whose
-oversized photo and scrim grow on hover · hover-preview / click-pin equipment columns ·
-accordions animated with `grid-template-rows: 0fr → 1fr` · a slow hero parallax · wipe
-hovers on buttons and nav links.
+| Effect | Behaviour |
+| --- | --- |
+| Hero entrance | Headline, badge, lede and each button rise 150px in turn, 200ms apart, on a 0.91s spring |
+| Section headings | Slide in from `translateX(-150px)` |
+| Service cards | Slide in from `-150px`, staggered 0 / 200 / 400 / 600ms |
+| Equipment panels | Same slide and stagger; then expand on hover, collapsed columns at 15% |
+| Service card hover | The oversized photo and its scrim both grow |
+| Marquee bands | Two, running opposite ways, seamless and constant-speed |
+| Photo ticker | Drifts at 50px/s, **accelerates while the page scrolls** and decays back after 150ms, pauses on hover, drag to scrub |
+| Statement | Lights character by character against scroll position |
+| Hero | Slow parallax and scale on scroll |
+| Buttons and nav links | A panel wipes across from the left, the label flips to black |
+| Accordions | `grid-template-rows: 0fr → 1fr`, with `visibility` so collapsed content leaves the tree |
 
-The reference site animates everything with Framer springs. Those are solved out into CSS
-`linear()` easings (the `--spring-*` tokens), so the overshoot feels the same without
-shipping an animation library.
+The one thing deliberately not copied is the reference's wheel handling: its photo ticker
+calls `preventDefault` on `wheel`, so the page stops scrolling while the pointer is over
+the band. The scroll-speed boost is kept; the trap is not, and a test asserts the wheel
+still scrolls the page.
 
-**What was deliberately removed.** An earlier version had a percentage page loader, a film
-grain overlay, a custom cursor, a scroll progress bar and magnetic buttons. None of them
-exist on the reference, and on a studio site they read as decoration rather than craft —
+**What was deliberately removed.****What was deliberately removed.** An earlier version had a percentage page loader, a film
+grain overlay, a custom cursor, a scroll progress bar and magnetic buttons — all additions
+of mine, none of them on the reference, and on a studio site they read as decoration rather than craft —
 they were cut rather than tuned down. Losing the loader alone took LCP from ~1.2s to
 ~0.85s. The one piece of chrome that stayed is the "Pause motion" toggle in the footer,
 because content still moves and WCAG 2.2.2 requires a way to stop it.
