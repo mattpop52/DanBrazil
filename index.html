@@ -32,8 +32,9 @@
 <link rel="preload" as="image" type="image/webp"
       imagesrcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w"
       imagesizes="100vw" fetchpriority="high">
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/anton-latin.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/anton-400-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-var-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-500-latin.woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/style.css">
 
@@ -75,21 +76,6 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
 <body id="top">
 
 <a class="db-skip" href="#main">Skip to content</a>
-
-<!-- ============================== LOADER ============================== -->
-<div class="db-loader" id="loader" aria-hidden="true">
-  <div class="db-loader__inner">
-    <span class="db-loader__mark">DANIEL BRAZIL</span>
-    <span class="db-loader__count"><span id="loaderCount">0</span><i>%</i></span>
-  </div>
-  <div class="db-loader__bar"><i id="loaderBar"></i></div>
-</div>
-
-<!-- ============================== GRAIN + CURSOR ============================== -->
-<div class="db-grain" aria-hidden="true"></div>
-<div class="db-cursor" id="cursorDot" aria-hidden="true"></div>
-<div class="db-cursor db-cursor--ring" id="cursorRing" aria-hidden="true"></div>
-<div class="db-progress" aria-hidden="true"><i id="scrollProgress"></i></div>
 
 <!-- ============================== HEADER ============================== -->
 <header class="db-header" id="header">
@@ -152,33 +138,39 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
   <section class="db-hero" id="hero">
     <div class="db-hero__media" aria-hidden="true">
       <picture>
-              <source type="image/webp" srcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w" sizes="100vw">
-              <img src="assets/img/studio-console.jpg" srcset="assets/img/studio-console-400.jpg 400w, assets/img/studio-console-800.jpg 800w, assets/img/studio-console.jpg 1320w" sizes="100vw" width="1320" height="1323" alt=""  fetchpriority="high" decoding="async">
-            </picture>
+        <source type="image/webp" srcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w" sizes="100vw">
+        <img src="assets/img/studio-console.jpg" srcset="assets/img/studio-console-400.jpg 400w, assets/img/studio-console-800.jpg 800w, assets/img/studio-console.jpg 1320w" sizes="100vw" width="1320" height="1323" alt="" fetchpriority="high" decoding="async">
+      </picture>
       <div class="db-hero__scrim"></div>
     </div>
 
-    <div class="db-hero__inner db-container">
-      <p class="db-eyebrow db-eyebrow--centred" data-reveal>PRODUCTION &middot; SONGWRITING &middot; MIX</p>
+    <div class="db-hero__inner">
+      <h1 class="db-hero__title" data-reveal>RECORDING STUDIO</h1>
 
-      <h1 class="db-hero__title">
-        <span class="db-hero__line" data-reveal>RECORDING STUDIO</span>
-        <span class="db-hero__script" data-reveal data-reveal-delay="200">&amp; songwriting room</span>
-      </h1>
-
-      <p class="db-hero__lede" data-reveal data-reveal-delay="400">
-        Recording, production, mixing and mastering with a producer who writes too —
-        in a room built for finishing songs, not just tracking them.
+      <!-- The reference's signature component: a tan glyph block joined to a
+           dark label block inside one bordered pill. -->
+      <p class="db-badge" data-reveal data-reveal-delay="200">
+        <span class="db-badge__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M8.2 12h7.6m-3 -3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="db-badge__label">Production &amp; Songwriting</span>
       </p>
 
-      <div class="db-hero__actions" data-reveal data-reveal-delay="600">
-        <a class="db-btn db-btn--primary" href="#contact" data-magnetic>Book the Studio</a>
-        <a class="db-btn db-btn--ghost" href="#contact" data-magnetic>Get in Touch</a>
+      <p class="db-hero__lede" data-reveal data-reveal-delay="400">
+        Professional recording, production, mixing and mastering<br>
+        in a fully equipped creative space.
+      </p>
+
+      <div class="db-hero__actions">
+        <a class="db-btn db-btn--primary" href="#contact" data-reveal data-reveal-delay="600">Book the Studio</a>
+        <a class="db-btn" href="#contact" data-reveal data-reveal-delay="800">Get in Touch</a>
       </div>
     </div>
 
     <a class="db-hero__scroll" href="#services" aria-label="Scroll to services">
-      <span>SCROLL</span>
       <svg viewBox="0 0 24 40" aria-hidden="true"><rect x="1" y="1" width="22" height="38" rx="11"/><circle cx="12" cy="11" r="3"/></svg>
     </a>
   </section>
@@ -196,10 +188,9 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
   <!-- ============================== SERVICES ============================== -->
   <section class="db-section db-services" id="services">
     <div class="db-container">
-      <header class="db-section__head">
-        <p class="db-eyebrow" data-reveal>01 &mdash; What I do</p>
-        <h2 class="db-h2" data-reveal data-reveal-delay="80">SERVICES</h2>
-        <p class="db-section__lede" data-reveal data-reveal-delay="160">
+      <header class="db-section__head db-section__head--centre">
+        <h2 class="db-h2" data-reveal>SERVICES</h2>
+        <p class="db-section__lede" data-reveal data-reveal-delay="120">
           Four ways to work together. Take the room on its own, or take the room and the person who fills it.
         </p>
       </header>
@@ -324,24 +315,13 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
   <!-- ============================== THE STUDIO ============================== -->
   <section class="db-section db-studio" id="studio">
     <div class="db-container">
-      <div class="db-studio__grid">
-        <div class="db-studio__copy">
-          <p class="db-eyebrow" data-reveal>02 &mdash; The room</p>
-          <h2 class="db-h2" data-reveal data-reveal-delay="80">THE STUDIO</h2>
-          <p data-reveal data-reveal-delay="160">
-            A creative space designed to keep you focused and comfortable, whether you are working solo
-            or bringing a band. A treated live room for drums and amps, a control room set up for long
-            days, and enough space to keep everyone in the same conversation.
-          </p>
-          <!-- EDIT: offering free tours is a standing commitment — keep it only if you mean it. -->
-          <a class="db-btn db-btn--primary" href="#contact" data-reveal data-reveal-delay="240" data-magnetic>Book a free studio tour</a>
-        </div>
-
-        <p class="db-section__lede" data-reveal data-reveal-delay="200">
-          Nothing here is precious. Move the gobos, re-point the mics, run the take again.
-          The setup exists to get out of the way of the song.
+      <header class="db-section__head db-section__head--centre">
+        <h2 class="db-h2" data-reveal>THE STUDIO</h2>
+        <p class="db-section__lede" data-reveal data-reveal-delay="120">
+          A creative space designed to keep you focused and comfortable,
+          whether you are working solo or bringing a band.
         </p>
-      </div>
+      </header>
     </div>
 
     <!-- Photo ticker: drifts on its own, speeds up while the page scrolls, and can be
@@ -385,19 +365,23 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       </figure>
       </div>
     </div>
+
+    <div class="db-container">
+      <div class="db-studio__cta">
+        <!-- EDIT: offering free tours is a standing commitment — keep it only if you mean it. -->
+        <a class="db-btn db-btn--primary" href="#contact" data-reveal>Book a Free Studio Tour</a>
+      </div>
+    </div>
   </section>
 
   <!-- ============================== EQUIPMENT ============================== -->
   <section class="db-section db-equip" id="equipment">
     <div class="db-container">
-      <header class="db-section__head db-section__head--split">
-        <div>
-          <p class="db-eyebrow" data-reveal>03 &mdash; The tools</p>
-          <h2 class="db-h2" data-reveal data-reveal-delay="80">EQUIPMENT</h2>
-        </div>
+      <header class="db-section__head">
+        <h2 class="db-h2" data-reveal>EQUIPMENT</h2>
         <!-- EDIT: this line, and the gear lists below, describe a setup nobody
              has confirmed. Correct both before publishing. -->
-        <p class="db-section__lede" data-reveal data-reveal-delay="160">
+        <p class="db-section__lede" data-reveal data-reveal-delay="120">
           A complete professional setup, built to help you get the best out of every session.
         </p>
       </header>
@@ -531,23 +515,27 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
   <!-- ============================== STATEMENT ============================== -->
   <section class="db-statement">
     <div class="db-container">
-      <p class="db-statement__text" id="statementText" data-char-reveal>
-        Songs get finished in the right room, with the right ears in it. Every session here comes with a
-        producer who writes, an engineer who mixes, and a setup that stays out of the way &mdash;
-        so the only thing you have to think about is the record.
-      </p>
+      <div class="db-statement__inner">
+        <span class="db-statement__glyph" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <p class="db-statement__text" data-char-reveal>
+          Songs get finished in the right room, with the right ears in it. Every session here
+          comes with a producer who writes, an engineer who mixes, and a setup that stays out
+          of the way &mdash; so the only thing you have to think about is the record.
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- ============================== WORK ============================== -->
   <section class="db-section db-work" id="work">
     <div class="db-container">
-      <header class="db-section__head db-section__head--split">
-        <div>
-          <p class="db-eyebrow" data-reveal>04 &mdash; Credits</p>
-          <h2 class="db-h2" data-reveal data-reveal-delay="80">SELECTED WORK</h2>
-        </div>
-        <p class="db-section__lede" data-reveal data-reveal-delay="160">
+      <header class="db-section__head db-section__head--centre">
+        <h2 class="db-h2" data-reveal>SELECTED WORK</h2>
+        <p class="db-section__lede" data-reveal data-reveal-delay="120">
           Written and produced in the room with the artist.
         </p>
       </header>
@@ -631,8 +619,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         </figure>
 
         <div class="db-about__copy">
-          <p class="db-eyebrow" data-reveal>05 &mdash; About</p>
-          <h2 class="db-h2" data-reveal data-reveal-delay="80">WHO YOU&rsquo;RE<br>WORKING WITH</h2>
+          <h2 class="db-h2" data-reveal>WHO YOU&rsquo;RE<br>WORKING WITH</h2>
           <p data-reveal data-reveal-delay="160">
             I&rsquo;m Daniel Brazil &mdash; a record producer, songwriter and mix engineer. Most of what I do
             starts in the room with the artist: finding the idea, writing it properly, then producing and
@@ -660,8 +647,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
     <div class="db-container">
       <div class="db-faq__grid">
       <header class="db-section__head">
-        <p class="db-eyebrow" data-reveal>06 &mdash; Answers</p>
-        <h2 class="db-h2" data-reveal data-reveal-delay="80">FREQUENTLY ASKED<br>QUESTIONS</h2>
+        <h2 class="db-h2" data-reveal>FREQUENTLY ASKED<br>QUESTIONS</h2>
       </header>
 
       <div class="db-accordion" id="faqAccordion">
@@ -779,8 +765,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       <div class="db-contact__grid">
 
         <div class="db-contact__copy">
-          <p class="db-eyebrow" data-reveal>07 &mdash; Say hello</p>
-          <h2 class="db-h2 db-h2--xl" data-reveal data-reveal-delay="80">BOOK YOUR<br>SESSION</h2>
+          <h2 class="db-h2" data-reveal>BOOK YOUR SESSION</h2>
           <!-- EDIT: "two working days" is a promise — change it to whatever you can keep. -->
           <p class="db-contact__lede" data-reveal data-reveal-delay="160">
             Tell me what you&rsquo;re making and when you want it finished. I&rsquo;ll come back within
@@ -857,7 +842,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           </div>
 
           <div class="db-form__foot">
-            <button class="db-btn db-btn--primary" type="submit" data-magnetic>Send enquiry</button>
+            <button class="db-btn db-btn--primary" type="submit">Send enquiry</button>
             <p class="db-form__status" id="formStatus" role="status" aria-live="polite"></p>
           </div>
         </form>

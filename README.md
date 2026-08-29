@@ -135,48 +135,64 @@ assets/
 ### Effects
 
 Everything scroll-driven shares one `requestAnimationFrame` loop and one
-`IntersectionObserver`, so the page stays cheap:
+`IntersectionObserver`, and the loop only runs the scroll-dependent work when the scroll
+position actually changed:
 
-sticky header that hides on scroll-down · scroll progress bar · staggered reveal on
-`[data-reveal]`, sliding in from the left as on the reference · per-character statement
-reveal · two seamless marquees · a polaroid photo ticker that drifts, speeds up while you
-scroll and can be dragged · service cards whose oversized photo and scrim grow on hover ·
-hover-expanding equipment columns · accordions animated with `grid-template-rows: 0fr → 1fr`
-· hero parallax · nav and button wipe hovers · custom cursor with a lagging ring ·
-magnetic buttons · SVG film grain.
+a sticky header that hides on scroll-down · staggered reveals that slide in from the left
+· a character-by-character statement reveal · two seamless marquees · a polaroid photo
+ticker that drifts, speeds up while you scroll and can be dragged · service cards whose
+oversized photo and scrim grow on hover · hover-preview / click-pin equipment columns ·
+accordions animated with `grid-template-rows: 0fr → 1fr` · a slow hero parallax · wipe
+hovers on buttons and nav links.
 
 The reference site animates everything with Framer springs. Those are solved out into CSS
 `linear()` easings (the `--spring-*` tokens), so the overshoot feels the same without
 shipping an animation library.
+
+**What was deliberately removed.** An earlier version had a percentage page loader, a film
+grain overlay, a custom cursor, a scroll progress bar and magnetic buttons. None of them
+exist on the reference, and on a studio site they read as decoration rather than craft —
+they were cut rather than tuned down. Losing the loader alone took LCP from ~1.2s to
+~0.85s. The one piece of chrome that stayed is the "Pause motion" toggle in the footer,
+because content still moves and WCAG 2.2.2 requires a way to stop it.
 
 ### Things that were deliberate
 
 - **Reveal start states are applied by JS, never in the base CSS.** With JavaScript
   turned off, every word is visible immediately — nothing is hidden waiting for a script
   that never runs.
-- **`prefers-reduced-motion` is a real kill switch.** The loader is removed, the marquees
-  and parallax stop, the statement renders as ordinary text, and everything is visible.
+- **`prefers-reduced-motion` is a real kill switch**, and so is the footer toggle. The
+  marquees and ticker stop, the parallax stops, and the statement renders as ordinary text.
 - **The fonts are self-hosted.** No Google Fonts request, so no third-party call and no
-  layout shift if the CDN is slow. All four families are SIL Open Font License 1.1.
+  layout shift if the CDN is slow. All three families are SIL Open Font License 1.1.
 - **Every photo ships at three widths in WebP and JPEG**, behind a `<picture>` whose
-  `sizes` matches the slot it actually renders into. A cold mobile load is ~280KB.
+  `sizes` matches the slot it actually renders into. A cold mobile load is ~240KB.
 - **Only one `<h1>`**, headings run in order, the accordions are real buttons with
-  `aria-expanded`, the mobile menu uses `inert` and restores focus on close, and the
-  statement carries its sentence as an `aria-label` so screen readers never meet the
-  per-character spans.
+  `aria-expanded` whose collapsed content leaves the accessibility tree, the mobile menu
+  makes the page behind it `inert` and restores focus on close, and the statement carries
+  its sentence as an `aria-label` so screen readers never meet the per-character spans.
 
 ### Design
 
-Warm cream on near-black, one gold accent, Anton for display and Roboto Mono for
-labels — the same register as the reference site, shifted to its own palette.
+The design language follows the reference closely, because that is what was asked for.
+
+- **The ground is neutral black** (#000 and #121212), never warm brown — warm photography
+  goes muddy over a warm background.
+- **The warmth is in the type.** Cream #f0e0ca for body and the hero headline, tan #e3b97f
+  for every section heading, card title and accent. Warm grey #a09488 and taupe #645d56
+  carry the quiet text.
+- **Three families, each with one job.** Anton for display, Plus Jakarta Sans for reading,
+  Poppins for buttons, nav, labels and prices. An earlier version set all the small type in
+  a monospace face, which read as a developer portfolio rather than a studio.
+- **Three radii only** — 4px, 10px, 16px — and the service cards are square and full-bleed.
+  Buttons are 10px rounded rectangles, not pills. One box-shadow on the whole page.
+- Breakpoints match the reference: mobile ≤ 809px, tablet 810–1199px, desktop ≥ 1200px,
+  1200px container, 80/60/20px section padding.
 
 ```
---ink        #0b0b0b     --cream      #f2e7d5     --gold   #e7b84f
---ink-raised #141210     --cream-dim  #cabfae     --olive  #7c8b4e
+--ink   #000000    --cream      #f0e0ca    --tan    #e3b97f
+--ink-2 #121212    --cream-dim  #c6b9a6    --grey   #a09488    --taupe #645d56
 ```
-
-Breakpoints match the reference: mobile ≤ 809px, tablet 810–1199px, desktop ≥ 1200px,
-1200px container.
 
 ---
 

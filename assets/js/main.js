@@ -103,52 +103,6 @@
   }
 
   /* =====================================================================
-     2. Loader — never blocks for long, skipped under reduced motion
-     ===================================================================== */
-  function initLoader() {
-    var loader = $('#loader');
-    if (!loader) return;
-
-    if (prefersReduced) { loader.remove(); return; }
-
-    var countEl = $('#loaderCount');
-    var barEl = $('#loaderBar');
-    var value = 0;
-    var pageLoaded = false;
-    var start = performance.now();
-    var MAX_MS = 900;
-
-    window.addEventListener('load', function () { pageLoaded = true; });
-
-    var timer = setInterval(function () {
-      var elapsed = performance.now() - start;
-      // Race to 100: whichever happens first, page load or the hard cap.
-      var ceiling = pageLoaded || elapsed > MAX_MS ? 100 : 92;
-      value = Math.min(ceiling, value + Math.random() * 11 + 4);
-      var shown = Math.round(value);
-      if (countEl) countEl.textContent = shown;
-      if (barEl) barEl.style.width = shown + '%';
-
-      if (value >= 100) {
-        clearInterval(timer);
-        setTimeout(function () {
-          loader.classList.add('is-done');
-          setTimeout(function () { loader.remove(); }, 700);
-        }, 160);
-      }
-    }, 90);
-
-    // Belt and braces: if anything above goes wrong, the loader still leaves.
-    setTimeout(function () {
-      clearInterval(timer);
-      if (document.body.contains(loader)) {
-        loader.classList.add('is-done');
-        setTimeout(function () { loader.remove(); }, 700);
-      }
-    }, MAX_MS + 2200);
-  }
-
-  /* =====================================================================
      3. Header — solid past the hero, hides on scroll down
      ===================================================================== */
   function initHeader() {
@@ -160,7 +114,6 @@
 
     onScrollFrame(function () {
       var y = scrollY;
-      header.classList.toggle('is-solid', y > 40);
 
       var goingDown = y > prev && y - prev > 2;
       var goingUp = y < prev - 2;
@@ -170,23 +123,6 @@
       else if (goingUp) header.classList.remove('is-hidden');
 
       prev = y;
-    });
-  }
-
-  /* =====================================================================
-     4. Scroll progress bar
-     ===================================================================== */
-  function initProgress() {
-    var bar = $('#scrollProgress');
-    if (!bar) return;
-    var since = 0;
-    onScrollFrame(function (dt) {
-      // Page height changes when accordions open — re-measure a few times a
-      // second rather than every frame.
-      since += dt;
-      if (since > 0.25) { since = 0; docH = document.documentElement.scrollHeight; }
-      var max = Math.max(1, docH - viewH);
-      bar.style.width = clamp(scrollY / max, 0, 1) * 100 + '%';
     });
   }
 
@@ -623,75 +559,6 @@
   }
 
   /* =====================================================================
-     13. Custom cursor + magnetic buttons (fine pointers only)
-     ===================================================================== */
-  function initCursor() {
-    if (!finePointer.matches || prefersReduced) return;
-
-    var dot = $('#cursorDot');
-    var ring = $('#cursorRing');
-    if (!dot || !ring) return;
-
-    var mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    var rx = mx, ry = my;
-    var seen = false;
-
-    // Stay invisible until the pointer actually moves, so the dot never
-    // parks itself in the middle of the hero on a fresh load.
-    dot.style.opacity = ring.style.opacity = '0';
-
-    window.addEventListener('pointermove', function (e) {
-      if (e.pointerType === 'touch') return;
-      mx = e.clientX; my = e.clientY;
-      if (!seen) {
-        rx = mx; ry = my; seen = true;
-        dot.style.opacity = ring.style.opacity = '1';
-      }
-    }, { passive: true });
-
-    document.addEventListener('pointerover', function (e) {
-      if (!e.target.closest) return;
-      var hot = e.target.closest('a, button, [data-magnetic], input, select, textarea, summary');
-      ring.classList.toggle('is-hot', !!hot);
-    });
-
-    onFrame(function () {
-      rx += (mx - rx) * 0.16;
-      ry += (my - ry) * 0.16;
-      dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
-      ring.style.transform = 'translate3d(' + rx.toFixed(2) + 'px,' + ry.toFixed(2) + 'px,0)';
-    });
-  }
-
-  function initMagnetic() {
-    if (!finePointer.matches || prefersReduced) return;
-
-    $$('[data-magnetic]').forEach(function (el) {
-      var raf = null;
-
-      el.addEventListener('pointermove', function (e) {
-        if (e.pointerType === 'touch') return;
-        if (raf) return;
-        raf = requestAnimationFrame(function () {
-          raf = null;
-          var r = el.getBoundingClientRect();
-          var dx = (e.clientX - (r.left + r.width / 2)) * 0.22;
-          var dy = (e.clientY - (r.top + r.height / 2)) * 0.32;
-          el.style.translate = dx.toFixed(1) + 'px ' + dy.toFixed(1) + 'px';
-        });
-      });
-
-      function release() {
-        if (raf) { cancelAnimationFrame(raf); raf = null; }
-        el.style.translate = '';
-      }
-      el.addEventListener('pointerleave', release);
-      el.addEventListener('pointercancel', release);
-      el.addEventListener('blur', release);
-    });
-  }
-
-  /* =====================================================================
      14. Active nav link
      ===================================================================== */
   function initScrollSpy() {
@@ -889,9 +756,7 @@
      ===================================================================== */
   function boot() {
     initFlags();
-    initLoader();
     initHeader();
-    initProgress();
     initMenu();
     initReveal();
     initCharReveal();
@@ -900,8 +765,6 @@
     initPanels();
     initAccordion();
     initParallax();
-    initCursor();
-    initMagnetic();
     initScrollSpy();
     initForm();
     initMotionToggle();
