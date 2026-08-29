@@ -117,7 +117,8 @@
     var menu = $('#mobileMenu');
     if (!burger || !menu) return;
 
-    var behind = [$('#main'), $('.db-footer')].filter(Boolean);
+    // Everything the overlay covers goes inert, including the booking bar.
+    var behind = [$('#main'), $('.db-footer'), $('#bookBar')].filter(Boolean);
     var lastFocus = null;
 
     function open() {
@@ -679,6 +680,45 @@
   }
 
   /* =====================================================================
+     15b. Mobile booking bar — appears past the hero, gets out of the way
+          once the enquiry form itself is on screen.
+     ===================================================================== */
+  function initBookBar() {
+    var bar = $('#bookBar');
+    var contact = $('#contact');
+    var hero = $('#hero');
+    if (!bar || !contact || !hero || !('IntersectionObserver' in window)) return;
+
+    var mobile = window.matchMedia('(max-width: 809px)');
+    var pastHero = false;
+    var atContact = false;
+
+    function render() {
+      var show = mobile.matches && pastHero && !atContact;
+      bar.classList.toggle('is-in', show);
+      bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+      // Keep the links out of the tab order while the bar is off screen.
+      $$('a', bar).forEach(function (a) {
+        if (show) a.removeAttribute('tabindex');
+        else a.setAttribute('tabindex', '-1');
+      });
+    }
+
+    new IntersectionObserver(function (entries) {
+      pastHero = !entries[0].isIntersecting;
+      render();
+    }, { threshold: 0 }).observe(hero);
+
+    new IntersectionObserver(function (entries) {
+      atContact = entries[0].isIntersecting;
+      render();
+    }, { threshold: 0 }).observe(contact);
+
+    onMediaChange(mobile, render);
+    render();
+  }
+
+  /* =====================================================================
      16. Odds and ends
      ===================================================================== */
   function initMotionToggle() {
@@ -738,6 +778,7 @@
     initParallax();
     initScrollSpy();
     initForm();
+    initBookBar();
     initMotionToggle();
     initYear();
   }

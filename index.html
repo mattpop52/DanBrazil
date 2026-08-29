@@ -8,9 +8,8 @@
 <meta name="theme-color" content="#0B0B0B">
 <meta name="color-scheme" content="dark">
 
-<!-- EDIT: once you have a domain, uncomment these two and put it in.
-     Leave them out until then — a canonical pointing at a domain you do not
-     own tells search engines the real page is somewhere else.
+<!-- EDIT: domain. Uncomment both when you have one — a canonical pointing at a
+     domain you do not own tells search engines the real page is elsewhere.
 <link rel="canonical" href="https://your-domain.co.uk/">
 <meta property="og:url" content="https://your-domain.co.uk/">
 -->
@@ -42,7 +41,7 @@
 <script>document.documentElement.classList.add('js');
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduce-motion');</script>
 
-<!-- EDIT: add "url", "telephone" and an "address" block here once they are real. -->
+<!-- EDIT: add url, telephone and address here once they are real. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -126,7 +125,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
     </ul>
   </nav>
   <div class="db-menu__foot">
-    <!-- EDIT: replace with real contact details -->
+    <!-- EDIT: contact details -->
     <a href="mailto:hello@danielbrazil.co.uk">hello@danielbrazil.co.uk</a>
     <a href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">@danielbrazilmusic</a>
   </div>
@@ -176,14 +175,17 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
   </section>
 
   <!-- ============================== MARQUEE ============================== -->
-  <div class="db-marquee db-marquee--gold" data-marquee data-speed="46" aria-hidden="true">
+  <div class="db-marquee" data-marquee data-speed="46" aria-hidden="true">
     <div class="db-marquee__track">
       <span class="db-marquee__group">
-        <b>RECORDING STUDIO</b><i>✳</i><b>SONGWRITING ROOM</b><i>✳</i><b>PRODUCTION &amp; CO-WRITE</b><i>✳</i><b>MIX &amp; MASTER</b><i>✳</i>
+        <b>RECORDING STUDIO</b><i class="db-marquee__dot" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 10.5 12 14l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
+        <b>PRODUCTION &amp; CO-WRITE</b><i class="db-marquee__dot" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 10.5 12 14l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
+        <b>SONGWRITING ROOM</b><i class="db-marquee__dot" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 10.5 12 14l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
+        <b>MIX &amp; MASTER</b><i class="db-marquee__dot" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 10.5 12 14l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
       </span>
     </div>
   </div>
-  <p class="db-visually-hidden">Recording studio, songwriting room, production and co-write, mix and master.</p>
+  <p class="db-visually-hidden">Recording studio, production and co-write, songwriting room, mix and master.</p>
 
   <!-- ============================== SERVICES ============================== -->
   <section class="db-section db-services" id="services">
@@ -211,14 +213,14 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             <svg viewBox="0 0 24 24" focusable="false"><path d="M4 20V9m5 11V4m5 16v-7m5 7V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </span>
           <h3 class="db-card__title">STUDIO HIRE</h3>
-          <!-- EDIT: prices are placeholders. Confirm the "same night" files claim too. -->
+          <!-- EDIT: rate card + delivery claim -->
           <ul class="db-card__prices">
               <li><b>&pound;40</b> per hour</li>
               <li><b>&pound;140</b> half day (4h)</li>
               <li><b>&pound;240</b> full day (8h)</li>
           </ul>
           <p class="db-card__text">A treated live room and control room with an engineer on hand for the whole session. Tracking, overdubs, vocal days &mdash; walk out with your files the same night.</p>
-          <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Hire the studio</span>
+          <span class="db-btn db-btn--primary db-card__cta">Hire the studio</span>
         </div>
 
         <a class="db-card__link" href="#contact">
@@ -239,14 +241,14 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <span class="db-card__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><path d="M4 20h16M6 16l9.5-9.5a2.1 2.1 0 1 1 3 3L9 19l-4 1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/></svg>
           </span>
-          <h3 class="db-card__title">PRODUCTION &amp; CO-WRITE</h3>
-          <!-- EDIT: prices are placeholders. -->
+          <h3 class="db-card__title">PRODUCTION &amp;<br>CO&#8209;WRITE</h3>
+          <!-- EDIT: rate card -->
           <ul class="db-card__prices">
               <li><b>&pound;350</b> per writing day</li>
               <li><b>&pound;750</b> per song</li>
           </ul>
           <p class="db-card__text">From a voice note to a finished record. Topline, arrangement, programming and live playing &mdash; built around the song rather than the template.</p>
-          <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Start a song</span>
+          <span class="db-btn db-btn--primary db-card__cta">Start a song</span>
         </div>
 
         <a class="db-card__link" href="#contact">
@@ -268,13 +270,13 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             <svg viewBox="0 0 24 24" focusable="false"><path d="M5 4v6m0 4v6m7-16v10m0 4v2m7-16v3m0 4v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="5" cy="12" r="2.2" fill="currentColor"/><circle cx="12" cy="16" r="2.2" fill="currentColor"/><circle cx="19" cy="9" r="2.2" fill="currentColor"/></svg>
           </span>
           <h3 class="db-card__title">MIXING</h3>
-          <!-- EDIT: prices, the revision count and the versions you supply are sensible defaults, not a quote. -->
+          <!-- EDIT: rate card + revisions + versions -->
           <ul class="db-card__prices">
               <li><b>&pound;250</b> per track</li>
               <li><b>&pound;200</b> per track, EP or album</li>
           </ul>
           <p class="db-card__text">Clean, balanced mixes tailored to your sound and creative direction. Two rounds of revisions included, plus instrumental, TV and a cappella versions.</p>
-          <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Send me stems</span>
+          <span class="db-btn db-btn--primary db-card__cta">Send me stems</span>
         </div>
 
         <a class="db-card__link" href="#contact">
@@ -296,19 +298,55 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/><path d="M12 3.8v2.4M12 17.8v2.4M3.8 12h2.4M17.8 12h2.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </span>
           <h3 class="db-card__title">MASTERING</h3>
-          <!-- EDIT: prices are placeholders. Confirm the deliverables, including whether you supply a DDP. -->
+          <!-- EDIT: rate card -->
           <ul class="db-card__prices">
               <li><b>&pound;70</b> per track</li>
               <li><b>&pound;50</b> per track, EP or album</li>
           </ul>
           <p class="db-card__text">Final polish to prepare your tracks for release across every platform. Streaming, distribution-ready WAVs and a DDP for anything going to disc.</p>
-          <span class="db-btn db-btn--outline db-btn--sm db-card__cta">Master a record</span>
+          <span class="db-btn db-btn--primary db-card__cta">Master a record</span>
         </div>
 
         <a class="db-card__link" href="#contact">
           <span class="db-visually-hidden">Master a record &mdash; go to the booking form</span>
         </a>
       </article>
+    </div>
+  </section>
+
+  <!-- ============================== PROCESS ============================== -->
+  <!-- EDIT: session steps -->
+  <section class="db-section db-process" id="process">
+    <div class="db-container">
+      <header class="db-section__head db-section__head--centre">
+        <h2 class="db-h2" data-reveal>HOW A SESSION WORKS</h2>
+        <p class="db-section__lede" data-reveal data-reveal-delay="80">
+          Four steps, so you know what you are booking before you book it.
+        </p>
+      </header>
+
+      <ol class="db-steps">
+        <li class="db-step" data-reveal="x" data-reveal-delay="0">
+          <span class="db-step__num">01</span>
+          <h3 class="db-step__title">ENQUIRY</h3>
+          <p class="db-step__text">Tell me what you are making, roughly when, and what it needs to sound like. I come back with availability and a plan.</p>
+        </li>
+        <li class="db-step" data-reveal="x" data-reveal-delay="90">
+          <span class="db-step__num">02</span>
+          <h3 class="db-step__title">PLANNING</h3>
+          <p class="db-step__text">We agree the shape of the session before you arrive — songs, players, references, what gets finished on the day.</p>
+        </li>
+        <li class="db-step" data-reveal="x" data-reveal-delay="180">
+          <span class="db-step__num">03</span>
+          <h3 class="db-step__title">THE SESSION</h3>
+          <p class="db-step__text">You play, I engineer. Nothing is precious: move the mics, change the arrangement, run it again.</p>
+        </li>
+        <li class="db-step" data-reveal="x" data-reveal-delay="270">
+          <span class="db-step__num">04</span>
+          <h3 class="db-step__title">DELIVERY</h3>
+          <p class="db-step__text">Mixes, stems and session files, with the revision rounds agreed up front.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -333,42 +371,42 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           <source type="image/webp" srcset="assets/img/studio-live-room-400.webp 400w, assets/img/studio-live-room-800.webp 800w, assets/img/studio-live-room-1320.webp 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
           <img src="assets/img/studio-live-room.jpg" srcset="assets/img/studio-live-room-400.jpg 400w, assets/img/studio-live-room-800.jpg 800w, assets/img/studio-live-room.jpg 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="1320" height="1323" alt="The live room set up for drums, with overhead and close mics on boom stands and movable acoustic gobos." loading="lazy" decoding="async">
         </picture>
-        <figcaption>Live room &mdash; drums</figcaption>
+        <figcaption>LIVE ROOM &mdash; DRUMS</figcaption>
       </figure>
       <figure class="db-polaroid">
         <picture>
           <source type="image/webp" srcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
           <img src="assets/img/studio-console.jpg" srcset="assets/img/studio-console-400.jpg 400w, assets/img/studio-console-800.jpg 800w, assets/img/studio-console.jpg 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="1320" height="1323" alt="A mix session in progress at the analogue console, with the multitrack session up on the display." loading="lazy" decoding="async">
         </picture>
-        <figcaption>Console &mdash; mixing</figcaption>
+        <figcaption>CONSOLE &mdash; MIXING</figcaption>
       </figure>
       <figure class="db-polaroid">
         <picture>
           <source type="image/webp" srcset="assets/img/studio-control-room-400.webp 400w, assets/img/studio-control-room-800.webp 800w, assets/img/studio-control-room-1320.webp 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
           <img src="assets/img/studio-control-room.jpg" srcset="assets/img/studio-control-room-400.jpg 400w, assets/img/studio-control-room-800.jpg 800w, assets/img/studio-control-room.jpg 1320w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="1320" height="1216" alt="The control room, with nearfield monitors either side of a large reference display." loading="lazy" decoding="async">
         </picture>
-        <figcaption>Control room</figcaption>
+        <figcaption>CONTROL ROOM</figcaption>
       </figure>
       <figure class="db-polaroid">
         <picture>
           <source type="image/webp" srcset="assets/img/studio-desk-detail-400.webp 400w, assets/img/studio-desk-detail-800.webp 800w, assets/img/studio-desk-detail.webp 1080w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
           <img src="assets/img/studio-desk-detail.jpg" srcset="assets/img/studio-desk-detail-400.jpg 400w, assets/img/studio-desk-detail-800.jpg 800w, assets/img/studio-desk-detail.jpg 1080w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="1080" height="423" alt="A close view along the console faders during a mix." loading="lazy" decoding="async">
         </picture>
-        <figcaption>Faders &mdash; the desk</figcaption>
+        <figcaption>FADERS &mdash; THE DESK</figcaption>
       </figure>
       <figure class="db-polaroid">
         <picture>
           <source type="image/webp" srcset="assets/img/studio-drums-detail-400.webp 400w, assets/img/studio-drums-detail.webp 740w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px">
           <img src="assets/img/studio-drums-detail.jpg" srcset="assets/img/studio-drums-detail-400.jpg 400w, assets/img/studio-drums-detail.jpg 740w" sizes="(min-width: 1200px) 300px, (min-width: 810px) 24vw, 190px" width="740" height="710" alt="The drum kit close up, with cymbals and close mics in position." loading="lazy" decoding="async">
         </picture>
-        <figcaption>Kit &mdash; ready to roll</figcaption>
+        <figcaption>KIT &mdash; READY TO ROLL</figcaption>
       </figure>
       </div>
     </div>
 
     <div class="db-container">
       <div class="db-studio__cta">
-        <!-- EDIT: offering free tours is a standing commitment — keep it only if you mean it. -->
+        <!-- EDIT: free tours -->
         <a class="db-btn db-btn--primary" href="#contact" data-reveal>Book a Free Studio Tour</a>
       </div>
     </div>
@@ -379,14 +417,13 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
     <div class="db-container">
       <header class="db-section__head">
         <h2 class="db-h2" data-reveal>EQUIPMENT</h2>
-        <!-- EDIT: this line, and the gear lists below, describe a setup nobody
-             has confirmed. Correct both before publishing. -->
+        <!-- EDIT: gear list + this claim -->
         <p class="db-section__lede" data-reveal data-reveal-delay="80">
           A complete professional setup, built to help you get the best out of every session.
         </p>
       </header>
 
-      <!-- EDIT: verify this gear list and add anything missing -->
+      <!-- EDIT: gear list -->
       <div class="db-panels" id="equipPanels">
 
         <article class="db-panel is-open" data-panel data-reveal="x" data-reveal-delay="0">
@@ -543,15 +580,15 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       <div class="db-work__grid">
 
         <article class="db-release db-release--feature" data-reveal>
-          <!-- EDIT: swap href for the Spotify/Apple link for this release. -->
+          <!-- EDIT: streaming link -->
           <a class="db-release__link" href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">
             <div class="db-release__media">
               <picture>
               <source type="image/webp" srcset="assets/img/release-choke-400.webp 400w, assets/img/release-choke-800.webp 800w, assets/img/release-choke-1320.webp 1320w" sizes="(min-width: 1200px) 580px, (min-width: 810px) 46vw, 92vw">
               <img src="assets/img/release-choke.jpg" srcset="assets/img/release-choke-400.jpg 400w, assets/img/release-choke-800.jpg 800w, assets/img/release-choke.jpg 1320w" sizes="(min-width: 1200px) 580px, (min-width: 810px) 46vw, 92vw" width="1320" height="1320" alt="" loading="lazy" decoding="async">
             </picture>
-              <!-- EDIT: once these link to Spotify/Apple, swap this arrow back for a
-                   play triangle: <path d="M8 5.5v13l11-6.5z"/> -->
+              <!-- EDIT: swap this arrow for a play triangle once the link is real:
+                   <path d="M8 5.5v13l11-6.5z"/> -->
               <span class="db-release__play" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
               </span>
@@ -569,15 +606,15 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         </article>
 
         <article class="db-release" data-reveal data-reveal-delay="80">
-          <!-- EDIT: swap href for the Spotify/Apple link for this release. -->
+          <!-- EDIT: streaming link -->
           <a class="db-release__link" href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">
             <div class="db-release__media">
               <picture>
               <source type="image/webp" srcset="assets/img/release-to-change-a-man-400.webp 400w, assets/img/release-to-change-a-man-800.webp 800w, assets/img/release-to-change-a-man-1320.webp 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw">
               <img src="assets/img/release-to-change-a-man.jpg" srcset="assets/img/release-to-change-a-man-400.jpg 400w, assets/img/release-to-change-a-man-800.jpg 800w, assets/img/release-to-change-a-man.jpg 1320w" sizes="(min-width: 1200px) 360px, (min-width: 810px) 46vw, 92vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
             </picture>
-              <!-- EDIT: once these link to Spotify/Apple, swap this arrow back for a
-                   play triangle: <path d="M8 5.5v13l11-6.5z"/> -->
+              <!-- EDIT: swap this arrow for a play triangle once the link is real:
+                   <path d="M8 5.5v13l11-6.5z"/> -->
               <span class="db-release__play" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
               </span>
@@ -591,9 +628,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
           </a>
         </article>
 
-        <!-- EDIT: add more releases by copying the block above. Two entries is
-             honest for now — a third card repeating the EP's own artwork and
-             title read as a duplicate rather than a second credit. -->
+        <!-- EDIT: add releases by copying the block above; give each its own artwork. -->
       </div>
     </div>
   </section>
@@ -658,7 +693,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             <span>What&rsquo;s the difference between production and a co-write?</span><i class="db-acc__icon" aria-hidden="true"><b></b><b></b></i>
           </button></h3>
           <div class="db-acc__a" id="faq-2"><div>
-            <!-- EDIT: the splits practice below is a sensible default, not your stated policy. -->
+            <!-- EDIT: splits policy -->
             <p>A co-write means we write the song together from scratch or from your idea &mdash; melody, lyric,
             chords, structure. Production is building the record around a song that already exists. Most sessions
             end up being both, and we agree the splits before anything gets released.</p>
@@ -730,7 +765,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
             <span>Can I bring guests?</span><i class="db-acc__icon" aria-hidden="true"><b></b><b></b></i>
           </button></h3>
           <div class="db-acc__a" id="faq-8"><div>
-            <!-- EDIT: set your own guest policy. -->
+            <!-- EDIT: guest policy -->
             <p>You can bring a small number of guests. Let me know in advance so I can plan the space and
             keep the session moving.</p>
           </div></div>
@@ -739,7 +774,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       </div>
       </div>
 
-      <!-- EDIT: set your own cancellation window and refund terms. -->
+      <!-- EDIT: cancellation terms -->
       <aside class="db-policy" data-reveal>
         <h3 class="db-policy__title">CANCELLATION POLICY</h3>
         <p>
@@ -757,23 +792,21 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
 
         <div class="db-contact__copy">
           <h2 class="db-h2" data-reveal>BOOK YOUR SESSION</h2>
-          <!-- EDIT: "two working days" is a promise — change it to whatever you can keep. -->
+          <!-- EDIT: reply-time promise (also in main.js SUCCESS_MESSAGE) -->
           <p class="db-contact__lede" data-reveal data-reveal-delay="120">
             Tell me what you&rsquo;re making and when you want it finished. I&rsquo;ll come back within
             two working days.
           </p>
 
           <ul class="db-contact__details" data-reveal data-reveal-delay="220">
-            <!-- EDIT: replace all of these with your real details -->
+            <!-- EDIT: contact details -->
             <li>
               <span class="db-contact__label">Email</span>
               <a href="mailto:hello@danielbrazil.co.uk">hello@danielbrazil.co.uk</a>
             </li>
             <li>
               <span class="db-contact__label">Phone</span>
-              <!-- EDIT: put your number here, then wrap it back in
-                   <a href="tel:+44...">. Left as plain text so nobody dials a
-                   placeholder. -->
+              <!-- EDIT: phone (plain text on purpose — do not link a placeholder) -->
               <span>Add your number</span>
             </li>
             <li>
@@ -817,7 +850,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
 
           <div class="db-field">
             <label for="f-dates">Preferred dates <span>(optional)</span></label>
-            <input id="f-dates" name="dates" type="text" placeholder="e.g. late March, weekends">
+            <input id="f-dates" name="dates" type="text" placeholder="e.g. late March">
           </div>
 
           <div class="db-field db-field--full">
@@ -845,6 +878,12 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
 </main>
 
 <!-- ============================== FOOTER ============================== -->
+<!-- Mobile only: the page is long and the enquiry form lives at the foot of it. -->
+<div class="db-bookbar" id="bookBar" aria-hidden="true">
+  <a class="db-btn db-btn--primary db-btn--sm" href="#contact" tabindex="-1">Book a session</a>
+  <a class="db-btn db-btn--sm" href="mailto:hello@danielbrazil.co.uk" tabindex="-1">Email</a>
+</div>
+
 <footer class="db-footer">
   <div class="db-container">
     <div class="db-footer__top">
@@ -871,7 +910,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
 
       <div class="db-footer__col">
         <h2 class="db-footer__heading">FIND ME</h2>
-        <!-- EDIT: replace with your real contact details -->
+        <!-- EDIT: contact details -->
         <p><span>Studio:</span> United Kingdom &mdash; full address on booking</p>
         <p><span>Phone:</span> <span>Add your number</span></p>
         <p><span>Email:</span> <a href="mailto:hello@danielbrazil.co.uk">hello@danielbrazil.co.uk</a></p>
@@ -881,8 +920,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         <h2 class="db-footer__heading">STAY CONNECTED</h2>
         <ul class="db-footer__social">
           <li><a href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">Instagram</a></li>
-          <!-- EDIT: uncomment each of these once you have the profile URL. They are
-               left commented out rather than pointing at "#", so nothing here is a dead link.
+          <!-- EDIT: social links — uncomment when you have the URLs
           <li><a href="" target="_blank" rel="noopener">Spotify</a></li>
           <li><a href="" target="_blank" rel="noopener">Apple Music</a></li>
           <li><a href="" target="_blank" rel="noopener">YouTube</a></li>

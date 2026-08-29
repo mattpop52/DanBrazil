@@ -10,7 +10,10 @@ open `index.html` in a browser and it works.
 
 ## ⚠️ Replace these before the site goes live
 
-Everything below is a **placeholder**. Search `index.html` for `EDIT:` to find each one in place.
+Everything below is a **placeholder**. Search `index.html` for `EDIT:` to find each one in
+place — the comments are deliberately terse (`<!-- EDIT: rate card -->`) so that anyone
+who views source does not read a page explaining that its own prices are invented. The
+explanation lives here instead.
 
 | What | Where | Current placeholder |
 | --- | --- | --- |
@@ -22,6 +25,7 @@ Everything below is a **placeholder**. Search `index.html` for `EDIT:` to find e
 | Streaming links | `#work` — each `db-release__link href` | points at the Instagram profile for now |
 | Footer social links | `#footer` — Spotify / Apple Music / YouTube | commented out, so nothing is a dead link |
 | Domain | commented-out `canonical` + `og:url` block in `<head>`, and JSON-LD | **deliberately absent** — see below |
+| Session steps | `#process` — four `<li class="db-step">` | describes a normal session, not necessarily yours |
 | Service promises | "walk out with your files the same night", "two rounds of revisions", "instrumental, TV and a cappella versions", "a DDP", "within two working days" | sensible industry defaults, not quotes from you |
 | Cancellation window | `#faq` → `.db-policy` | 24 hours, no refund after |
 | Guest and splits policy | `#faq` — two answers | sensible defaults, not your stated policy |
@@ -117,20 +121,19 @@ assets/
 
 ### Page sections, in order
 
-1. Loader (counter to 100)
-2. Fixed header + full-screen mobile menu
-3. Hero — full-bleed photo, display headline, script sub-line, two CTAs
-4. Gold marquee strip
+1. Fixed header + full-screen mobile menu
+3. Hero — one headline, the badge pill, two lines, two buttons
+4. Marquee strip of outlined chips
 5. **Services** — a full-bleed row of four cards with price chips
-6. **The studio** — copy plus a drifting polaroid photo ticker
-7. **Equipment** — four panels; expanding columns on desktop, an accordion on mobile
-8. **Statement** — a sentence that lights up character by character as you scroll
-9. **Selected work** — release cards (the Gerron *CHOKE!* EP and its singles)
-10. Track-title marquee
+6. **How a session works** — a four-step strip on hairlines
+7. **The studio** — a centred heading over a drifting polaroid photo ticker
+8. **Equipment** — four panels; expanding columns on desktop, an accordion on mobile
+9. **Statement** — a sentence that lights up character by character as you scroll
+10. **Selected work** — the Gerron *CHOKE!* EP and *To Change a Man*
 11. **About** — portrait, two paragraphs, three tiles
 12. **FAQ** — eight boxed rows, plus the cancellation policy
 13. **Contact** — details and the booking form
-14. Footer
+14. Footer, and a booking bar that follows you up the page below 810px
 
 ### Effects
 

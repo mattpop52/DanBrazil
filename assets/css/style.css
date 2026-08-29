@@ -188,8 +188,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .db-skip {
   position: fixed;
-  top: 0; left: 50%;
-  transform: translate(-50%, -120%);
+  top: 0; left: 1.25rem;
+  transform: translateY(-120%);
   z-index: 9999;
   background: var(--cream);
   color: #000;
@@ -200,7 +200,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-radius: 0 0 var(--r-md) var(--r-md);
   transition: transform var(--t-fast) var(--e-out);
 }
-.db-skip:focus { transform: translate(-50%, 0); }
+.db-skip:focus { transform: translateY(0); }
 
 /* --------------------------------------------------- 03b  BADGE PILL ---- */
 .db-badge {
@@ -535,25 +535,18 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 /* ---------------------------------------------------- 08  MARQUEE ------- */
+/* A dark band of outlined chips separated by small circular glyphs — the
+   reference's own treatment. A solid tan stripe would be the highest-contrast
+   object on the page, spent on decoration. */
 .db-marquee {
   position: relative;
   overflow: clip;
+  background: var(--ink);
   border-block: 1px solid var(--hair);
-  padding-block: .95rem;
+  padding-block: 1.125rem;
   user-select: none;
-}
-
-.db-marquee--gold {
-  background: var(--tan);
-  color: #000;
-  border-color: transparent;
-}
-
-/* Edge fade, as on the reference. */
-.db-marquee--line {
-  background: var(--ink-2);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-          mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
 }
 
 .db-marquee__track {
@@ -565,33 +558,48 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-marquee__group {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
-  padding-right: 1.6rem;
-  font-family: var(--f-display);
-  font-size: clamp(1rem, 2.2vw, 1.6rem);
-  letter-spacing: .01em;
-  text-transform: uppercase;
+  gap: 1.75rem;
+  padding-right: 1.75rem;
   white-space: nowrap;
 }
-.db-marquee__group b { font-weight: 400; }
-.db-marquee__group i {
-  font-style: normal;
-  font-size: .7em;
-  opacity: .55;
+
+.db-marquee__group b {
+  display: inline-flex;
+  align-items: center;
+  padding: .625rem 1.25rem;
+  border: 1px solid var(--cream);
+  border-radius: var(--r-md);
+  font-family: var(--f-label);
+  font-weight: 500;
+  font-size: var(--fs-label);
+  letter-spacing: .02em;
+  color: var(--cream);
 }
-.db-marquee--line .db-marquee__group i { color: var(--tan); opacity: 1; }
+
+.db-marquee__dot {
+  display: inline-flex;
+  color: var(--tan);
+  flex: none;
+}
+.db-marquee__dot svg { width: 1.5rem; height: 1.5rem; }
 
 /* ------------------------------------------ 09  SERVICES (CARD ROW) ----- */
 .db-services { background: var(--ink); padding-bottom: 0; }
 
-/* Full-bleed row, square corners, no gaps — as on the reference. */
-.db-cardrow { display: flex; flex-direction: column; }
+/* Full-bleed row, square corners. The seam is a hairline of background showing
+   between two clipped cards, so it can never fall on top of a photograph. */
+.db-cardrow {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(240, 224, 202, .1);
+}
 
 .db-card {
   position: relative;
   min-width: 0;
   min-height: 32rem;
-  padding: 2.5rem;
+  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -623,24 +631,22 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .db-card__photo img,
 .db-card__photo picture { width: 100%; height: 100%; }
-.db-card__photo img { object-fit: cover; opacity: .9; }
+.db-card__photo img { object-fit: cover; opacity: .5; filter: brightness(.6) saturate(.85); }
 .db-card:hover .db-card__photo,
 .db-card:focus-within .db-card__photo { width: 355%; }
 
 /* 3. bottom scrim — the copy sits on black, never on the photograph */
+/* Starts at the top, so a tan title never lands on a bright crop. */
 .db-card__scrim {
   position: absolute;
-  left: 50%; bottom: -15px;
-  transform: translateX(-50%);
-  width: 130%;
-  height: 76%;
+  inset: 0;
   z-index: 4;
   background: linear-gradient(180deg,
-              rgba(0,0,0,0) 0%, rgba(0,0,0,.6) 32%, rgba(0,0,0,.9) 60%, #000 84%);
-  transition: height .5s var(--e-out), width .5s var(--e-out);
+              rgba(0,0,0,.35) 0%, rgba(0,0,0,.55) 28%, rgba(0,0,0,.88) 58%, #000 82%);
+  transition: opacity .5s var(--e-out);
 }
 .db-card:hover .db-card__scrim,
-.db-card:focus-within .db-card__scrim { height: 90%; width: 165%; }
+.db-card:focus-within .db-card__scrim { opacity: .92; }
 
 /* 4. content */
 .db-card__body {
@@ -649,7 +655,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 /* A circular tan badge with a black glyph. */
@@ -664,22 +670,30 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .db-card__icon svg { width: 26px; height: 26px; }
 
+/* The same reserved height on every card, so the four title blocks share a
+   top edge whether the name runs to one line or two. */
 .db-card__title {
   font-family: var(--f-display);
   font-size: var(--fs-h3);
   line-height: 1;
   letter-spacing: -.02em;
   color: var(--tan);
+  min-height: 2em;
+  display: flex;
+  align-items: flex-end;
 }
 
 /* Price chips: thin cream outline, small Poppins, all one colour. */
 .db-card__prices {
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem;
+  align-content: flex-end;
+  gap: .625rem;
+  min-height: 5.375rem;   /* two chip rows, so titles align across the row */
 }
 .db-card__prices li {
-  padding: .5rem .625rem;
+  padding: .625rem;
+  font-variant-numeric: tabular-nums;
   border: 1px solid var(--cream);
   border-radius: var(--r-md);
   font-family: var(--f-label);
@@ -692,22 +706,67 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .db-card__text {
   color: var(--cream);
-  font-size: var(--fs-sm);
-  line-height: 1.5;
-  max-width: 30rem;
+  font-size: .9375rem;
+  line-height: 1.35;
+  max-width: 26ch;
 }
 
 /* Whole-card link layer, so the card is one target without nesting links. */
 .db-card__link { position: absolute; inset: 0; z-index: 8; }
+/* One identical button on every card, so the row reads as a single rail. */
 .db-card__cta {
   position: relative;
   z-index: 5;
-  margin-top: .25rem;
+  margin-top: auto;
   pointer-events: none;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  font-size: var(--fs-label);
+  min-width: 12.5rem;
+  min-height: 40px;
+  padding: .625rem 1.25rem;
+  font-size: var(--fs-body);
 }
+
+/* ---------------------------------------------------- 09b  PROCESS ------ */
+/* Four steps on hairlines — no cards, no fifth surface style. It answers the
+   question that stops people booking a room they have not seen. */
+.db-process { background: var(--ink); }
+
+.db-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--hair);
+}
+
+.db-step {
+  display: flex;
+  flex-direction: column;
+  gap: .625rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--hair);
+}
+
+.db-step__num {
+  font-family: var(--f-label);
+  font-size: var(--fs-label);
+  color: var(--grey);
+}
+
+.db-step__title {
+  font-family: var(--f-display);
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--cream);
+}
+
+.db-step__text {
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--cream-dim);
+  max-width: 30ch;
+}
+
+/* ------------------------------------------------ 09c  BOOKING BAR ------ */
+.db-bookbar { display: none; }
 
 /* -------------------------------- 10  THE STUDIO (POLAROID TICKER) ------ */
 .db-studio { background: var(--ink-2); }
@@ -735,9 +794,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   flex: none;
   width: clamp(11.875rem, 24vw, 18.75rem);
   margin: 0;
-  padding: 1.25rem 1.25rem 1rem;
+  padding: .875rem .875rem 1.5rem;
   background: var(--cream);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .55);
   transform: rotate(var(--tilt, 0deg));
   transition: transform .3s ease;
 }
@@ -745,13 +804,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: var(--r-sm);
   background: var(--ink-3);
 }
 .db-polaroid figcaption {
-  margin-top: 1.125rem;
+  margin-top: .875rem;
   font-family: var(--f-display);
-  font-size: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.2;
   letter-spacing: -.01em;
   color: var(--taupe);
   text-align: center;
@@ -775,7 +834,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   isolation: isolate;
   background: #000;
   border: 1px solid var(--hair);
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   overflow: clip;
   transition: border-color var(--t-med) var(--e-out);
 }
@@ -959,9 +1018,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   gap: 1.25rem;
   height: 100%;
   border: 1px solid var(--hair);
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   background: var(--ink-2);
-  padding: clamp(.9rem, 1.6vw, 1.1rem);
+  padding: 1rem;
   transition: border-color var(--t-med) var(--e-out),
               background-color var(--t-med) var(--e-out),
               transform var(--t-spring-04) var(--spring-04-2);
@@ -1060,7 +1119,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-about__portrait {
   margin: 0;
   overflow: clip;
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   border: 1px solid var(--hair);
 }
 .db-about__portrait img {
@@ -1150,24 +1209,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* A 28px disc holding two bars; one rotates away to make the minus. */
 .db-acc__icon {
   position: relative;
-  width: 28px; height: 28px;
+  width: 26px; height: 26px;
   flex: none;
   border-radius: 50%;
-  background: var(--taupe);
+  background: var(--grey);
   transition: background-color var(--t-med) var(--e-out);
 }
 .db-acc.is-open .db-acc__icon { background: var(--tan); }
 .db-acc__icon b {
   position: absolute;
   top: 50%; left: 50%;
-  width: 12px; height: 1.5px;
-  margin: -.75px 0 0 -6px;
-  background: var(--cream);
+  width: 11px; height: 1.5px;
+  margin: -.75px 0 0 -5.5px;
+  background: #0d0d0d;
   transition: transform var(--t-spring-04) var(--spring-04-2),
               background-color var(--t-med) var(--e-out);
 }
 .db-acc__icon b:last-child { transform: rotate(90deg); }
-.db-acc.is-open .db-acc__icon b { background: #101010; }
+.db-acc.is-open .db-acc__icon b { background: #000; }
 .db-acc.is-open .db-acc__icon b:last-child { transform: rotate(0deg); }
 
 .db-acc__a {
@@ -1192,9 +1251,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .db-policy {
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  border: 1px solid var(--hair);
-  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--hair-2);
+  border-radius: var(--r-md);
   background: var(--ink-2);
 }
 .db-policy__title {
@@ -1246,11 +1305,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-form {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.1rem;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  background: var(--ink);
-  border: 1px solid var(--hair);
-  border-radius: var(--r-lg);
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--ink-3);
+  border: 1px solid var(--hair-2);
+  border-radius: var(--r-md);
 }
 
 .db-field { display: flex; flex-direction: column; gap: .45rem; min-width: 0; }
@@ -1258,35 +1317,35 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .db-field label {
   font-family: var(--f-label);
+  font-weight: 400;
   font-size: var(--fs-label);
-  font-weight: 500;
-  color: var(--cream-dim);
+  color: var(--grey);
 }
-.db-field label span { text-transform: none; letter-spacing: .05em; opacity: .7; }
+.db-field label span { font-size: .6875rem; opacity: .7; margin-left: .35em; }
 
 .db-field input,
 .db-field select,
 .db-field textarea {
   width: 100%;
-  background: var(--ink-3);
+  min-height: 48px;
+  background: var(--ink);
   border: 1px solid var(--line-input);
-  border-radius: var(--r-sm);
-  padding: .85rem 1rem;
+  border-radius: var(--r-md);
+  padding: .75rem 1rem;
   color: var(--cream);
   font-size: var(--fs-body);
-  transition: border-color var(--t-fast) var(--e-out), background-color var(--t-fast);
+  transition: border-color var(--t-fast) var(--e-out);
 }
-.db-field textarea { resize: vertical; min-height: 8rem; }
+.db-field textarea { resize: vertical; min-height: 9rem; padding-top: .875rem; }
 .db-field select {
   appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--tan) 50%),
-                    linear-gradient(135deg, var(--tan) 50%, transparent 50%);
-  background-position: calc(100% - 20px) 1.3rem, calc(100% - 14px) 1.3rem;
-  background-size: 6px 6px, 6px 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23e3b97f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 1rem center;
+  background-size: 12px 8px;
   background-repeat: no-repeat;
   padding-right: 2.75rem;
 }
-.db-field select option { background: var(--ink-3); color: var(--cream); }
+.db-field select option { background: var(--ink-2); color: var(--cream); }
 
 .db-field input:hover,
 .db-field select:hover,
@@ -1456,7 +1515,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
   .db-cardrow { flex-direction: row; }
   .db-card { flex: 1 1 0; min-height: 34rem; }
-  .db-card + .db-card { border-top: 0; border-left: 1px solid var(--hair); }
+
+  .db-steps { grid-template-columns: repeat(2, 1fr); column-gap: clamp(1.5rem, 3vw, 3rem); }
 
   .db-work__grid { grid-template-columns: repeat(2, 1fr); }
   .db-release--feature { grid-column: span 2; }
@@ -1479,13 +1539,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (min-width: 810px) and (max-width: 1199.98px) {
   .db-cardrow { flex-wrap: wrap; }
   .db-card { flex: 1 1 50%; min-width: 50%; }
-  .db-card:nth-child(n + 3) { border-top: 1px solid var(--hair); }
-  .db-card:nth-child(odd) { border-left: 0; }
 }
 
 /* Desktop */
 @media (min-width: 1200px) {
   .db-card { min-height: 37.5rem; }
+
+  .db-steps { grid-template-columns: repeat(4, 1fr); }
+  .db-step { border-bottom: 0; padding-block: 2rem 0; }
 
   /* The feature spans the row; the remaining credits sit two-up so a short
      catalogue does not leave an obvious hole. */
@@ -1538,6 +1599,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
     top: 1.25rem; right: 1.25rem;
     z-index: 6;
   }
+  .db-panel:not(.is-open) .db-panel__chev { display: none; }
+  .db-panel:not(.is-open) { background: var(--ink-2); }
 
   .db-panel__content {
     display: block;
@@ -1571,6 +1634,26 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 809px) {
   .db-nav, .db-header__cta { display: none; }
   .db-burger { display: block; }
+
+  /* The enquiry form is at the foot of a very long page; this keeps the next
+     step one tap away. It clears the footer's last line rather than covering it. */
+  .db-bookbar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 790;
+    display: flex;
+    gap: .625rem;
+    padding: .75rem var(--gutter) calc(.75rem + env(safe-area-inset-bottom));
+    background: var(--ink-2);
+    border-top: 1px solid var(--hair);
+    transform: translateY(110%);
+    transition: transform var(--t-med) var(--e-out);
+  }
+  .db-bookbar.is-in { transform: none; }
+  .db-bookbar .db-btn { flex: 1 1 auto; }
+  .db-bookbar .db-btn:last-child { flex: 0 0 6.5rem; }
+  .db-footer { padding-bottom: 6rem; }
+  body.is-locked .db-bookbar { transform: translateY(110%); }
 
   .db-hero__media img { object-position: 66% 42%; }
   .db-card { min-height: 26rem; }
