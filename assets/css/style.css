@@ -257,7 +257,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   cursor: pointer;
   overflow: clip;
   isolation: isolate;
-  transition: color var(--t-spring-04) var(--spring-04-2);
+  transition: color .2s linear;
 }
 
 .db-btn::after {
@@ -267,7 +267,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   z-index: -1;
   background: var(--btn-wipe);
   transform: translateX(-101%);
-  transition: transform var(--t-spring-04) var(--spring-04-2);
+  transition: transform .26s var(--e-out);
 }
 .db-btn:hover::after,
 .db-btn:focus-visible::after { transform: translateX(0); }
@@ -294,10 +294,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   z-index: var(--z-header);
   background: var(--ink);
   border-bottom: 1px solid var(--cream);
-  transition: transform var(--t-med) var(--e-out);
 }
-
-.db-header.is-hidden { transform: translateY(-102%); }
 
 .db-header__inner {
   max-width: var(--maxw);
@@ -622,13 +619,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   aspect-ratio: 1.5015;
   transform: translate(-50%, -50%);
   z-index: 2;
-  transition: width var(--t-spring-04) var(--spring-04-2);
+  transition: width .5s var(--e-out);
 }
 .db-card__photo img,
 .db-card__photo picture { width: 100%; height: 100%; }
 .db-card__photo img { object-fit: cover; opacity: .9; }
 .db-card:hover .db-card__photo,
-.db-card:focus-within .db-card__photo { width: 400%; }
+.db-card:focus-within .db-card__photo { width: 355%; }
 
 /* 3. bottom scrim — the copy sits on black, never on the photograph */
 .db-card__scrim {
@@ -640,8 +637,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   z-index: 4;
   background: linear-gradient(180deg,
               rgba(0,0,0,0) 0%, rgba(0,0,0,.6) 32%, rgba(0,0,0,.9) 60%, #000 84%);
-  transition: height var(--t-spring-04) var(--spring-04-2),
-              width var(--t-spring-04) var(--spring-04-2);
+  transition: height .5s var(--e-out), width .5s var(--e-out);
 }
 .db-card:hover .db-card__scrim,
 .db-card:focus-within .db-card__scrim { height: 90%; width: 165%; }
@@ -940,7 +936,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .db-statement__text .db-char {
-  color: var(--taupe);
+  color: #8a8078;
   transition: color .16s linear;
 }
 .db-statement__text .db-char.is-lit { color: var(--cream); }
@@ -1408,55 +1404,48 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .db-footer__bar a:hover { color: var(--tan); }
 
-.db-footer__controls { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-
-/* WCAG 2.2.2: everything that moves can be stopped from here. */
+/* WCAG 2.2.2: everything that moves can be stopped from here. Styled as one
+   more footer link rather than as a control that draws attention to itself. */
 .db-motion-toggle {
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
   min-height: 44px;
   padding: 0;
   background: none;
   border: 0;
   cursor: pointer;
-  font-family: var(--f-label);
-  font-size: var(--fs-label);
-  color: var(--grey);
+  text-align: left;
+  font-family: var(--f-body);
+  font-size: var(--fs-body);
+  color: var(--cream-dim);
   transition: color var(--t-fast);
 }
 .db-motion-toggle:hover { color: var(--tan); }
-.db-motion-toggle__dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--taupe);
-  transition: background-color var(--t-fast), transform var(--t-fast);
-}
-.db-motion-toggle[aria-pressed="true"] .db-motion-toggle__dot { background: var(--tan); }
+.db-motion-toggle[disabled] { opacity: .5; cursor: default; }
 
 /* --------------------------------- 18  MOTION / REVEAL SYSTEM ---------- */
 /* Start states are only applied when JS is available, so a no-JS visitor
    sees everything immediately. */
 .js [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity var(--t-spring-08) var(--e-out),
-              transform var(--t-spring-08) var(--spring-08-3);
+  transform: translateY(14px);
+  transition: opacity .55s var(--e-out), transform .55s var(--e-out);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
 /* The reference slides cards and panels in from the left. */
+/* Cards and panels still arrive from the left, as on the reference, but at a
+   distance the eye reads as intent rather than as an animation. */
 .js [data-reveal="x"] {
-  transform: translateX(-150px);
-  transition: opacity var(--t-spring-10) var(--e-out),
-              transform var(--t-spring-10) var(--spring-10-3);
+  transform: translateX(-56px);
+  transition: opacity .6s var(--e-out), transform .6s var(--e-out);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
 .js [data-reveal].is-in { opacity: 1; transform: none; }
 
 /* Hero copy arrives on load rather than on scroll — it is already in view. */
-.js .db-hero [data-reveal] { transform: translateY(60px); }
+.js .db-hero [data-reveal] { transform: translateY(20px); }
 .js .db-hero [data-reveal].is-in { transform: none; }
 
 /* ------------------------------------------------- 19  RESPONSIVE ------- */

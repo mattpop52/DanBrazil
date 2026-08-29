@@ -105,26 +105,9 @@
   /* =====================================================================
      3. Header — solid past the hero, hides on scroll down
      ===================================================================== */
-  function initHeader() {
-    var header = $('#header');
-    if (!header) return;
-
-    var prev = scrollY;
-    var menuOpen = function () { return document.body.classList.contains('is-locked'); };
-
-    onScrollFrame(function () {
-      var y = scrollY;
-
-      var goingDown = y > prev && y - prev > 2;
-      var goingUp = y < prev - 2;
-
-      if (menuOpen()) header.classList.remove('is-hidden');
-      else if (goingDown && y > 400) header.classList.add('is-hidden');
-      else if (goingUp) header.classList.remove('is-hidden');
-
-      prev = y;
-    });
-  }
+  /* The bar is fixed, solid and always visible — a header that vanishes and
+     comes back makes a long page feel restless. Nothing to do here beyond the
+     scroll-spy, which lives in its own module. */
 
   /* =====================================================================
      5. Mobile menu
@@ -340,9 +323,9 @@
   }
 
   /* =====================================================================
-     9. Photo ticker — drifts on its own, accelerates while the page is
-        scrolling, and can be dragged. Ported from the reference's mechanics,
-        minus its wheel hijack (which trapped the page scroll).
+     9. Photo ticker — a constant, slow drift that can be paused by hovering
+        or dragged by hand. The reference also ties its speed to the scroll
+        wheel and calls preventDefault on it; neither is copied.
      ===================================================================== */
   function initTickers() {
     $$('[data-ticker]').forEach(function (ticker) {
@@ -366,8 +349,6 @@
       var baseSpeed = parseFloat(ticker.getAttribute('data-speed')) || 50;  // px/s
       var cycle = 0;
       var offset = 0;
-      var boost = 0;
-      var boostTimer = null;
       var paused = false;
       var clones = [];
 
@@ -400,15 +381,6 @@
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(function () { offset = 0; measure(); });
       }
-
-      // Scrolling the page speeds the strip up, decaying back after 150ms idle.
-      var lastY = scrollY;
-      window.addEventListener('scroll', function () {
-        boost = Math.min(Math.abs(window.pageYOffset - lastY) * 2, 900);
-        lastY = window.pageYOffset;
-        clearTimeout(boostTimer);
-        boostTimer = setTimeout(function () { boost = 0; }, 150);
-      }, { passive: true });
 
       ticker.addEventListener('pointerenter', function (e) {
         if (e.pointerType !== 'touch') paused = true;
@@ -449,7 +421,7 @@
         if (rect.bottom < -200 || rect.top > viewH + 200) return;   // off screen, skip
 
         if (!paused && !dragging) {
-          offset += (baseSpeed + boost) * dt;
+          offset += baseSpeed * dt;
           if (offset >= cycle) offset -= cycle;
         }
         track.style.transform = 'translate3d(' + (-offset).toFixed(2) + 'px,0,0)';
@@ -718,7 +690,7 @@
     function render() {
       var off = userPaused || reduce.matches;
       btn.setAttribute('aria-pressed', off ? 'true' : 'false');
-      if (label) label.textContent = off ? 'Motion paused' : 'Pause motion';
+      if (label) label.textContent = off ? 'Resume motion' : 'Pause motion';
       // When the OS already asks for reduced motion there is nothing to toggle.
       btn.disabled = reduce.matches;
       btn.title = reduce.matches
@@ -756,7 +728,6 @@
      ===================================================================== */
   function boot() {
     initFlags();
-    initHeader();
     initMenu();
     initReveal();
     initCharReveal();
