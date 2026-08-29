@@ -44,6 +44,9 @@
   --taupe:        #645d56;
   --line:         rgba(242, 231, 213, .14);
   --line-strong:  rgba(242, 231, 213, .28);
+  /* Interactive borders (inputs, ghost buttons) — 3.6:1 on --ink, so they
+     satisfy WCAG 1.4.11 non-text contrast. */
+  --line-input:   #6f6960;
 
   /* Accent */
   --gold:         #e7b84f;
@@ -105,8 +108,8 @@
   --z-grain:   9000;
   --z-cursor:  9500;
   --z-loader:  9800;
-  --z-header:  800;
-  --z-menu:    850;
+  --z-menu:    800;
+  --z-header:  850;
 }
 
 /* ------------------------------------------------- 02  RESET & BASE ----- */
@@ -256,7 +259,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-btn {
   --btn-bg: transparent;
   --btn-fg: var(--cream);
-  --btn-bd: var(--line-strong);
+  --btn-bd: var(--line-input);
   --btn-wipe: var(--gold);
   position: relative;
   display: inline-flex;
@@ -302,7 +305,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-btn--primary:hover, .db-btn--primary:focus-visible { color: #101010; border-color: var(--cream); }
 
 .db-btn--ghost   { --btn-bg: transparent; --btn-fg: var(--cream); }
-.db-btn--outline { --btn-bd: var(--line-strong); }
+.db-btn--outline { --btn-bd: var(--line-input); }
 .db-btn--sm      { padding: .7rem 1.3rem; min-height: 40px; }
 
 /* ---------------------------- 05  LOADER / GRAIN / CURSOR / PROGRESS ---- */
@@ -554,6 +557,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .db-menu.is-open { clip-path: inset(0 0 0 0); visibility: visible; }
 
+/* The header sits above the overlay, so the burger stays tappable while the
+   menu is open and turns into the close control. It is the only one — a second
+   close button would land in exactly the same corner. */
+.db-menu { --menu-close-note: 1; }
+
 .db-menu__nav ul { display: flex; flex-direction: column; gap: .25rem; }
 
 .db-menu__nav a {
@@ -599,11 +607,18 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-top: 1px solid var(--line);
   padding-top: 1.5rem;
 }
+.db-menu__foot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: .25rem;
+}
 .db-menu__foot a:hover { color: var(--gold); }
 
 /* ------------------------------------------------------- 07  HERO ------- */
 .db-hero {
   position: relative;
+  min-height: 100vh;
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -984,6 +999,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .db-panel.is-open .db-panel__media img { opacity: .62; transform: scale(1); }
 
+.db-panel__tab:focus-visible,
+.db-card__link:focus-visible,
+.db-release__link:focus-visible { outline-offset: -4px; }
+
 .db-panel__tab {
   position: relative;
   width: 100%;
@@ -1046,9 +1065,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: relative;
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--t-spring-08) var(--spring-08-2);
+  visibility: hidden;
+  transition: grid-template-rows var(--t-spring-08) var(--spring-08-2),
+              visibility var(--t-spring-08);
 }
-.db-panel.is-open .db-panel__content { grid-template-rows: 1fr; }
+.db-panel.is-open .db-panel__content { grid-template-rows: 1fr; visibility: visible; }
 
 .db-panel__inner { overflow: hidden; }
 .db-panel__inner > * { padding-inline: 1.25rem; }
@@ -1094,7 +1115,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   letter-spacing: -.02em;
   text-transform: uppercase;
   max-width: 26ch;
-  text-wrap: balance;
 }
 
 .db-statement__text .db-char {
@@ -1340,9 +1360,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-acc__a {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--t-spring-08) var(--spring-08-2);
+  visibility: hidden;
+  transition: grid-template-rows var(--t-spring-08) var(--spring-08-2),
+              visibility var(--t-spring-08);
 }
-.db-acc.is-open .db-acc__a { grid-template-rows: 1fr; }
+.db-acc.is-open .db-acc__a { grid-template-rows: 1fr; visibility: visible; }
 .db-acc__a > div { overflow: hidden; }
 .db-acc__a p,
 .db-acc__a ul {
@@ -1435,7 +1457,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-field textarea {
   width: 100%;
   background: var(--ink-soft);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-input);
   border-radius: var(--r-sm);
   padding: .85rem 1rem;
   color: var(--cream);
@@ -1456,7 +1478,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .db-field input:hover,
 .db-field select:hover,
-.db-field textarea:hover { border-color: var(--line-strong); }
+.db-field textarea:hover { border-color: var(--cream-dim); }
 .db-field input:focus,
 .db-field select:focus,
 .db-field textarea:focus { border-color: var(--gold); background: var(--ink-hi); }
@@ -1506,6 +1528,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .db-footer__wordmark {
+  display: inline-block;
+  padding-block: .5rem;
   font-family: var(--f-display);
   font-size: clamp(2rem, 9vw, 5rem);
   line-height: .9;
@@ -1538,7 +1562,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
   margin-bottom: 1rem;
 }
 
-.db-footer__col ul { display: grid; gap: .5rem; }
+.db-footer__col ul { display: grid; gap: .125rem; }
+.db-footer__col li a,
+.db-footer__col p a,
+.db-footer__social a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.db-footer__col p { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; }
 .db-footer__col a { color: var(--cream-dim); transition: color var(--t-fast); }
 .db-footer__col a:hover { color: var(--gold); }
 .db-footer__col p { color: var(--cream-dim); font-size: var(--fs-sm); margin-bottom: .5rem; }
@@ -1556,7 +1588,42 @@ button, input, select, textarea { font: inherit; color: inherit; }
   letter-spacing: .08em;
   color: var(--muted);
 }
+.db-footer__bar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 .db-footer__bar a:hover { color: var(--gold); }
+
+.db-footer__controls { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+
+/* WCAG 2.2.2: everything that moves can be stopped from here. */
+.db-motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--f-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: .08em;
+  color: var(--muted);
+  transition: color var(--t-fast);
+}
+.db-motion-toggle:hover { color: var(--gold); }
+.db-motion-toggle__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  transition: background-color var(--t-fast), transform var(--t-fast);
+}
+.db-motion-toggle[aria-pressed="true"] .db-motion-toggle__dot {
+  background: var(--taupe);
+  transform: scale(.8);
+}
 
 /* --------------------------------- 18  MOTION / REVEAL SYSTEM ---------- */
 /* Start states are only applied when JS is available, so a no-JS visitor
@@ -1679,9 +1746,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
     min-width: 0;
     overflow: clip;
     opacity: 0;
-    transition: opacity .35s var(--e-out);
+    visibility: hidden;
+    transition: opacity .35s var(--e-out), visibility .35s;
   }
-  .db-panel.is-open .db-panel__content { opacity: 1; transition-delay: .16s; }
+  .db-panel.is-open .db-panel__content {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .16s;
+  }
 
   .db-panel__inner {
     height: 100%;
@@ -1722,15 +1794,34 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .db-grain { animation: none; }
   .db-marquee__track,
   .db-ticker__track { transform: none !important; }
-  .db-marquee, .db-ticker { overflow-x: auto; }
+  .db-marquee, .db-ticker { overflow-x: clip; }
   .db-polaroid { transform: none !important; }
   .db-statement__text .db-char { color: var(--cream); }
 }
 
-.reduce-motion .db-loader { display: none !important; }
+.reduce-motion .db-loader,
+.reduce-motion .db-cursor { display: none !important; }
 
 @media print {
-  .db-header, .db-menu, .db-loader, .db-grain, .db-cursor,
-  .db-progress, .db-marquee, .db-hero__scroll { display: none !important; }
-  body { background: #fff; color: #000; }
+  .db-header, .db-menu, .db-loader, .db-grain, .db-cursor, .db-progress,
+  .db-marquee, .db-hero__scroll, .db-ticker, .db-motion-toggle,
+  .db-card__photo, .db-card__scrim, .db-panel__media,
+  .db-hero__media, .db-release__play { display: none !important; }
+
+  /* Force the whole page light — otherwise the dark section backgrounds
+     survive and print as unreadable slabs. */
+  *, *::before, *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  body { background: #fff !important; }
+  .db-card::before { display: none !important; }
+  .db-card, .db-panel, .db-acc, .db-release__link, .db-policy, .db-form,
+  .db-tiles li { border: 1px solid #999 !important; }
+  .db-card { min-height: 0 !important; page-break-inside: avoid; }
+  .db-acc__a, .db-panel__content { grid-template-rows: 1fr !important; visibility: visible !important; }
+  .js [data-reveal] { opacity: 1 !important; transform: none !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; }
 }

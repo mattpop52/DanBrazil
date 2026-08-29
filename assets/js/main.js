@@ -20,11 +20,20 @@
     else if (mq.addListener) mq.addListener(fn);
   }
 
-  var prefersReduced = reduce.matches;
-  onMediaChange(reduce, function (e) {
-    prefersReduced = e.matches;
-    root.classList.toggle('reduce-motion', e.matches);
-  });
+  var STORE_KEY = 'db-motion';
+  var userPaused = false;
+  try { userPaused = localStorage.getItem(STORE_KEY) === 'paused'; } catch (e) {}
+
+  // One switch for every moving thing: the OS preference, or the footer toggle.
+  var prefersReduced = reduce.matches || userPaused;
+
+  function applyMotionPreference() {
+    prefersReduced = reduce.matches || userPaused;
+    root.classList.toggle('reduce-motion', prefersReduced);
+  }
+  applyMotionPreference();
+
+  onMediaChange(reduce, applyMotionPreference);
 
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
@@ -109,7 +118,6 @@
         clearInterval(timer);
         setTimeout(function () {
           loader.classList.add('is-done');
-          root.classList.add('is-loaded');
           setTimeout(function () { loader.remove(); }, 700);
         }, 160);
       }
@@ -175,12 +183,15 @@
     var menu = $('#mobileMenu');
     if (!burger || !menu) return;
 
+    var behind = [$('#main'), $('.db-footer')].filter(Boolean);
     var lastFocus = null;
 
     function open() {
       lastFocus = document.activeElement;
       menu.classList.add('is-open');
       menu.removeAttribute('inert');
+      // Tab must not walk into the scroll-locked page behind the overlay.
+      behind.forEach(function (el) { el.setAttribute('inert', ''); });
       burger.setAttribute('aria-expanded', 'true');
       burger.setAttribute('aria-label', 'Close menu');
       document.body.classList.add('is-locked');
@@ -191,6 +202,7 @@
     function close() {
       menu.classList.remove('is-open');
       menu.setAttribute('inert', '');
+      behind.forEach(function (el) { el.removeAttribute('inert'); });
       burger.setAttribute('aria-expanded', 'false');
       burger.setAttribute('aria-label', 'Open menu');
       document.body.classList.remove('is-locked');
@@ -561,6 +573,8 @@
     if (prefersReduced || (!heroImg && !items.length)) return;
 
     onFrame(function () {
+      if (prefersReduced) return;
+
       if (heroImg) {
         var p = clamp(scrollY / Math.max(viewH, 1), 0, 1);
         heroImg.style.transform =
@@ -635,13 +649,13 @@
           var r = el.getBoundingClientRect();
           var dx = (e.clientX - (r.left + r.width / 2)) * 0.22;
           var dy = (e.clientY - (r.top + r.height / 2)) * 0.32;
-          el.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+          el.style.translate = dx.toFixed(1) + 'px ' + dy.toFixed(1) + 'px';
         });
       });
 
       function release() {
         if (raf) { cancelAnimationFrame(raf); raf = null; }
-        el.style.transform = '';
+        el.style.translate = '';
       }
       el.addEventListener('pointerleave', release);
       el.addEventListener('pointercancel', release);
@@ -697,7 +711,12 @@
       var wrap = field.closest('.db-field');
       if (wrap) wrap.classList.toggle('has-error', on);
       var msg = form.querySelector('[data-error-for="' + field.id + '"]');
-      if (msg) msg.hidden = !on;
+      if (msg) {
+        msg.hidden = !on;
+        // Only point at the message while it is actually showing.
+        if (on) field.setAttribute('aria-describedby', msg.id);
+        else field.removeAttribute('aria-describedby');
+      }
       field.setAttribute('aria-invalid', on ? 'true' : 'false');
     }
 
@@ -729,7 +748,15 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      if (form.querySelector('[name="company"]') && form.querySelector('[name="company"]').value) return;
+      // Honeypot. A bot gets the same message as everyone else and nothing is
+      // sent; a real person whose autofill touched the field is not left staring
+      // at a button that does nothing.
+      var honeypot = form.querySelector('[name="company"]');
+      if (honeypot && honeypot.value) {
+        form.reset();
+        say('Thanks \u2014 I\u2019ll come back to you within two working days.', 'ok');
+        return;
+      }
 
       var bad = validate();
       if (bad) { say('Please check the highlighted fields.', 'bad'); bad.focus(); return; }
@@ -783,6 +810,34 @@
   /* =====================================================================
      16. Odds and ends
      ===================================================================== */
+  function initMotionToggle() {
+    var btn = $('#motionToggle');
+    if (!btn) return;
+
+    var label = $('[data-motion-label]', btn);
+
+    function render() {
+      var off = userPaused || reduce.matches;
+      btn.setAttribute('aria-pressed', off ? 'true' : 'false');
+      if (label) label.textContent = off ? 'Motion paused' : 'Pause motion';
+      // When the OS already asks for reduced motion there is nothing to toggle.
+      btn.disabled = reduce.matches;
+      btn.title = reduce.matches
+        ? 'Motion is already off because your system asks for reduced motion.'
+        : '';
+    }
+
+    btn.addEventListener('click', function () {
+      userPaused = !userPaused;
+      try { localStorage.setItem(STORE_KEY, userPaused ? 'paused' : 'ok'); } catch (e) {}
+      applyMotionPreference();
+      render();
+    });
+
+    onMediaChange(reduce, render);
+    render();
+  }
+
   function initYear() {
     var el = $('#year');
     if (el) el.textContent = new Date().getFullYear();
@@ -817,6 +872,7 @@
     initMagnetic();
     initScrollSpy();
     initForm();
+    initMotionToggle();
     initYear();
   }
 
