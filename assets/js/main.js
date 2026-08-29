@@ -14,8 +14,14 @@
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
   var desktop = window.matchMedia('(min-width: 1200px)');
 
+  // Safari only grew addEventListener on MediaQueryList in 14.
+  function onMediaChange(mq, fn) {
+    if (mq.addEventListener) mq.addEventListener('change', fn);
+    else if (mq.addListener) mq.addListener(fn);
+  }
+
   var prefersReduced = reduce.matches;
-  reduce.addEventListener('change', function (e) {
+  onMediaChange(reduce, function (e) {
     prefersReduced = e.matches;
     root.classList.toggle('reduce-motion', e.matches);
   });
@@ -67,7 +73,7 @@
      ===================================================================== */
   function initFlags() {
     if (finePointer.matches) root.classList.add('has-fine-pointer');
-    finePointer.addEventListener('change', function (e) {
+    onMediaChange(finePointer, function (e) {
       root.classList.toggle('has-fine-pointer', e.matches);
     });
   }
@@ -204,7 +210,7 @@
     });
 
     // If the viewport grows past mobile while the menu is open, tidy up.
-    window.matchMedia('(min-width: 810px)').addEventListener('change', function (e) {
+    onMediaChange(window.matchMedia('(min-width: 810px)'), function (e) {
       if (e.matches && menu.classList.contains('is-open')) close();
     });
   }
@@ -346,8 +352,15 @@
       fill();
       window.addEventListener('resize', debounce(fill, 200), { passive: true });
 
+      // The group is measured with whatever font is active. Re-measure once the
+      // webfont has swapped in, or the loop seam lands in the wrong place.
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () { offset = 0; fill(); });
+      }
+
       marquee.addEventListener('pointerenter', function () { paused = true; });
       marquee.addEventListener('pointerleave', function () { paused = false; });
+      marquee.addEventListener('pointercancel', function () { paused = false; });
 
       onFrame(function (dt) {
         if (paused || !groupWidth) return;
@@ -431,7 +444,7 @@
       });
     });
 
-    desktop.addEventListener('change', function (e) {
+    onMediaChange(desktop, function (e) {
       if (e.matches && !$('.db-panel.is-open', wrap)) setOpen(panels[0], true);
     });
   }
@@ -537,8 +550,13 @@
         });
       });
 
-      el.addEventListener('pointerleave', function () { el.style.transform = ''; });
-      el.addEventListener('blur', function () { el.style.transform = ''; });
+      function release() {
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+        el.style.transform = '';
+      }
+      el.addEventListener('pointerleave', release);
+      el.addEventListener('pointercancel', release);
+      el.addEventListener('blur', release);
     });
   }
 
@@ -650,18 +668,26 @@
       // No endpoint configured: hand off to the visitor's mail client.
       var to = form.getAttribute('data-mailto') || '';
       var subject = 'Studio enquiry — ' + (data.get('service') || 'General');
+      var message = String(data.get('message') || '');
+      // Browsers cap mailto: URLs around 2000 characters. Keep well inside that
+      // and tell the visitor rather than silently losing the end of their note.
+      var trimmed = message.length > 1200;
+      if (trimmed) message = message.slice(0, 1200) + '\n\n[…continued — please paste the rest]';
+
       var body = [
         'Name: ' + (data.get('name') || ''),
         'Email: ' + (data.get('email') || ''),
         'Service: ' + (data.get('service') || ''),
         'Preferred dates: ' + (data.get('dates') || '—'),
         '',
-        data.get('message') || ''
+        message
       ].join('\n');
 
       window.location.href =
         'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      say('Opening your email app…', 'ok');
+      say(trimmed
+        ? 'Opening your email app — your message was long, so please check nothing is missing.'
+        : 'Opening your email app…', 'ok');
     });
   }
 

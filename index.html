@@ -8,7 +8,12 @@
 <meta name="theme-color" content="#0B0B0B">
 <meta name="color-scheme" content="dark">
 
-<link rel="canonical" href="https://danielbrazil.co.uk/">
+<!-- EDIT: once you have a domain, uncomment these two and put it in.
+     Leave them out until then — a canonical pointing at a domain you do not
+     own tells search engines the real page is somewhere else.
+<link rel="canonical" href="https://your-domain.co.uk/">
+<meta property="og:url" content="https://your-domain.co.uk/">
+-->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Daniel Brazil">
 <meta property="og:title" content="Recording, Production, Mixing &amp; Mastering | Daniel Brazil">
@@ -16,7 +21,6 @@
 <meta property="og:image" content="assets/img/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://danielbrazil.co.uk/">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -33,19 +37,32 @@
 <script>document.documentElement.classList.add('js');
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduce-motion');</script>
 
+<!-- EDIT: add "url", "telephone" and an "address" block here once they are real. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  "name": "Daniel Brazil",
-  "description": "Record producer, songwriter and mix engineer.",
-  "url": "https://danielbrazil.co.uk/",
-  "sameAs": ["https://www.instagram.com/danielbrazilmusic/"],
-  "makesOffer": [
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Studio hire" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Production and co-writing" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mixing" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mastering" } }
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "#daniel-brazil",
+      "name": "Daniel Brazil",
+      "jobTitle": "Record producer, songwriter and mix engineer",
+      "sameAs": ["https://www.instagram.com/danielbrazilmusic/"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "name": "Daniel Brazil \u2014 recording studio",
+      "description": "Recording, production, co-writing, mixing and mastering.",
+      "founder": { "@id": "#daniel-brazil" },
+      "areaServed": "GB",
+      "sameAs": ["https://www.instagram.com/danielbrazilmusic/"],
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Studio hire" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Production and co-writing" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mixing" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mastering" } }
+      ]
+    }
   ]
 }
 </script>
@@ -198,6 +215,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
               <li><b>&pound;140</b> &mdash; 4 hours (half day)</li>
               <li><b>&pound;240</b> &mdash; 8 hours (full day)</li>
             </ul>
+            <!-- EDIT: confirm this is what you actually offer, including "same night" files. -->
             <p class="db-scard__text">
               A treated live room and control room with an engineer on hand for the whole session.
               Tracking, overdubs, vocal days &mdash; walk out with your files the same night.
@@ -242,6 +260,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
               <li><b>&pound;250</b> per track</li>
               <li><b>&pound;200</b> per track &mdash; EP or album</li>
             </ul>
+            <!-- EDIT: revision count and the versions you supply are a sensible default, not a quote. -->
             <p class="db-scard__text">
               Clean, balanced mixes tailored to your sound and creative direction.
               Two rounds of revisions included, plus instrumental, TV and a cappella versions.
@@ -264,6 +283,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
               <li><b>&pound;70</b> per track</li>
               <li><b>&pound;50</b> per track &mdash; EP or album</li>
             </ul>
+            <!-- EDIT: confirm the deliverables, including whether you supply a DDP. -->
             <p class="db-scard__text">
               Final polish to prepare your tracks for release across every platform.
               Streaming, distribution-ready WAVs and a DDP for anything going to disc.
@@ -455,7 +475,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       <div class="db-work__grid">
 
         <article class="db-release db-release--feature" data-reveal>
-          <a class="db-release__link" href="#contact"><!-- EDIT: link to the release -->
+          <!-- EDIT: swap href for the Spotify/Apple link for this release. -->
+          <a class="db-release__link" href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">
             <div class="db-release__media">
               <img src="assets/img/release-choke.jpg" alt="Artwork for the CHOKE! EP by Gerron." loading="lazy" decoding="async" width="1320" height="1320">
               <span class="db-release__play" aria-hidden="true">
@@ -475,7 +496,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         </article>
 
         <article class="db-release" data-reveal data-reveal-delay="120">
-          <a class="db-release__link" href="#contact"><!-- EDIT: link to the release -->
+          <!-- EDIT: swap href for the Spotify/Apple link for this release. -->
+          <a class="db-release__link" href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">
             <div class="db-release__media">
               <img src="assets/img/release-to-change-a-man.jpg" alt="Artwork for the single To Change a Man by Gerron." loading="lazy" decoding="async" width="1320" height="1323">
               <span class="db-release__play" aria-hidden="true">
@@ -492,7 +514,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         </article>
 
         <article class="db-release" data-reveal data-reveal-delay="200">
-          <a class="db-release__link" href="#contact"><!-- EDIT: link to the release -->
+          <!-- EDIT: swap href for the Spotify/Apple link for this release. -->
+          <a class="db-release__link" href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">
             <div class="db-release__media">
               <img src="assets/img/release-choke.jpg" alt="Artwork for the single CHOKE! by Gerron." loading="lazy" decoding="async" width="1320" height="1320">
               <span class="db-release__play" aria-hidden="true">
@@ -656,6 +679,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
 
       </div>
 
+      <!-- EDIT: set your own cancellation window and refund terms. -->
       <aside class="db-policy" data-reveal>
         <h3 class="db-policy__title">CANCELLATION POLICY</h3>
         <p>
@@ -674,6 +698,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         <div class="db-contact__copy">
           <p class="db-eyebrow" data-reveal>07 &mdash; Say hello</p>
           <h2 class="db-h2 db-h2--xl" data-reveal data-reveal-delay="80">BOOK YOUR<br>SESSION</h2>
+          <!-- EDIT: "two working days" is a promise — change it to whatever you can keep. -->
           <p class="db-contact__lede" data-reveal data-reveal-delay="160">
             Tell me what you&rsquo;re making and when you want it finished. I&rsquo;ll come back within
             two working days.
@@ -789,9 +814,12 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         <h2 class="db-footer__heading">STAY CONNECTED</h2>
         <ul class="db-footer__social">
           <li><a href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="#" rel="noopener">Spotify</a></li><!-- EDIT -->
-          <li><a href="#" rel="noopener">Apple Music</a></li><!-- EDIT -->
-          <li><a href="#" rel="noopener">YouTube</a></li><!-- EDIT -->
+          <!-- EDIT: uncomment each of these once you have the profile URL. They are
+               left commented out rather than pointing at "#", so nothing here is a dead link.
+          <li><a href="" target="_blank" rel="noopener">Spotify</a></li>
+          <li><a href="" target="_blank" rel="noopener">Apple Music</a></li>
+          <li><a href="" target="_blank" rel="noopener">YouTube</a></li>
+          -->
         </ul>
       </div>
     </div>

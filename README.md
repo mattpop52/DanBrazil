@@ -19,9 +19,20 @@ Everything below is a **placeholder**. Search `index.html` for `EDIT:` to find e
 | Studio address / town | contact list, footer, and the hero if you want a location line | "United Kingdom — full address on booking" |
 | **All four price blocks** | `#services` — one `<ul class="db-scard__prices">` per card | £40/hr, £140 half day, £240 full day, £350 writing day, £750 per song, £250 mix, £70 master |
 | Equipment lists | `#equipment` — four `<ul class="db-panel__list">` | see "Equipment" below |
-| Streaming links | `#work` — each `db-release__link href`; footer Spotify / Apple Music / YouTube | `#` |
-| Domain | `<link rel="canonical">`, `og:url`, JSON-LD `url` | `https://danielbrazil.co.uk/` |
+| Streaming links | `#work` — each `db-release__link href` | points at the Instagram profile for now |
+| Footer social links | `#footer` — Spotify / Apple Music / YouTube | commented out, so nothing is a dead link |
+| Domain | commented-out `canonical` + `og:url` block in `<head>`, and JSON-LD | **deliberately absent** — see below |
+| Service promises | "walk out with your files the same night", "two rounds of revisions", "instrumental, TV and a cappella versions", "a DDP", "within two working days" | sensible industry defaults, not quotes from you |
+| Cancellation window | `#faq` → `.db-policy` | 24 hours, no refund after |
 | Form destination | `#bookingForm` `data-endpoint` | empty — falls back to a pre-filled email |
+
+### Why there is no canonical URL
+
+A `<link rel="canonical">` pointing at a domain nobody owns tells search engines the real
+page lives somewhere else. So the canonical and `og:url` are commented out in `<head>`
+with your name on them — uncomment both and drop your domain in the moment you have one.
+Everything else (`og:image`, the favicons, the fonts) uses relative paths, so the site
+works unchanged whether it is served from a root domain or a GitHub Pages subpath.
 
 ### Equipment: what is real and what is a guess
 
@@ -37,11 +48,16 @@ Only these are actually visible in the photos, so only these are safe to state a
 Everything else in the four equipment lists — the interface, preamps, outboard, guitars,
 synths, headphones — is a sensible placeholder. **Please correct it.**
 
-### Prices
+### Prices and promises
 
 The rate card is invented. It is laid out the way the reference site lays its own out
 (hourly / half day / full day, then per track), so the shape is right even if the numbers
 are not. Change the numbers, or delete a `<li>` if you would rather not publish a rate.
+
+The same goes for the service descriptions. Lines like *"walk out with your files the same
+night"*, *"two rounds of revisions"* and *"I'll come back within two working days"* are
+commitments a client will hold you to. They read like normal studio terms, but nobody has
+confirmed they are yours — each is marked with an `EDIT:` comment directly above it.
 
 ---
 
