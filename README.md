@@ -129,7 +129,7 @@ assets/
 7. **The studio** — a centred heading over a drifting polaroid photo ticker
 8. **Equipment** — four panels; expanding columns on desktop, an accordion on mobile
 9. **Statement** — a sentence that lights up character by character as you scroll
-10. **Selected work** — the Gerron *CHOKE!* EP and *To Change a Man*
+10. **Selected work** — six credits, the *CHOKE!* EP featured
 11. **About** — portrait, two paragraphs, three tiles
 12. **FAQ** — eight boxed rows, plus the cancellation policy
 13. **Contact** — details and the booking form
@@ -220,14 +220,31 @@ it to, edit the `alt` text.
 | `studio-drums-detail.jpg` | The kit, close |
 | `release-choke.jpg` | *CHOKE!* artwork — Gerron |
 | `release-to-change-a-man.jpg` | *To Change a Man* artwork — Gerron |
+| `release-awakening.jpg` | *Awakening* artwork — Christopher Hockey |
+| `release-remember-me.jpg` | *Remember Me* artwork — Tyra-Lee Spry |
+| `release-brixton.jpg` | *Brixton* artwork — Shimmer Boy |
+| `release-question.jpg` | *Question* artwork — projective. |
+| `live-uncorked.jpg` | Playing drums at the UnCorked showcase |
 | `og-cover.jpg` | 1200×630 social share card |
 
 ## Credits
 
-Verified work on the site: co-write and production on Gerron's debut EP *CHOKE!*
-(CHOKE!, Messy, Grapefruit, To Change a Man, Anymore).
+Everything in **Selected work** is taken from Daniel's own posts, with the role stated as he
+stated it. Nothing is inflated — note that *Brixton* and *Question* are co-writes only.
 
-Two entries are on the page: the EP itself and *To Change a Man*. Add more by copying an
-`<article class="db-release">` block in `#work` — the grid is two-up under the feature
-card, so they fill in cleanly. Give each one its own artwork; a card that repeats the
-feature's image and title reads as a duplicate rather than a second credit.
+| Release | Artist | Role |
+| --- | --- | --- |
+| *CHOKE!* (EP) | Gerron | Co-write · Production |
+| *Awakening* (album) | Christopher Hockey | Co-write on "Turn My Back" and "God Of" · Drums |
+| *Remember Me* | Tyra-Lee Spry | Co-write · Production |
+| *Brixton* | Shimmer Boy | Co-write (produced and mixed by Distort Reverse) |
+| *Question* | projective. | Co-write |
+| *To Change a Man* | Gerron | Co-write · Production |
+
+Add more by copying an `<article class="db-release">` block in `#work` — the grid runs
+three-up under the feature card. Give each its own artwork, and set the role line to what
+you actually did on that record.
+
+Every card's `href` currently points at the Instagram profile. Swap each for the Spotify or
+Apple link, and swap the arrow glyph back to a play triangle (the path is in a comment
+beside it) once they point at something playable.

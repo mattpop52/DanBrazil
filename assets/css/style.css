@@ -380,8 +380,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-content: safe center;
   gap: 2rem;
-  padding: calc(var(--nav-h) + 2rem) var(--gutter) 2.5rem;
+  padding: calc(var(--nav-h) + 2rem) var(--gutter) calc(2.5rem + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   clip-path: inset(0 0 100% 0);
   visibility: hidden;
   transition: clip-path .7s var(--e-out), visibility .7s;
@@ -1090,6 +1094,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-top: 1px solid var(--hair);
 }
 
+.db-release__note {
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: var(--grey);
+  margin-top: .5rem;
+}
+
 .db-release__tracks {
   counter-reset: t;
   margin-top: 1rem;
@@ -1122,12 +1133,22 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-radius: var(--r-md);
   border: 1px solid var(--hair);
 }
+.db-about__portrait { position: relative; }
 .db-about__portrait img {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 50% 40%;
+  object-position: 52% 58%;
   will-change: transform;
+}
+.db-about__portrait figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 3rem 1.125rem .875rem;
+  font-family: var(--f-label);
+  font-size: var(--fs-label);
+  color: var(--cream);
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.85));
 }
 
 .db-about__copy p { color: var(--cream-dim); margin-top: 1.25rem; max-width: 34rem; }
@@ -1344,6 +1365,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background-size: 12px 8px;
   background-repeat: no-repeat;
   padding-right: 2.75rem;
+  text-overflow: ellipsis;
 }
 .db-field select option { background: var(--ink-2); color: var(--cream); }
 
@@ -1548,10 +1570,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .db-steps { grid-template-columns: repeat(4, 1fr); }
   .db-step { border-bottom: 0; padding-block: 2rem 0; }
 
-  /* The feature spans the row; the remaining credits sit two-up so a short
-     catalogue does not leave an obvious hole. */
-  .db-work__grid { grid-template-columns: repeat(2, 1fr); }
-  .db-release--feature { grid-column: span 2; }
+  /* The feature spans the row; the rest sit three-up. */
+  .db-work__grid { grid-template-columns: repeat(3, 1fr); }
+  .db-release--feature { grid-column: span 3; }
 
   /* Equipment becomes a hover-driven horizontal accordion.
      Collapsed panels sit at 15% of the row, as on the reference. */
