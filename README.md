@@ -206,5 +206,9 @@ it to, edit the `alt` text.
 ## Credits
 
 Verified work on the site: co-write and production on Gerron's debut EP *CHOKE!*
-(CHOKE!, Messy, Grapefruit, To Change a Man, Anymore). Add more releases by copying an
-`<article class="db-release">` block in `#work`.
+(CHOKE!, Messy, Grapefruit, To Change a Man, Anymore).
+
+Two entries are on the page: the EP itself and *To Change a Man*. Add more by copying an
+`<article class="db-release">` block in `#work` — the grid is two-up under the feature
+card, so they fill in cleanly. Give each one its own artwork; a card that repeats the
+feature's image and title reads as a duplicate rather than a second credit.

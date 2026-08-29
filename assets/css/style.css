@@ -1694,8 +1694,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (min-width: 1200px) {
   .db-card { min-height: 37.5rem; }
 
-  .db-work__grid { grid-template-columns: repeat(3, 1fr); }
-  .db-release--feature { grid-column: span 3; }
+  /* The feature spans the row; the remaining credits sit two-up so a short
+     catalogue does not leave an obvious hole. */
+  .db-work__grid { grid-template-columns: repeat(2, 1fr); }
+  .db-release--feature { grid-column: span 2; }
 
   /* Equipment becomes a hover-driven horizontal accordion.
      Collapsed panels sit at 15% of the row, as on the reference. */
