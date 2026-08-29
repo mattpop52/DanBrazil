@@ -29,7 +29,7 @@
 <!-- Preload the WebP set, matching what <picture> will actually choose. Browsers
      without WebP skip this because of the type, and load the JPEG normally. -->
 <link rel="preload" as="image" type="image/webp"
-      imagesrcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w"
+      imagesrcset="assets/img/lit-console-400.webp 400w, assets/img/lit-console-800.webp 800w, assets/img/lit-console.webp 1320w"
       imagesizes="100vw" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/anton-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-var-latin.woff2" crossorigin>
@@ -80,16 +80,6 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
 <header class="db-header" id="header">
   <div class="db-header__inner">
     <a class="db-brand" href="#top" aria-label="Daniel Brazil — home">
-      <svg class="db-brand__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-        <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
-          <path d="M14 46V18"/><path d="M32 46V18"/><path d="M50 46V18"/>
-        </g>
-        <g fill="currentColor">
-          <rect x="9" y="26" width="10" height="6" rx="3"/>
-          <rect x="27" y="36" width="10" height="6" rx="3"/>
-          <rect x="45" y="23" width="10" height="6" rx="3"/>
-        </g>
-      </svg>
       <span class="db-brand__text">DANIEL&nbsp;BRAZIL</span>
     </a>
 
@@ -106,7 +96,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
     <a class="db-btn db-btn--primary db-btn--sm db-header__cta" href="#contact">Book a Session</a>
 
     <button class="db-burger" id="burger" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-      <span></span><span></span>
+      <span class="db-burger__dots" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </span>
+      <span class="db-burger__cross" aria-hidden="true"><b></b><b></b></span>
     </button>
   </div>
 </header>
@@ -137,8 +130,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
   <section class="db-hero" id="hero">
     <div class="db-hero__media" aria-hidden="true">
       <picture>
-        <source type="image/webp" srcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w" sizes="100vw">
-        <img src="assets/img/studio-console.jpg" srcset="assets/img/studio-console-400.jpg 400w, assets/img/studio-console-800.jpg 800w, assets/img/studio-console.jpg 1320w" sizes="100vw" width="1320" height="1323" alt="" fetchpriority="high" decoding="async">
+        <source type="image/webp" srcset="assets/img/lit-console-400.webp 400w, assets/img/lit-console-800.webp 800w, assets/img/lit-console-1320.webp 1320w" sizes="100vw">
+        <img src="assets/img/lit-console.jpg" srcset="assets/img/lit-console-400.jpg 400w, assets/img/lit-console-800.jpg 800w, assets/img/lit-console.jpg 1320w" sizes="100vw" width="1320" height="1323" alt="" fetchpriority="high" decoding="async">
       </picture>
       <div class="db-hero__scrim"></div>
     </div>
@@ -159,8 +152,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       </p>
 
       <p class="db-hero__lede" data-reveal data-reveal-delay="160">
-        Professional recording, production, mixing and mastering<br>
-        in a fully equipped creative space.
+        Professional recording, production, mixing and mastering<span class="db-br"> </span>in a fully equipped creative space.
       </p>
 
       <div class="db-hero__actions">
@@ -200,10 +192,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
 
     <div class="db-cardrow">
       <article class="db-card" data-reveal="x" data-reveal-delay="0">
-        <div class="db-card__photo" aria-hidden="true">
+        <div class="db-card__photo" aria-hidden="true" style="--pos: 50% 72%">
           <picture>
-              <source type="image/webp" srcset="assets/img/studio-live-room-400.webp 400w, assets/img/studio-live-room-800.webp 800w, assets/img/studio-live-room-1320.webp 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
-              <img src="assets/img/studio-live-room.jpg" srcset="assets/img/studio-live-room-400.jpg 400w, assets/img/studio-live-room-800.jpg 800w, assets/img/studio-live-room.jpg 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
+              <source type="image/webp" srcset="assets/img/lit-live-room-400.webp 400w, assets/img/lit-live-room-800.webp 800w, assets/img/lit-live-room-1320.webp 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
+              <img src="assets/img/lit-live-room.jpg" srcset="assets/img/lit-live-room-400.jpg 400w, assets/img/lit-live-room-800.jpg 800w, assets/img/lit-live-room.jpg 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
             </picture>
         </div>
         <div class="db-card__scrim" aria-hidden="true"></div>
@@ -229,10 +221,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       </article>
 
       <article class="db-card" data-reveal="x" data-reveal-delay="90">
-        <div class="db-card__photo" aria-hidden="true">
+        <div class="db-card__photo" aria-hidden="true" style="--pos: 50% 42%">
           <picture>
-              <source type="image/webp" srcset="assets/img/session-writing-400.webp 400w, assets/img/session-writing-800.webp 800w, assets/img/session-writing.webp 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
-              <img src="assets/img/session-writing.jpg" srcset="assets/img/session-writing-400.jpg 400w, assets/img/session-writing-800.jpg 800w, assets/img/session-writing.jpg 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1320" height="1656" alt="" loading="lazy" decoding="async">
+              <source type="image/webp" srcset="assets/img/lit-writing-400.webp 400w, assets/img/lit-writing-800.webp 800w, assets/img/lit-writing.webp 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
+              <img src="assets/img/lit-writing.jpg" srcset="assets/img/lit-writing-400.jpg 400w, assets/img/lit-writing-800.jpg 800w, assets/img/lit-writing.jpg 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1320" height="1656" alt="" loading="lazy" decoding="async">
             </picture>
         </div>
         <div class="db-card__scrim" aria-hidden="true"></div>
@@ -257,10 +249,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       </article>
 
       <article class="db-card" data-reveal="x" data-reveal-delay="180">
-        <div class="db-card__photo" aria-hidden="true">
+        <div class="db-card__photo" aria-hidden="true" style="--pos: 50% 76%">
           <picture>
-              <source type="image/webp" srcset="assets/img/studio-console-400.webp 400w, assets/img/studio-console-800.webp 800w, assets/img/studio-console-1320.webp 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
-              <img src="assets/img/studio-console.jpg" srcset="assets/img/studio-console-400.jpg 400w, assets/img/studio-console-800.jpg 800w, assets/img/studio-console.jpg 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
+              <source type="image/webp" srcset="assets/img/lit-console-400.webp 400w, assets/img/lit-console-800.webp 800w, assets/img/lit-console-1320.webp 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
+              <img src="assets/img/lit-console.jpg" srcset="assets/img/lit-console-400.jpg 400w, assets/img/lit-console-800.jpg 800w, assets/img/lit-console.jpg 1320w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
             </picture>
         </div>
         <div class="db-card__scrim" aria-hidden="true"></div>
@@ -285,10 +277,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
       </article>
 
       <article class="db-card" data-reveal="x" data-reveal-delay="270">
-        <div class="db-card__photo" aria-hidden="true">
+        <div class="db-card__photo" aria-hidden="true" style="--pos: 50% 52%">
           <picture>
-              <source type="image/webp" srcset="assets/img/studio-desk-detail-400.webp 400w, assets/img/studio-desk-detail-800.webp 800w, assets/img/studio-desk-detail.webp 1080w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
-              <img src="assets/img/studio-desk-detail.jpg" srcset="assets/img/studio-desk-detail-400.jpg 400w, assets/img/studio-desk-detail-800.jpg 800w, assets/img/studio-desk-detail.jpg 1080w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1080" height="423" alt="" loading="lazy" decoding="async">
+              <source type="image/webp" srcset="assets/img/lit-control-room-400.webp 400w, assets/img/lit-control-room-800.webp 800w, assets/img/lit-control-room.webp 1080w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw">
+              <img src="assets/img/lit-control-room.jpg" srcset="assets/img/lit-control-room-400.jpg 400w, assets/img/lit-control-room-800.jpg 800w, assets/img/lit-control-room.jpg 1080w" sizes="(min-width: 1200px) 80vw, (min-width: 810px) 160vw, 100vw" width="1080" height="423" alt="" loading="lazy" decoding="async">
             </picture>
         </div>
         <div class="db-card__scrim" aria-hidden="true"></div>
@@ -443,8 +435,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         <article class="db-panel is-open" data-panel data-reveal="x" data-reveal-delay="0">
           <div class="db-panel__media" aria-hidden="true">
             <picture>
-              <source type="image/webp" srcset="assets/img/studio-control-room-400.webp 400w, assets/img/studio-control-room-800.webp 800w, assets/img/studio-control-room-1320.webp 1320w" sizes="(min-width: 1200px) 600px, 100vw">
-              <img src="assets/img/studio-control-room.jpg" srcset="assets/img/studio-control-room-400.jpg 400w, assets/img/studio-control-room-800.jpg 800w, assets/img/studio-control-room.jpg 1320w" sizes="(min-width: 1200px) 600px, 100vw" width="1320" height="1216" alt="" loading="lazy" decoding="async">
+              <source type="image/webp" srcset="assets/img/lit-control-room-400.webp 400w, assets/img/lit-control-room-800.webp 800w, assets/img/lit-control-room-1320.webp 1320w" sizes="(min-width: 1200px) 600px, 100vw">
+              <img src="assets/img/lit-control-room.jpg" srcset="assets/img/lit-control-room-400.jpg 400w, assets/img/lit-control-room-800.jpg 800w, assets/img/lit-control-room.jpg 1320w" sizes="(min-width: 1200px) 600px, 100vw" width="1320" height="1216" alt="" loading="lazy" decoding="async">
             </picture>
           </div>
           <button class="db-panel__tab" type="button" aria-expanded="true" aria-controls="equip-1">
@@ -473,8 +465,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         <article class="db-panel" data-panel data-reveal="x" data-reveal-delay="90">
           <div class="db-panel__media" aria-hidden="true">
             <picture>
-              <source type="image/webp" srcset="assets/img/session-tracking-400.webp 400w, assets/img/session-tracking-800.webp 800w, assets/img/session-tracking.webp 1320w" sizes="(min-width: 1200px) 600px, 100vw">
-              <img src="assets/img/session-tracking.jpg" srcset="assets/img/session-tracking-400.jpg 400w, assets/img/session-tracking-800.jpg 800w, assets/img/session-tracking.jpg 1320w" sizes="(min-width: 1200px) 600px, 100vw" width="1320" height="1320" alt="" loading="lazy" decoding="async">
+              <source type="image/webp" srcset="assets/img/lit-tracking-400.webp 400w, assets/img/lit-tracking-800.webp 800w, assets/img/lit-tracking.webp 1320w" sizes="(min-width: 1200px) 600px, 100vw">
+              <img src="assets/img/lit-tracking.jpg" srcset="assets/img/lit-tracking-400.jpg 400w, assets/img/lit-tracking-800.jpg 800w, assets/img/lit-tracking.jpg 1320w" sizes="(min-width: 1200px) 600px, 100vw" width="1320" height="1320" alt="" loading="lazy" decoding="async">
             </picture>
           </div>
           <button class="db-panel__tab" type="button" aria-expanded="false" aria-controls="equip-2">
@@ -503,8 +495,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         <article class="db-panel" data-panel data-reveal="x" data-reveal-delay="180">
           <div class="db-panel__media" aria-hidden="true">
             <picture>
-              <source type="image/webp" srcset="assets/img/studio-desk-detail-400.webp 400w, assets/img/studio-desk-detail-800.webp 800w, assets/img/studio-desk-detail.webp 1080w" sizes="(min-width: 1200px) 600px, 100vw">
-              <img src="assets/img/studio-desk-detail.jpg" srcset="assets/img/studio-desk-detail-400.jpg 400w, assets/img/studio-desk-detail-800.jpg 800w, assets/img/studio-desk-detail.jpg 1080w" sizes="(min-width: 1200px) 600px, 100vw" width="1080" height="423" alt="" loading="lazy" decoding="async">
+              <source type="image/webp" srcset="assets/img/lit-desk-detail-400.webp 400w, assets/img/lit-desk-detail-800.webp 800w, assets/img/lit-desk-detail.webp 1080w" sizes="(min-width: 1200px) 600px, 100vw">
+              <img src="assets/img/lit-desk-detail.jpg" srcset="assets/img/lit-desk-detail-400.jpg 400w, assets/img/lit-desk-detail-800.jpg 800w, assets/img/lit-desk-detail.jpg 1080w" sizes="(min-width: 1200px) 600px, 100vw" width="1080" height="423" alt="" loading="lazy" decoding="async">
             </picture>
           </div>
           <button class="db-panel__tab" type="button" aria-expanded="false" aria-controls="equip-3">
@@ -532,8 +524,8 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEle
         <article class="db-panel" data-panel data-reveal="x" data-reveal-delay="270">
           <div class="db-panel__media" aria-hidden="true">
             <picture>
-              <source type="image/webp" srcset="assets/img/studio-live-room-400.webp 400w, assets/img/studio-live-room-800.webp 800w, assets/img/studio-live-room-1320.webp 1320w" sizes="(min-width: 1200px) 600px, 100vw">
-              <img src="assets/img/studio-live-room.jpg" srcset="assets/img/studio-live-room-400.jpg 400w, assets/img/studio-live-room-800.jpg 800w, assets/img/studio-live-room.jpg 1320w" sizes="(min-width: 1200px) 600px, 100vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
+              <source type="image/webp" srcset="assets/img/lit-live-room-400.webp 400w, assets/img/lit-live-room-800.webp 800w, assets/img/lit-live-room-1320.webp 1320w" sizes="(min-width: 1200px) 600px, 100vw">
+              <img src="assets/img/lit-live-room.jpg" srcset="assets/img/lit-live-room-400.jpg 400w, assets/img/lit-live-room-800.jpg 800w, assets/img/lit-live-room.jpg 1320w" sizes="(min-width: 1200px) 600px, 100vw" width="1320" height="1323" alt="" loading="lazy" decoding="async">
             </picture>
           </div>
           <button class="db-panel__tab" type="button" aria-expanded="false" aria-controls="equip-4">

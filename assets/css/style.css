@@ -313,13 +313,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
   margin-right: auto;
   color: var(--cream);
 }
-.db-brand__mark { width: 24px; height: 24px; color: var(--cream); flex: none; }
 .db-brand__text {
   font-family: var(--f-display);
-  font-size: 1.25rem;
-  letter-spacing: -.01em;
+  font-size: 1.375rem;
+  letter-spacing: .01em;
   color: var(--cream);
+  transition: color var(--t-fast) var(--e-out);
 }
+.db-brand:hover .db-brand__text { color: var(--tan); }
 
 .db-nav__list { display: flex; align-items: center; gap: clamp(1.5rem, 3.5vw, 3.25rem); }
 
@@ -352,7 +353,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .db-burger {
   display: none;
-  width: 44px; height: 44px;
+  width: 46px; height: 46px;
   background: none;
   border: 1px solid var(--hair);
   border-radius: 50%;
@@ -360,17 +361,36 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: relative;
   flex: none;
 }
-.db-burger span {
+.db-burger__dots {
   position: absolute;
-  left: 50%; width: 18px; height: 1.5px;
-  background: var(--cream);
-  transform: translateX(-50%);
-  transition: transform var(--t-spring-04) var(--spring-04-2), opacity var(--t-fast);
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 3px);
+  grid-auto-rows: 3px;
+  gap: 3.5px;
+  place-content: center;
+  transition: opacity var(--t-fast) var(--e-out), transform var(--t-spring-04) var(--spring-04-2);
 }
-.db-burger span:first-child { top: 18px; }
-.db-burger span:last-child  { top: 24px; }
-.db-burger[aria-expanded="true"] span:first-child { transform: translateX(-50%) translateY(3px) rotate(45deg); }
-.db-burger[aria-expanded="true"] span:last-child  { transform: translateX(-50%) translateY(-3px) rotate(-45deg); }
+.db-burger__dots i { background: var(--cream); border-radius: 50%; }
+
+.db-burger__cross {
+  position: absolute;
+  inset: 0;
+  transform: scale(0);
+  transition: transform var(--t-spring-04) var(--spring-04-2);
+}
+.db-burger__cross b {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 16px; height: 1.5px;
+  margin: -.75px 0 0 -8px;
+  background: var(--cream);
+}
+.db-burger__cross b:first-child { transform: rotate(45deg); }
+.db-burger__cross b:last-child  { transform: rotate(-45deg); }
+
+.db-burger[aria-expanded="true"] .db-burger__dots { opacity: 0; transform: scale(.6); }
+.db-burger[aria-expanded="true"] .db-burger__cross { transform: scale(1); }
 
 .db-menu {
   position: fixed;
@@ -401,8 +421,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .db-menu__nav a {
   display: flex;
-  align-items: baseline;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.125rem;
   font-family: var(--f-display);
   font-size: clamp(1.9rem, 9vw, 3.25rem);
   line-height: 1.15;
@@ -426,9 +446,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-menu__nav em {
   font-family: var(--f-label);
   font-style: normal;
-  font-size: var(--fs-label);
+  font-size: .75rem;
   color: var(--tan);
-  letter-spacing: .1em;
+  letter-spacing: .08em;
+  width: 1.75rem;
+  flex: none;
 }
 
 .db-menu__foot {
@@ -467,10 +489,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-hero__media { position: absolute; inset: 0; z-index: -1; }
 .db-hero__media picture,
 .db-hero__media img { width: 100%; height: 100%; }
-.db-hero__media img { filter: grayscale(.3) contrast(1.05); opacity: .7; }
 .db-hero__media img {
   object-fit: cover;
-  object-position: 34% 52%;
+  object-position: 42% 64%;
   will-change: transform;
   transform: scale(1.06);
 }
@@ -479,8 +500,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(80% 64% at 50% 50%, rgba(0,0,0,.82) 0%, rgba(0,0,0,.62) 46%, rgba(0,0,0,.42) 100%),
-    linear-gradient(180deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.6) 30%, rgba(0,0,0,.86) 76%, #000 100%);
+    radial-gradient(72% 42% at 50% 40%, rgba(0,0,0,.55) 0%, rgba(0,0,0,.28) 55%, rgba(0,0,0,0) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.68) 0%, rgba(0,0,0,.22) 24%, rgba(0,0,0,.28) 50%, rgba(0,0,0,.74) 84%, #000 100%);
 }
 
 /* One big headline, one badge, two lines, two buttons. Nothing else. */
@@ -502,6 +523,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--cream);
   text-shadow: 0 1px 11px rgba(0, 0, 0, .4);
 }
+
+/* Break the lede into two lines only where there is room for two lines. */
+.db-br { display: inline; }
+@media (min-width: 810px) { .db-br { display: block; height: 0; } }
 
 .db-hero__lede {
   font-size: var(--fs-lede);
@@ -635,7 +660,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .db-card__photo img,
 .db-card__photo picture { width: 100%; height: 100%; }
-.db-card__photo img { object-fit: cover; opacity: .5; filter: brightness(.6) saturate(.85); }
+.db-card__photo img { object-fit: cover; object-position: var(--pos, 50% 50%); }
 .db-card:hover .db-card__photo,
 .db-card:focus-within .db-card__photo { width: 355%; }
 
@@ -646,7 +671,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   inset: 0;
   z-index: 4;
   background: linear-gradient(180deg,
-              rgba(0,0,0,.35) 0%, rgba(0,0,0,.55) 28%, rgba(0,0,0,.88) 58%, #000 82%);
+              rgba(0,0,0,.22) 0%, rgba(0,0,0,.48) 26%, rgba(0,0,0,.86) 56%, #000 82%);
   transition: opacity .5s var(--e-out);
 }
 .db-card:hover .db-card__scrim,
@@ -852,7 +877,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .db-panel__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  opacity: .45;
+  opacity: .7;
   transform: scale(1.04);
   transition: opacity var(--t-med) var(--e-out), transform 1.2s var(--e-out);
 }
@@ -860,9 +885,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.82), rgba(0,0,0,.94));
+  background: linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.86));
 }
-.db-panel.is-open .db-panel__media img { opacity: .62; transform: scale(1); }
+.db-panel.is-open .db-panel__media img { opacity: .8; transform: scale(1); }
+/* The open panel carries the gear list, so its ground goes darker still. */
+.db-panel.is-open .db-panel__media::after {
+  background: linear-gradient(90deg, rgba(0,0,0,.94) 0%, rgba(0,0,0,.88) 45%, rgba(0,0,0,.72) 100%);
+}
 
 .db-panel__tab:focus-visible,
 .db-card__link:focus-visible,
@@ -1674,10 +1703,26 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .db-panel__list { gap: .7rem; }
 }
 
+/* No hover below desktop, so the oversized photo is pure downside: it crops the
+   card to an arbitrary slice of wall. Let it cover the card instead. */
+@media (max-width: 1199px) {
+  .db-card__photo {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    transform: none;
+  }
+}
+
 /* Mobile only */
 @media (max-width: 809px) {
   .db-nav, .db-header__cta { display: none; }
   .db-burger { display: block; }
+
+  /* Stacked, full width, thumb-sized — as on the reference. */
+  .db-hero__actions { width: 100%; flex-direction: column; align-items: stretch; }
+  .db-hero__inner { gap: 1.75rem; }
 
   /* The enquiry form is at the foot of a very long page; this keeps the next
      step one tap away. It clears the footer's last line rather than covering it. */

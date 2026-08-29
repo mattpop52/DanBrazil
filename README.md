@@ -229,8 +229,15 @@ it to, edit the `alt` text.
 | `release-question.jpg` | *Question* cover — projective. |
 | `og-cover.jpg` | 1200×630 social share card |
 
-Each photo also exists at 400w and 800w in both `.jpg` and `.webp`, referenced through a
-`<picture>` with `sizes` matched to the slot it renders into.
+The photos that sit **behind type** — the hero, the four service cards and the equipment
+panels — are served from `lit-*.jpg` variants: the same frames with the shadows opened up
+(a gamma lift, then a small contrast and saturation nudge). The originals are dark enough
+that on a phone, under a scrim, they read as a black rectangle rather than as a room. The
+`lit-*` files are also compressed harder, since they always sit under a gradient.
+
+Each photo exists at 400w and 800w in both `.jpg` and `.webp`, referenced through a
+`<picture>` with `sizes` matched to the slot it renders into. Each service card sets its
+own `--pos` so its crop lands on something worth seeing rather than a random edge.
 
 ## Credits
 
