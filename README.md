@@ -175,6 +175,26 @@ because content still moves and WCAG 2.2.2 requires a way to stop it.
   makes the page behind it `inert` and restores focus on close, and the statement carries
   its sentence as an `aria-label` so screen readers never meet the per-character spans.
 
+### The logo
+
+The client's logo is a circular lockup: a signature, "SONGWRITER / PRODUCER", and three
+dots inside a double ring. It was supplied as a photograph of a printed panel, so it was
+extracted by high-passing the image against a blurred copy — which removes the panel's
+texture and lighting gradient — then keying the copper strokes to an alpha channel and
+flattening them to cream. Both files are cream on transparent, so CSS can tint them.
+
+`logo.png` is the whole lockup. `logo-script.png` is the signature on its own, separated by
+dropping the connected components that belong to the ring rather than to the letters.
+
+The header uses the signature and the footer uses the full lockup, for a practical reason:
+the lockup is 1.27:1, so at the 34px a nav bar allows it is about 43px wide and the name
+cannot be read. The signature reads perfectly at that height. The favicon and the app icon
+are drawn from the mark — the double ring and the three dots — because the script does not
+survive 32px either.
+
+To swap the header to the full lockup, point `.db-brand__logo` at `logo.png` and raise its
+height; nothing else needs to change.
+
 ### Design
 
 The design language follows the reference closely, because that is what was asked for.
@@ -227,6 +247,8 @@ it to, edit the `alt` text.
 | `release-aftermath.jpg` | *In the Aftermath, We Bloom* cover — Shimmer Boy |
 | `release-remember-me.jpg` | *Remember Me* cover — Tyra-Lee Spry |
 | `release-question.jpg` | *Question* cover — projective. |
+| `logo.png` | The full circular lockup, cream on transparent — footer and share card |
+| `logo-script.png` | The signature alone — the header, where the circle would be unreadable |
 | `og-cover.jpg` | 1200×630 social share card |
 
 The photos that sit **behind type** — the hero, the four service cards and the equipment
