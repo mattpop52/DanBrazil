@@ -204,6 +204,22 @@ survive 32px either.
 To swap the header to the full lockup, point `.db-brand__logo` at `logo.png` and raise its
 height; nothing else needs to change.
 
+### The Instagram glyph
+
+The three places that show the Instagram account — the mobile menu foot, the contact list
+and the footer's "Stay connected" — each carry the Instagram mark ahead of the text. It is
+inline SVG, not an image file, so it costs no request and inherits the link's colour: cream
+or grey at rest, tan on hover, black in print. It is drawn on the same 24-unit grid at the
+same 1.8 stroke weight as the section icons, so it sits with them rather than against them,
+and it is sized in `em` (`1.15em`) so one rule serves all three type sizes.
+
+It is `aria-hidden` and `focusable="false"` — the link text already says Instagram, so
+announcing the glyph as well would just repeat it.
+
+The release cards in `#work` link to the Instagram profile too, but they are placeholders
+for streaming links and deliberately have no Instagram mark; they keep the neutral arrow so
+nothing has to change when the Spotify URLs arrive.
+
 ### Design
 
 The design language follows the reference closely, because that is what was asked for.

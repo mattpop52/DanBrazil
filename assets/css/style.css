@@ -206,6 +206,20 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .db-skip:focus { transform: translateY(0); }
 
+/* Instagram glyph, drawn in the same 24-unit / 1.8-stroke vocabulary as the
+   section icons so it sits with them rather than against them. Sized in em so
+   one rule serves the menu, the contact list and the footer. */
+.db-ig__link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+}
+.db-ig {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
 /* --------------------------------------------------- 03b  BADGE PILL ---- */
 .db-badge {
   display: inline-flex;
