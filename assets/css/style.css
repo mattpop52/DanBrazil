@@ -1133,22 +1133,42 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-radius: var(--r-md);
   border: 1px solid var(--hair);
 }
+.db-about__media { display: flex; flex-direction: column; gap: .75rem; }
+
+.db-about__live {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+}
+.db-about__live figure {
+  position: relative;
+  margin: 0;
+  overflow: clip;
+  border-radius: var(--r-md);
+  border: 1px solid var(--hair);
+}
+.db-about__live img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.db-about__live figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 2rem .75rem .625rem;
+  font-family: var(--f-label);
+  font-size: var(--fs-label);
+  color: var(--cream);
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.85));
+}
+
 .db-about__portrait { position: relative; }
 .db-about__portrait img {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 52% 58%;
+  object-position: 62% 45%;
   will-change: transform;
-}
-.db-about__portrait figcaption {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  padding: 3rem 1.125rem .875rem;
-  font-family: var(--f-label);
-  font-size: var(--fs-label);
-  color: var(--cream);
-  background: linear-gradient(180deg, transparent, rgba(0,0,0,.85));
 }
 
 .db-about__copy p { color: var(--cream-dim); margin-top: 1.25rem; max-width: 34rem; }

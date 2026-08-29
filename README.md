@@ -218,14 +218,22 @@ it to, edit the `alt` text.
 | `studio-desk-detail.jpg` | Console faders, close |
 | `studio-monitor-detail.jpg` | Nearfield monitor on its stand |
 | `studio-drums-detail.jpg` | The kit, close |
+| `session-writing.jpg` | A writing session from above — services card and ticker |
+| `session-tracking.jpg` | Tracking with a guitar — equipment panel and ticker |
+| `session-messy.jpg` | Working at the desk in headphones |
+| `portrait-desk.jpg` | Daniel at the studio desk — the About portrait |
+| `live-uncorked.jpg` | Drums at the UnCorked showcase |
+| `live-denmark.jpg` | Drums on stage in Denmark |
 | `release-choke.jpg` | *CHOKE!* artwork — Gerron |
 | `release-to-change-a-man.jpg` | *To Change a Man* artwork — Gerron |
 | `release-awakening.jpg` | *Awakening* artwork — Christopher Hockey |
 | `release-remember-me.jpg` | *Remember Me* artwork — Tyra-Lee Spry |
 | `release-brixton.jpg` | *Brixton* artwork — Shimmer Boy |
 | `release-question.jpg` | *Question* artwork — projective. |
-| `live-uncorked.jpg` | Playing drums at the UnCorked showcase |
 | `og-cover.jpg` | 1200×630 social share card |
+
+Each photo also exists at 400w and 800w in both `.jpg` and `.webp`, referenced through a
+`<picture>` with `sizes` matched to the slot it renders into.
 
 ## Credits
 
