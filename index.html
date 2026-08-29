@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recording, Production, Mixing &amp; Mastering | Daniel Brazil</title>
+<meta name="description" content="Daniel Brazil — record producer, songwriter and mix engineer. Recording, production, co-writing, mixing and mastering in a fully equipped studio. Book a session or send stems from anywhere.">
+<meta name="theme-color" content="#0B0B0B">
+<meta name="color-scheme" content="dark">
+
+<link rel="canonical" href="https://danielbrazil.co.uk/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniel Brazil">
+<meta property="og:title" content="Recording, Production, Mixing &amp; Mastering | Daniel Brazil">
+<meta property="og:description" content="A producer who writes, an engineer who mixes, and a room built for finishing songs.">
+<meta property="og:image" content="assets/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://danielbrazil.co.uk/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="assets/img/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<link rel="preload" as="image" href="assets/img/studio-console.jpg" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/anton-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-latin.woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Sets the JS flag before first paint so scroll-reveal start states never flash. -->
+<script>document.documentElement.classList.add('js');
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduce-motion');</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Daniel Brazil",
+  "description": "Record producer, songwriter and mix engineer.",
+  "url": "https://danielbrazil.co.uk/",
+  "sameAs": ["https://www.instagram.com/danielbrazilmusic/"],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Studio hire" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Production and co-writing" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mixing" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mastering" } }
+  ]
+}
+</script>
+</head>
+
+<body id="top">
+
+<a class="db-skip" href="#main">Skip to content</a>
+
+<!-- ============================== LOADER ============================== -->
+<div class="db-loader" id="loader" aria-hidden="true">
+  <div class="db-loader__inner">
+    <span class="db-loader__mark">DANIEL BRAZIL</span>
+    <span class="db-loader__count"><span id="loaderCount">0</span><i>%</i></span>
+  </div>
+  <div class="db-loader__bar"><i id="loaderBar"></i></div>
+</div>
+
+<!-- ============================== GRAIN + CURSOR ============================== -->
+<div class="db-grain" aria-hidden="true"></div>
+<div class="db-cursor" id="cursorDot" aria-hidden="true"></div>
+<div class="db-cursor db-cursor--ring" id="cursorRing" aria-hidden="true"></div>
+<div class="db-progress" aria-hidden="true"><i id="scrollProgress"></i></div>
+
+<!-- ============================== HEADER ============================== -->
+<header class="db-header" id="header">
+  <div class="db-header__inner">
+    <a class="db-brand" href="#top" aria-label="Daniel Brazil — home">
+      <svg class="db-brand__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
+          <path d="M14 46V18"/><path d="M32 46V18"/><path d="M50 46V18"/>
+        </g>
+        <g fill="currentColor">
+          <rect x="9" y="26" width="10" height="6" rx="3"/>
+          <rect x="27" y="36" width="10" height="6" rx="3"/>
+          <rect x="45" y="23" width="10" height="6" rx="3"/>
+        </g>
+      </svg>
+      <span class="db-brand__text">DANIEL&nbsp;BRAZIL</span>
+    </a>
+
+    <nav class="db-nav" id="nav" aria-label="Primary">
+      <ul class="db-nav__list">
+        <li><a class="db-nav__link" href="#services">SERVICES</a></li>
+        <li><a class="db-nav__link" href="#studio">THE STUDIO</a></li>
+        <li><a class="db-nav__link" href="#work">WORK</a></li>
+        <li><a class="db-nav__link" href="#about">ABOUT</a></li>
+        <li><a class="db-nav__link" href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <a class="db-btn db-btn--primary db-btn--sm db-header__cta" href="#contact">Book a Session</a>
+
+    <button class="db-burger" id="burger" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================== MOBILE MENU ============================== -->
+<div class="db-menu" id="mobileMenu" inert>
+  <nav class="db-menu__nav" aria-label="Mobile">
+    <ul>
+      <li><a href="#services"><em>01</em>SERVICES</a></li>
+      <li><a href="#studio"><em>02</em>THE STUDIO</a></li>
+      <li><a href="#equipment"><em>03</em>EQUIPMENT</a></li>
+      <li><a href="#work"><em>04</em>WORK</a></li>
+      <li><a href="#about"><em>05</em>ABOUT</a></li>
+      <li><a href="#faq"><em>06</em>FAQ</a></li>
+      <li><a href="#contact"><em>07</em>CONTACT</a></li>
+    </ul>
+  </nav>
+  <div class="db-menu__foot">
+    <!-- EDIT: replace with real contact details -->
+    <a href="mailto:hello@danielbrazil.co.uk">hello@danielbrazil.co.uk</a>
+    <a href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">@danielbrazilmusic</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="db-hero" id="hero">
+    <div class="db-hero__media" aria-hidden="true">
+      <img src="assets/img/studio-console.jpg" alt="" width="1320" height="1323" fetchpriority="high" decoding="async">
+      <div class="db-hero__scrim"></div>
+    </div>
+
+    <div class="db-hero__inner db-container">
+      <p class="db-eyebrow" data-reveal>PRODUCTION &middot; SONGWRITING &middot; MIX</p>
+
+      <h1 class="db-hero__title">
+        <span class="db-hero__line" data-reveal data-reveal-delay="80">RECORDING STUDIO</span>
+        <span class="db-hero__script" data-reveal data-reveal-delay="200">&amp; songwriting room</span>
+      </h1>
+
+      <p class="db-hero__lede" data-reveal data-reveal-delay="320">
+        Recording, production, mixing and mastering with a producer who writes too —
+        in a room built for finishing songs, not just tracking them.
+      </p>
+
+      <div class="db-hero__actions" data-reveal data-reveal-delay="420">
+        <a class="db-btn db-btn--primary" href="#contact" data-magnetic>Book the Studio</a>
+        <a class="db-btn db-btn--ghost" href="#contact" data-magnetic>Get in Touch</a>
+      </div>
+    </div>
+
+    <a class="db-hero__scroll" href="#services" aria-label="Scroll to services">
+      <span>SCROLL</span>
+      <svg viewBox="0 0 24 40" aria-hidden="true"><rect x="1" y="1" width="22" height="38" rx="11"/><circle cx="12" cy="11" r="3"/></svg>
+    </a>
+  </section>
+
+  <!-- ============================== MARQUEE ============================== -->
+  <div class="db-marquee db-marquee--gold" data-marquee data-speed="46" aria-hidden="true">
+    <div class="db-marquee__track">
+      <span class="db-marquee__group">
+        <b>RECORDING STUDIO</b><i>✳</i><b>SONGWRITING ROOM</b><i>✳</i><b>PRODUCTION &amp; CO-WRITE</b><i>✳</i><b>MIX &amp; MASTER</b><i>✳</i>
+      </span>
+    </div>
+  </div>
+  <p class="db-visually-hidden">Recording studio, songwriting room, production and co-write, mix and master.</p>
+
+  <!-- ============================== SERVICES ============================== -->
+  <section class="db-section db-services" id="services">
+    <div class="db-container">
+      <header class="db-section__head">
+        <p class="db-eyebrow" data-reveal>01 &mdash; What I do</p>
+        <h2 class="db-h2" data-reveal data-reveal-delay="80">SERVICES</h2>
+        <p class="db-section__lede" data-reveal data-reveal-delay="160">
+          Four ways to work together. Take the room on its own, or take the room and the person who fills it.
+        </p>
+      </header>
+    </div>
+
+    <!-- Sticky stacking cards -->
+    <div class="db-stack" id="serviceStack">
+
+      <article class="db-scard" style="--i:0">
+        <div class="db-scard__inner">
+          <div class="db-scard__media" aria-hidden="true">
+            <img src="assets/img/studio-live-room.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1323">
+          </div>
+          <div class="db-scard__body">
+            <p class="db-scard__index">01</p>
+            <h3 class="db-scard__title">STUDIO HIRE</h3>
+            <!-- EDIT: prices are placeholders — replace with your real rate card -->
+            <ul class="db-scard__prices">
+              <li><b>&pound;40</b> per hour</li>
+              <li><b>&pound;140</b> &mdash; 4 hours (half day)</li>
+              <li><b>&pound;240</b> &mdash; 8 hours (full day)</li>
+            </ul>
+            <p class="db-scard__text">
+              A treated live room and control room with an engineer on hand for the whole session.
+              Tracking, overdubs, vocal days &mdash; walk out with your files the same night.
+            </p>
+            <a class="db-btn db-btn--outline" href="#contact" data-magnetic>Hire the studio</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="db-scard" style="--i:1">
+        <div class="db-scard__inner">
+          <div class="db-scard__media" aria-hidden="true">
+            <img src="assets/img/studio-control-room.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1216">
+          </div>
+          <div class="db-scard__body">
+            <p class="db-scard__index">02</p>
+            <h3 class="db-scard__title">PRODUCTION &amp; CO-WRITE</h3>
+            <!-- EDIT: prices are placeholders -->
+            <ul class="db-scard__prices">
+              <li><b>&pound;350</b> per writing day</li>
+              <li><b>&pound;750</b> per song (full production)</li>
+            </ul>
+            <p class="db-scard__text">
+              From a voice note to a finished record. Topline, arrangement, programming and live playing &mdash;
+              built around the song rather than the template.
+            </p>
+            <a class="db-btn db-btn--outline" href="#contact" data-magnetic>Start a song</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="db-scard" style="--i:2">
+        <div class="db-scard__inner">
+          <div class="db-scard__media" aria-hidden="true">
+            <img src="assets/img/studio-console.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1323">
+          </div>
+          <div class="db-scard__body">
+            <p class="db-scard__index">03</p>
+            <h3 class="db-scard__title">MIXING</h3>
+            <!-- EDIT: prices are placeholders -->
+            <ul class="db-scard__prices">
+              <li><b>&pound;250</b> per track</li>
+              <li><b>&pound;200</b> per track &mdash; EP or album</li>
+            </ul>
+            <p class="db-scard__text">
+              Clean, balanced mixes tailored to your sound and creative direction.
+              Two rounds of revisions included, plus instrumental, TV and a cappella versions.
+            </p>
+            <a class="db-btn db-btn--outline" href="#contact" data-magnetic>Send me stems</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="db-scard" style="--i:3">
+        <div class="db-scard__inner">
+          <div class="db-scard__media" aria-hidden="true">
+            <img src="assets/img/studio-desk-detail.jpg" alt="" loading="lazy" decoding="async" width="1080" height="423">
+          </div>
+          <div class="db-scard__body">
+            <p class="db-scard__index">04</p>
+            <h3 class="db-scard__title">MASTERING</h3>
+            <!-- EDIT: prices are placeholders -->
+            <ul class="db-scard__prices">
+              <li><b>&pound;70</b> per track</li>
+              <li><b>&pound;50</b> per track &mdash; EP or album</li>
+            </ul>
+            <p class="db-scard__text">
+              Final polish to prepare your tracks for release across every platform.
+              Streaming, distribution-ready WAVs and a DDP for anything going to disc.
+            </p>
+            <a class="db-btn db-btn--outline" href="#contact" data-magnetic>Master a record</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================== THE STUDIO ============================== -->
+  <section class="db-section db-studio" id="studio">
+    <div class="db-container">
+      <div class="db-studio__grid">
+        <div class="db-studio__copy">
+          <p class="db-eyebrow" data-reveal>02 &mdash; The room</p>
+          <h2 class="db-h2" data-reveal data-reveal-delay="80">THE STUDIO</h2>
+          <p data-reveal data-reveal-delay="160">
+            A creative space designed to keep you focused and comfortable, whether you are working solo
+            or bringing a band. A treated live room for drums and amps, a control room set up for long
+            days, and enough space to keep everyone in the same conversation.
+          </p>
+          <p data-reveal data-reveal-delay="220">
+            Nothing here is precious. Move the gobos, re-point the mics, run the take again.
+            The setup exists to get out of the way of the song.
+          </p>
+          <a class="db-btn db-btn--primary" href="#contact" data-reveal data-reveal-delay="300" data-magnetic>Book a free studio tour</a>
+        </div>
+
+        <div class="db-studio__gallery">
+          <figure class="db-shot db-shot--tall" data-reveal data-parallax="0.06">
+            <img src="assets/img/studio-live-room.jpg" alt="The live room set up for drums, with overhead and close mics on boom stands and movable acoustic gobos." loading="lazy" decoding="async" width="1320" height="1323">
+            <figcaption>Live room &mdash; drum tracking</figcaption>
+          </figure>
+          <figure class="db-shot" data-reveal data-reveal-delay="120" data-parallax="-0.05">
+            <img src="assets/img/studio-console.jpg" alt="A mix session in progress at the analogue console, with the multitrack session up on the display." loading="lazy" decoding="async" width="1320" height="1323">
+            <figcaption>Console &mdash; mix session</figcaption>
+          </figure>
+          <figure class="db-shot" data-reveal data-reveal-delay="200" data-parallax="0.04">
+            <img src="assets/img/studio-control-room.jpg" alt="The control room, with nearfield monitors either side of a large reference display." loading="lazy" decoding="async" width="1320" height="1216">
+            <figcaption>Control room &mdash; production</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== EQUIPMENT ============================== -->
+  <section class="db-section db-equip" id="equipment">
+    <div class="db-container">
+      <header class="db-section__head db-section__head--split">
+        <div>
+          <p class="db-eyebrow" data-reveal>03 &mdash; The tools</p>
+          <h2 class="db-h2" data-reveal data-reveal-delay="80">EQUIPMENT</h2>
+        </div>
+        <p class="db-section__lede" data-reveal data-reveal-delay="160">
+          A complete professional setup, built to help you get the best out of every session.
+        </p>
+      </header>
+
+      <!-- EDIT: verify this gear list and add anything missing -->
+      <div class="db-panels" id="equipPanels">
+
+        <article class="db-panel is-open" data-panel>
+          <div class="db-panel__media" aria-hidden="true">
+            <img src="assets/img/studio-control-room.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1216">
+          </div>
+          <button class="db-panel__tab" type="button" aria-expanded="true" aria-controls="equip-1">
+            <span class="db-panel__num">01</span>
+            <span class="db-panel__label">COMPUTERS &amp; INTERFACE</span>
+            <span class="db-panel__chev" aria-hidden="true"></span>
+          </button>
+          <div class="db-panel__content" id="equip-1">
+            <div class="db-panel__inner">
+              <p class="db-panel__summary">The rig everything runs through, in the room and on the road.</p>
+              <ul class="db-panel__list">
+                <li>Mac &mdash; main studio workstation</li>
+                <li>MacBook Pro &mdash; mobile tracking rig</li>
+                <li>Logic Pro &amp; Pro Tools</li>
+                <li>Large-format reference display</li>
+                <li>Multi-channel audio interface</li>
+                <li>Time-aligned monitor controller</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="db-panel" data-panel>
+          <div class="db-panel__media" aria-hidden="true">
+            <img src="assets/img/studio-monitor-detail.jpg" alt="" loading="lazy" decoding="async" width="390" height="780">
+          </div>
+          <button class="db-panel__tab" type="button" aria-expanded="false" aria-controls="equip-2">
+            <span class="db-panel__num">02</span>
+            <span class="db-panel__label">RECORDING &amp; MONITORING</span>
+            <span class="db-panel__chev" aria-hidden="true"></span>
+          </button>
+          <div class="db-panel__content" id="equip-2">
+            <div class="db-panel__inner">
+              <p class="db-panel__summary">What the room hears, and what you hear back.</p>
+              <ul class="db-panel__list">
+                <li>Focal nearfield monitors</li>
+                <li>Secondary reference monitors</li>
+                <li>Closed-back tracking headphones &amp; headphone amp</li>
+                <li>Large-diaphragm condensers for vocals</li>
+                <li>Dynamic and ribbon mics for drums and amps</li>
+                <li>Boom stands, movable gobos and acoustic panels</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="db-panel" data-panel>
+          <div class="db-panel__media" aria-hidden="true">
+            <img src="assets/img/studio-desk-detail.jpg" alt="" loading="lazy" decoding="async" width="1080" height="423">
+          </div>
+          <button class="db-panel__tab" type="button" aria-expanded="false" aria-controls="equip-3">
+            <span class="db-panel__num">03</span>
+            <span class="db-panel__label">OUTBOARD</span>
+            <span class="db-panel__chev" aria-hidden="true"></span>
+          </button>
+          <div class="db-panel__content" id="equip-3">
+            <div class="db-panel__inner">
+              <p class="db-panel__summary">Analogue in the chain where it earns its place.</p>
+              <ul class="db-panel__list">
+                <li>Inline analogue mixing console &mdash; 24 channels</li>
+                <li>Valve and solid-state preamps</li>
+                <li>Bus compression across the mix</li>
+                <li>Channel-strip EQ and compression</li>
+                <li>Hardware reverb and delay</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="db-panel" data-panel>
+          <div class="db-panel__media" aria-hidden="true">
+            <img src="assets/img/studio-live-room.jpg" alt="" loading="lazy" decoding="async" width="1320" height="1323">
+          </div>
+          <button class="db-panel__tab" type="button" aria-expanded="false" aria-controls="equip-4">
+            <span class="db-panel__num">04</span>
+            <span class="db-panel__label">INSTRUMENTS</span>
+            <span class="db-panel__chev" aria-hidden="true"></span>
+          </button>
+          <div class="db-panel__content" id="equip-4">
+            <div class="db-panel__inner">
+              <p class="db-panel__summary">Enough in the room that ideas do not have to wait.</p>
+              <ul class="db-panel__list">
+                <li>Acoustic drum kit &amp; cymbals</li>
+                <li>MIDI keyboard controller</li>
+                <li>Electric and acoustic guitars</li>
+                <li>Bass guitar and amplification</li>
+                <li>Synths and drum machines</li>
+                <li>Percussion</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== STATEMENT ============================== -->
+  <section class="db-statement" aria-labelledby="statementText">
+    <div class="db-container">
+      <p class="db-statement__text" id="statementText" data-char-reveal>
+        Songs get finished in the right room, with the right ears in it. Every session here comes with a
+        producer who writes, an engineer who mixes, and a setup that stays out of the way &mdash;
+        so the only thing you have to think about is the record.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== WORK ============================== -->
+  <section class="db-section db-work" id="work">
+    <div class="db-container">
+      <header class="db-section__head db-section__head--split">
+        <div>
+          <p class="db-eyebrow" data-reveal>04 &mdash; Credits</p>
+          <h2 class="db-h2" data-reveal data-reveal-delay="80">SELECTED WORK</h2>
+        </div>
+        <p class="db-section__lede" data-reveal data-reveal-delay="160">
+          Records written, produced and mixed with the artists who made them.
+        </p>
+      </header>
+
+      <div class="db-work__grid">
+
+        <article class="db-release db-release--feature" data-reveal>
+          <a class="db-release__link" href="#contact"><!-- EDIT: link to the release -->
+            <div class="db-release__media">
+              <img src="assets/img/release-choke.jpg" alt="Artwork for the CHOKE! EP by Gerron." loading="lazy" decoding="async" width="1320" height="1320">
+              <span class="db-release__play" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </span>
+            </div>
+            <div class="db-release__meta">
+              <p class="db-release__type">EP</p>
+              <h3 class="db-release__title">CHOKE!</h3>
+              <p class="db-release__artist">Gerron</p>
+              <p class="db-release__role">Co-write &middot; Production</p>
+              <ol class="db-release__tracks">
+                <li>CHOKE!</li><li>Messy</li><li>Grapefruit</li><li>To Change a Man</li><li>Anymore</li>
+              </ol>
+            </div>
+          </a>
+        </article>
+
+        <article class="db-release" data-reveal data-reveal-delay="120">
+          <a class="db-release__link" href="#contact"><!-- EDIT: link to the release -->
+            <div class="db-release__media">
+              <img src="assets/img/release-to-change-a-man.jpg" alt="Artwork for the single To Change a Man by Gerron." loading="lazy" decoding="async" width="1320" height="1323">
+              <span class="db-release__play" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </span>
+            </div>
+            <div class="db-release__meta">
+              <p class="db-release__type">Single</p>
+              <h3 class="db-release__title">To Change a Man</h3>
+              <p class="db-release__artist">Gerron</p>
+              <p class="db-release__role">Co-write &middot; Production</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="db-release" data-reveal data-reveal-delay="200">
+          <a class="db-release__link" href="#contact"><!-- EDIT: link to the release -->
+            <div class="db-release__media">
+              <img src="assets/img/release-choke.jpg" alt="Artwork for the single CHOKE! by Gerron." loading="lazy" decoding="async" width="1320" height="1320">
+              <span class="db-release__play" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </span>
+            </div>
+            <div class="db-release__meta">
+              <p class="db-release__type">Single</p>
+              <h3 class="db-release__title">CHOKE!</h3>
+              <p class="db-release__artist">Gerron</p>
+              <p class="db-release__role">Co-write &middot; Production</p>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CREDITS MARQUEE ============================== -->
+  <div class="db-marquee db-marquee--line" data-marquee data-speed="34" data-direction="reverse" aria-hidden="true">
+    <div class="db-marquee__track">
+      <span class="db-marquee__group">
+        <b>CHOKE!</b><i>✳</i><b>MESSY</b><i>✳</i><b>GRAPEFRUIT</b><i>✳</i><b>TO CHANGE A MAN</b><i>✳</i><b>ANYMORE</b><i>✳</i>
+      </span>
+    </div>
+  </div>
+
+  <!-- ============================== ABOUT ============================== -->
+  <section class="db-section db-about" id="about">
+    <div class="db-container">
+      <div class="db-about__grid">
+        <figure class="db-about__portrait" data-reveal data-parallax="0.05">
+          <img src="assets/img/studio-control-room.jpg" alt="Daniel Brazil working in the control room." loading="lazy" decoding="async" width="1320" height="1216">
+        </figure>
+
+        <div class="db-about__copy">
+          <p class="db-eyebrow" data-reveal>05 &mdash; About</p>
+          <h2 class="db-h2" data-reveal data-reveal-delay="80">WHO YOU&rsquo;RE<br>WORKING WITH</h2>
+          <p data-reveal data-reveal-delay="160">
+            I&rsquo;m Daniel Brazil &mdash; a record producer, songwriter and mix engineer. Most of what I do
+            starts in the room with the artist: finding the idea, writing it properly, then producing and
+            mixing it until it sounds like the thing we heard at the beginning.
+          </p>
+          <p data-reveal data-reveal-delay="220">
+            Recent work includes co-writing and producing Gerron&rsquo;s debut EP <em>CHOKE!</em> &mdash;
+            shimmering synth textures, bright pop production and vocal arrangements built to carry the song.
+            If you want a producer who will also help you write it, that&rsquo;s the job.
+          </p>
+
+          <ul class="db-tiles" data-reveal data-reveal-delay="300">
+            <li><b>Co-writes welcome</b><span>Bring a voice note or bring nothing</span></li>
+            <li><b>Mixed &amp; mastered in-house</b><span>One set of ears, start to finish</span></li>
+            <li><b>Remote sessions</b><span>Send stems, join the playback on a call</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FAQ ============================== -->
+  <section class="db-section db-faq" id="faq">
+    <div class="db-container">
+      <header class="db-section__head">
+        <p class="db-eyebrow" data-reveal>06 &mdash; Answers</p>
+        <h2 class="db-h2" data-reveal data-reveal-delay="80">FREQUENTLY ASKED<br>QUESTIONS</h2>
+      </header>
+
+      <div class="db-accordion" id="faqAccordion">
+
+        <div class="db-acc" data-acc>
+          <h3><button class="db-acc__q" type="button" aria-expanded="false" aria-controls="faq-1">
+            <span>How do I book a session?</span><i class="db-acc__icon" aria-hidden="true"></i>
+          </button></h3>
+          <div class="db-acc__a" id="faq-1"><div>
+            <p>Use the form below, or email me directly. Tell me the project type, your preferred dates and any
+            deadlines, and I&rsquo;ll come back with availability and a session plan.</p>
+          </div></div>
+        </div>
+
+        <div class="db-acc" data-acc>
+          <h3><button class="db-acc__q" type="button" aria-expanded="false" aria-controls="faq-2">
+            <span>What&rsquo;s the difference between production and a co-write?</span><i class="db-acc__icon" aria-hidden="true"></i>
+          </button></h3>
+          <div class="db-acc__a" id="faq-2"><div>
+            <p>A co-write means we write the song together from scratch or from your idea &mdash; melody, lyric,
+            chords, structure. Production is building the record around a song that already exists. Most sessions
+            end up being both, and we agree the splits before anything gets released.</p>
+          </div></div>
+        </div>
+
+        <div class="db-acc" data-acc>
+          <h3><button class="db-acc__q" type="button" aria-expanded="false" aria-controls="faq-3">
+            <span>What&rsquo;s the difference between mixing and mastering?</span><i class="db-acc__icon" aria-hidden="true"></i>
+          </button></h3>
+          <div class="db-acc__a" id="faq-3"><div>
+            <p>Mixing balances and shapes the individual tracks. Mastering finalises the stereo mix for streaming,
+            vinyl, radio and release.</p>
+          </div></div>
+        </div>
+
+        <div class="db-acc" data-acc>
+          <h3><button class="db-acc__q" type="button" aria-expanded="false" aria-controls="faq-4">
+            <span>What do you need to start mixing?</span><i class="db-acc__icon" aria-hidden="true"></i>
+          </button></h3>
+          <div class="db-acc__a" id="faq-4"><div>
+            <ul>
+              <li>Multitrack stems (WAV or AIFF, 24-bit preferred), all from the same start point</li>
+              <li>A rough mix, if you have one</li>
+              <li>BPM and key</li>
+              <li>Two or three reference tracks</li>
+              <li>Notes on the creative direction</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="db-acc" data-acc>
+          <h3><button class="db-acc__q" type="button" aria-expanded="false" aria-controls="faq-5">
+            <span>Can I visit the studio before booking?</span><i class="db-acc__icon" aria-hidden="true"></i>
+          </button></h3>
+          <div class="db-acc__a" id="faq-5"><div>
+            <p>Absolutely. Studio tours are free and encouraged &mdash; come and see the space, hear the room
+            and talk through the project before you commit to anything.</p>
+          </div></div>
+        </div>
+
+        <div class="db-acc" data-acc>
+          <h3><button class="db-acc__q" type="button" aria-expanded="false" aria-controls="faq-6">
+            <span>What should I bring to a recording session?</span><i class="db-acc__icon" aria-hidden="true"></i>
+          </button></h3>
+          <div class="db-acc__a" id="faq-6"><div>
+            <ul>
+              <li>Your instrument(s), plus spare strings, sticks and cables</li>
+              <li>Session files, stems or demos</li>
+              <li>Lyrics and chord charts</li>
+              <li>A hard drive or cloud access for your files</li>
+              <li>Snacks and water &mdash; optional, but recommended</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="db-acc" data-acc>
+          <h3><button class="db-acc__q" type="button" aria-expanded="false" aria-controls="faq-7">
+            <span>Can we work together remotely?</span><i class="db-acc__icon" aria-hidden="true"></i>
+          </button></h3>
+          <div class="db-acc__a" id="faq-7"><div>
+            <p>Yes. Send files online from anywhere and join mix reviews on a video call. Plenty of writing
+            sessions start remotely and finish in the room.</p>
+          </div></div>
+        </div>
+
+        <div class="db-acc" data-acc>
+          <h3><button class="db-acc__q" type="button" aria-expanded="false" aria-controls="faq-8">
+            <span>Can I bring guests?</span><i class="db-acc__icon" aria-hidden="true"></i>
+          </button></h3>
+          <div class="db-acc__a" id="faq-8"><div>
+            <p>You can bring a small number of guests. Let me know in advance so I can plan the space and
+            keep the session moving.</p>
+          </div></div>
+        </div>
+
+      </div>
+
+      <aside class="db-policy" data-reveal>
+        <h3 class="db-policy__title">CANCELLATION POLICY</h3>
+        <p>
+          Bookings are refundable only if cancelled at least 24 hours before the scheduled session.
+          Cancellations made after that point are not eligible for a refund.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============================== CONTACT ============================== -->
+  <section class="db-section db-contact" id="contact">
+    <div class="db-container">
+      <div class="db-contact__grid">
+
+        <div class="db-contact__copy">
+          <p class="db-eyebrow" data-reveal>07 &mdash; Say hello</p>
+          <h2 class="db-h2 db-h2--xl" data-reveal data-reveal-delay="80">BOOK YOUR<br>SESSION</h2>
+          <p class="db-contact__lede" data-reveal data-reveal-delay="160">
+            Tell me what you&rsquo;re making and when you want it finished. I&rsquo;ll come back within
+            two working days.
+          </p>
+
+          <ul class="db-contact__details" data-reveal data-reveal-delay="220">
+            <!-- EDIT: replace all of these with your real details -->
+            <li>
+              <span class="db-contact__label">Email</span>
+              <a href="mailto:hello@danielbrazil.co.uk">hello@danielbrazil.co.uk</a>
+            </li>
+            <li>
+              <span class="db-contact__label">Phone</span>
+              <a href="tel:+440000000000">+44 (0)00 0000 0000</a>
+            </li>
+            <li>
+              <span class="db-contact__label">Instagram</span>
+              <a href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">@danielbrazilmusic</a>
+            </li>
+            <li>
+              <span class="db-contact__label">Studio</span>
+              <span>United Kingdom &mdash; full address on booking</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- EDIT: set data-endpoint to your Formspree/Netlify URL, or leave blank to use the mailto fallback -->
+        <form class="db-form" id="bookingForm" novalidate data-endpoint="" data-mailto="hello@danielbrazil.co.uk" data-reveal data-reveal-delay="140">
+          <div class="db-field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+            <p class="db-field__error" data-error-for="f-name" hidden>Please tell me your name.</p>
+          </div>
+
+          <div class="db-field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+            <p class="db-field__error" data-error-for="f-email" hidden>Please enter a valid email address.</p>
+          </div>
+
+          <div class="db-field">
+            <label for="f-type">What do you need?</label>
+            <select id="f-type" name="service" required>
+              <option value="">Choose a service</option>
+              <option>Studio hire</option>
+              <option>Production &amp; co-write</option>
+              <option>Mixing</option>
+              <option>Mastering</option>
+              <option>Studio tour</option>
+              <option>Something else</option>
+            </select>
+            <p class="db-field__error" data-error-for="f-type" hidden>Please choose a service.</p>
+          </div>
+
+          <div class="db-field">
+            <label for="f-dates">Preferred dates <span>(optional)</span></label>
+            <input id="f-dates" name="dates" type="text" placeholder="e.g. late March, weekends">
+          </div>
+
+          <div class="db-field db-field--full">
+            <label for="f-msg">About the project</label>
+            <textarea id="f-msg" name="message" rows="5" required></textarea>
+            <p class="db-field__error" data-error-for="f-msg" hidden>A sentence or two is plenty.</p>
+          </div>
+
+          <!-- honeypot -->
+          <div class="db-field db-field--hp" aria-hidden="true">
+            <label for="f-company">Company</label>
+            <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="db-form__foot">
+            <button class="db-btn db-btn--primary" type="submit" data-magnetic>Send enquiry</button>
+            <p class="db-form__status" id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="db-footer">
+  <div class="db-container">
+    <div class="db-footer__top">
+      <a class="db-footer__wordmark" href="#top">DANIEL BRAZIL</a>
+      <p class="db-footer__tag">Producer &middot; Songwriter &middot; Mix engineer</p>
+    </div>
+
+    <div class="db-footer__grid">
+      <nav class="db-footer__col" aria-label="Footer">
+        <h2 class="db-footer__heading">MENU</h2>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#studio">The studio</a></li>
+          <li><a href="#equipment">Equipment</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="db-footer__col">
+        <h2 class="db-footer__heading">FIND ME</h2>
+        <!-- EDIT: replace with your real contact details -->
+        <p><span>Studio:</span> United Kingdom &mdash; full address on booking</p>
+        <p><span>Phone:</span> <a href="tel:+440000000000">+44 (0)00 0000 0000</a></p>
+        <p><span>Email:</span> <a href="mailto:hello@danielbrazil.co.uk">hello@danielbrazil.co.uk</a></p>
+      </div>
+
+      <div class="db-footer__col">
+        <h2 class="db-footer__heading">STAY CONNECTED</h2>
+        <ul class="db-footer__social">
+          <li><a href="https://www.instagram.com/danielbrazilmusic/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" rel="noopener">Spotify</a></li><!-- EDIT -->
+          <li><a href="#" rel="noopener">Apple Music</a></li><!-- EDIT -->
+          <li><a href="#" rel="noopener">YouTube</a></li><!-- EDIT -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="db-footer__bar">
+      <p>&copy; <span id="year">2026</span> Daniel Brazil. All rights reserved.</p>
+      <p><a href="#top">Back to top &uarr;</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
