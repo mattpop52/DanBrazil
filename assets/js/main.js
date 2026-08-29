@@ -43,11 +43,16 @@
      Shared rAF loop. Register a function; it runs once per frame while at
      least one subscriber is active.
      --------------------------------------------------------------------- */
-  var frameTasks = [];
+  var frameTasks = [];       // run every frame (marquees, ticker, cursor)
+  var scrollTasks = [];      // run only when the scroll position changed
   var frameQueued = false;
   var lastTime = 0;
+  var lastFrameScroll = -1;
+  var lastFrameView = -1;
+  var scrollDirty = true;
 
   function onFrame(fn) { frameTasks.push(fn); requestFrame(); }
+  function onScrollFrame(fn) { scrollTasks.push(fn); requestFrame(); }
 
   function requestFrame() {
     if (frameQueued) return;
@@ -60,7 +65,16 @@
     var dt = lastTime ? Math.min((now - lastTime) / 1000, 0.05) : 0.016;
     lastTime = now;
     for (var i = 0; i < frameTasks.length; i++) frameTasks[i](dt, now);
-    if (frameTasks.length) {
+
+    if (scrollY !== lastFrameScroll || viewH !== lastFrameView) scrollDirty = true;
+    if (scrollDirty) {
+      lastFrameScroll = scrollY;
+      lastFrameView = viewH;
+      scrollDirty = false;
+      for (var j = 0; j < scrollTasks.length; j++) scrollTasks[j](dt, now);
+    }
+
+    if (frameTasks.length || scrollTasks.length) {
       frameQueued = true;
       requestAnimationFrame(tick);
     }
@@ -75,6 +89,7 @@
   window.addEventListener('resize', function () {
     viewH = window.innerHeight;
     docH = document.documentElement.scrollHeight;
+    scrollDirty = true;
   }, { passive: true });
 
   /* =====================================================================
@@ -143,7 +158,7 @@
     var prev = scrollY;
     var menuOpen = function () { return document.body.classList.contains('is-locked'); };
 
-    onFrame(function () {
+    onScrollFrame(function () {
       var y = scrollY;
       header.classList.toggle('is-solid', y > 40);
 
@@ -165,7 +180,7 @@
     var bar = $('#scrollProgress');
     if (!bar) return;
     var since = 0;
-    onFrame(function (dt) {
+    onScrollFrame(function (dt) {
       // Page height changes when accordions open — re-measure a few times a
       // second rather than every frame.
       since += dt;
@@ -310,7 +325,7 @@
 
     var lit = -1;
 
-    onFrame(function () {
+    onScrollFrame(function () {
       var rect = el.getBoundingClientRect();
       // 0 when the block's top reaches 78% of the viewport,
       // 1 when its bottom passes 32% — a comfortable read-along.
@@ -514,6 +529,12 @@
     if (!wrap) return;
 
     var panels = $$('[data-panel]', wrap);
+    if (!panels.length) return;
+
+    // Hover previews a panel; clicking pins it. Clicking the pinned one unpins,
+    // so activating a tab always does something visible — including for the
+    // panel that is already open.
+    var pinned = panels[0];
 
     function setOpen(panel, open) {
       panel.classList.toggle('is-open', open);
@@ -521,33 +542,39 @@
       if (tab) tab.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
+    function show(panel) {
+      panels.forEach(function (p) { setOpen(p, p === panel); });
+      scrollDirty = true;
+    }
+
+    show(pinned);
+
     panels.forEach(function (panel) {
       var tab = $('.db-panel__tab', panel);
       if (!tab) return;
 
       tab.addEventListener('click', function () {
-        var isOpen = panel.classList.contains('is-open');
-
-        // On desktop the row always shows one open panel; closing the only
-        // open one would leave an empty strip, so that click is a no-op.
-        if (isOpen && desktop.matches) return;
-
-        panels.forEach(function (p) { setOpen(p, false); });
-        setOpen(panel, !isOpen || desktop.matches);
+        pinned = (pinned === panel) ? null : panel;
+        show(pinned);
       });
 
-      // Hovering a closed column on desktop opens it — same as the tabs
-      // pattern on the reference site, but click still works for keyboards.
       tab.addEventListener('pointerenter', function (e) {
         if (!desktop.matches || e.pointerType === 'touch') return;
-        if (panel.classList.contains('is-open')) return;
-        panels.forEach(function (p) { setOpen(p, p === panel); });
+        show(panel);
+      });
+
+      tab.addEventListener('focus', function () {
+        if (desktop.matches) show(panel);
       });
     });
 
-    onMediaChange(desktop, function (e) {
-      if (e.matches && !$('.db-panel.is-open', wrap)) setOpen(panels[0], true);
+    // Leaving the row falls back to whatever is pinned.
+    wrap.addEventListener('pointerleave', function (e) {
+      if (!desktop.matches || e.pointerType === 'touch') return;
+      show(pinned);
     });
+
+    onMediaChange(desktop, function () { scrollDirty = true; });
   }
 
   /* =====================================================================
@@ -560,6 +587,7 @@
       btn.addEventListener('click', function () {
         var open = item.classList.toggle('is-open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        scrollDirty = true;
       });
     });
   }
@@ -572,7 +600,7 @@
     var items = $$('[data-parallax]');
     if (prefersReduced || (!heroImg && !items.length)) return;
 
-    onFrame(function () {
+    onScrollFrame(function () {
       if (prefersReduced) return;
 
       if (heroImg) {

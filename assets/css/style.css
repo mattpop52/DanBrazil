@@ -1715,6 +1715,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .db-panel:not(.is-open) { flex: 0 0 15%; }
   .db-panel.is-open { flex: 1 1 auto; }
 
+  /* With nothing open the row spreads back to four equal columns, so closing
+     the last panel is a real action rather than a silent no-op. */
+  .db-panels:not(:has(.db-panel.is-open)) .db-panel { flex: 1 1 0; }
+
   .db-panel__tab {
     width: auto;
     flex: 0 0 5.25rem;
